@@ -495,10 +495,12 @@ def main():
     print(f"Report written to {REPORT_FILE.relative_to(REPO_ROOT)}")
 
     # Summary to stdout for Action log
-    n_disc = len(analysis["workflow_discrepancies"])
+    n_models = len(analysis["model_centric"])
+    n_changes = sum(len(v) for v in analysis["model_centric"].values())
     n_var = len(analysis["predicate_variants"])
     n_shared = len(analysis["shared_nodes"])
-    print(f"  Workflow discrepancies:      {n_disc}")
+    print(f"  Models needing updates:      {n_models}")
+    print(f"  Total label changes needed:  {n_changes}")
     print(f"  Predicate-scoped variants:   {n_var}")
     print(f"  Shared nodes (exact match):  {n_shared}")
 
