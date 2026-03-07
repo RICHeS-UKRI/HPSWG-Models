@@ -1,0 +1,65 @@
+//flowchart LR
+E22: Heritage Object	tooltip	A human-made work of art created using paint on a prepared support; the central entity in this model.	object-fs32|
+E22: Heritage Object	has note	Document Note: Heritage Object Model Overview
+Document Note: Heritage Object Model Overview	tooltip	This model defines the Heritage Object (E22) as the core object from which samples, analytical data, and descriptive documentation are derived. It records ownership, collection context, dimensions, support, and medium, linking the artwork to its production event, associated documentation, and any related scientific or curatorial information. Together, these relationships provide a foundation for integrating technical study, provenance, and contextual research across connected datasets.
+//subgraph Linked Entities
+E39: Institution or Person	tooltip	The legal owner or holding institution of the painting.	actor-fs24|
+//links E39: Institution or Person --> person, institution
+E39: Institution or Person#-1	tooltip	The institution or person currently responsible for the painting’s care or location.	actor-fs24|
+//
+E53: Institution or Place	tooltip	The physical location or site where the painting is housed or displayed.	place-fs24|
+//links E53: Institution or Place --> location
+E54: Dimensions	tooltip	The measured height, width, and optionally depth of the painting, recorded as dimensional attributes.	dims-fs24|
+//Missing
+E78: Collection (Curated Holding)	tooltip	The collection or sub-collection to which the painting formally belongs.	object-fs24|
+//Missing
+E31: Report or Document	tooltip	Any document, catalogue entry, publication, or report relating to the painting’s description, study, or conservation.	document-fs24|
+//Missing
+E57: Medium	tooltip	The material or binding medium used to form the paint layers of the artwork.	object-fs24|
+//Missing
+E57: Other Material	tooltip	Any material forming part of the original composition or manufacture of a heritage object or sample, beyond media or supports.	object-fs24|
+//Missing
+E22: Support	tooltip	The physical base material or structure on which the paint was applied (e.g., canvas, panel, metal).	object-fs24|
+//links E22: Support --> heritage_object_part
+E12: Production Event	tooltip	The creative or manufacturing event during which the painting was produced or completed.	event-fs24|
+//links E12: Production Event --> production_event
+EX_Digital_Image: Main Object Image	tooltip	Stuff	digital2-fs24|
+//Missing
+EX_Digital_Image: Object Image	tooltip	Stuff	digital2-fs24|
+//Missing
+//end sg1
+E22: Heritage Object	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
+E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580
+E22: Heritage Object	P1_is_identified_by (0 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E22: Heritage Object	P67i_is_referred_to_by (1 to 1)	E73: Description Text	|literal
+//E22: Heritage Object	P67i_is_referred_to_by (0 to n)	E31: Report or Document	|document
+E22: Heritage Object	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+E31: Report or Document	tooltip	Can include a whole range of descriptions, reports, notes, publications etc.
+E73: Description Text	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E22: Heritage Object	P67i_is_referred_to_by (0 to 1)	E73: Credit Line	|literal
+E73: Credit Line	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E22: Heritage Object	P1_is_identified_by (1 to 1)	E42: Accession Number (custodian)	|url
+E42: Accession Number (custodian)	P2_has_type (1 to 1)	aat:300312355
+E22: Heritage Object	P1_is_identified_by (0 to n)	E42: Alternative Identifiers	|url
+E42: Alternative Identifiers	tooltip	A wide range of different additional identifiers can be associated to painting from historic codes to other globally resolvable PIDs.
+E22: Heritage Object	P2_has_type (1 to n)	E55: object type	|type
+E55: object type	tooltip	Multiple values selected from a defined controlled list.
+E22: Heritage Object	P102_has_title (1 to 1)	E35: Full Title	|name
+E35: Full Title	P2_has_type (1 to 1)	aat:300417209
+E22: Heritage Object	P102_has_title (0 to n)	E35: Alternate Title	|name
+E35: Alternate Title	P2_has_type (1 to 1)	aat:300417227
+E22: Heritage Object	P52_has_current_owner (1 to n)	E39: Institution or Person	|actor
+E22: Heritage Object	P50_has_current_keeper (1 to 1)	E39: Institution or Person#-1	|actor
+E22: Heritage Object	P46i_forms_part_of (0 to n)	E78: Collection (Curated Holding)	|object
+E22: Heritage Object	P54_has_current_permanent_location (1 to 1)	E53: Institution or Place	|place
+E22: Heritage Object	P43_has_dimension (0 to n)	E54: Dimensions	|dims
+E22: Heritage Object	P45_consists_of (1 to n)	E57: Medium	|object
+E22: Heritage Object	P45_consists_of (0 to n)	E57: Other Material	|object
+E22: Heritage Object	P46_is_composed_of (1 to 1)	E22: Support	|object
+//E22: Heritage Object	P44_has_condition (1 to n)	E3: Condition state (Object Status)	|period
+//E3: Condition state (Object Status)	P2_has_type (1 to 1)	E55: condition state type	|type
+//E55: condition state type	tooltip	The current condition, treatment state, or lifecycle position of a heritage object, conservation history, handling, availability, or degree of alteration over time.
+E22: Heritage Object	P108i_was_produced_by (1 to 1)	E12: Production Event	|event
+E22: Heritage Object	PX_has_main_representation (0 to 1)	EX_Digital_Image: Main Object Image
+E22: Heritage Object	P138i_has_representation (0 to n)	EX_Digital_Image: Object Image
