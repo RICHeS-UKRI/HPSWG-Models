@@ -703,6 +703,86 @@ def write_per_model_readmes(
 
 
 # ---------------------------------------------------------------------------
+# Reports README
+# ---------------------------------------------------------------------------
+
+
+def extract_report_description(report_path: Path) -> str:
+    """
+    Extract a short description from a report file.
+    Reads the first non-empty, non-heading, non-generated line after the H1 title.
+    Falls back to a generic label if nothing suitable is found.
+    """
+    try:
+        lines = report_path.read_text(encoding="utf-8").splitlines()
+    except Exception:
+        return "_No description available._"
+
+    past_title = False
+    for line in lines:
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("#"):
+            past_title = True
+            continue
+        if past_title and not stripped.startswith("_Generated"):
+            return stripped[:120] + ("..." if len(stripped) > 120 else "")
+
+    return "_No description available._"
+
+
+def write_reports_readme(raw_base: str):
+    """
+    Generate reports/README.md from reports/README.template.md.
+    Injects a REPORT-LIST block listing all .md files in reports/ except README.md.
+    If no template exists, bootstraps a minimal README.
+    """
+    reports_dir = REPORTS_DIR
+    template_path = reports_dir / "README.template.md"
+
+    report_files = sorted(
+        p for p in reports_dir.glob("*.md")
+        if p.name.lower() != "readme.md"
+    )
+
+    def build_table() -> str:
+        if not report_files:
+            return "_No reports generated yet._"
+        rows = [
+            "| Report | Description | Last modified |",
+            "|--------|-------------|---------------|",
+        ]
+        for rp in report_files:
+            desc = extract_report_description(rp)
+            _, modified = get_git_dates(rp)
+            raw_link = f"{raw_base}/{rp.relative_to(REPO_ROOT).as_posix()}"
+            rows.append(f"| [{rp.name}]({raw_link}) | {desc} | {modified} |")
+        return "\n".join(rows)
+
+    reports_dir.mkdir(exist_ok=True)
+
+    if not template_path.exists():
+        lines = [
+            "# Reports",
+            "",
+            "This folder contains automatically generated reports produced by the "
+            "GitHub Actions workflow. Reports are updated on every push that changes "
+            "model files or scripts.",
+            "",
+            "<!-- BEGIN AUTO: REPORT-LIST -->",
+            build_table(),
+            "<!-- END AUTO: REPORT-LIST -->",
+        ]
+        (reports_dir / "README.md").write_text("\n".join(lines), encoding="utf-8")
+        return
+
+    template = template_path.read_text(encoding="utf-8")
+    new_content = replace_auto_block(template, "REPORT-LIST", build_table())
+    (reports_dir / "README.md").write_text(new_content, encoding="utf-8")
+
+
+# ---------------------------------------------------------------------------
 # Entry point
 # ---------------------------------------------------------------------------
 
@@ -723,6 +803,7 @@ def main():
     write_top_readme(folders, raw_base, ng_latest)
     write_models_readme(folders, raw_base, ng_tsvs, ontologies)
     write_per_model_readmes(folders, raw_base, ontologies)
+    write_reports_readme(raw_base)
 
     # Write ONTOLOGIES.md if it does not exist yet (first-run bootstrap)
     ontologies_md_path = REPO_ROOT / "ONTOLOGIES.md"

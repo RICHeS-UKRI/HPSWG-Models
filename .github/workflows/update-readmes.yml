@@ -12,8 +12,12 @@ on:
       - 'scripts/update_readmes.py'                 # generator logic
       - 'scripts/check_consistency.py'              # consistency checker
       - 'scripts/ontologies.json'                   # ontology config
+      - 'scripts/crm_hierarchy.json'                # CRM class hierarchy
       - 'README.template.md'                        # top-level template
       - 'models/README.template.md'                 # models index template
+      - 'reports/README.template.md'                # reports index template
+      - 'reports/*.md'                              # report content changes
+      - '!reports/README.md'                        # exclude to prevent action loop
       - '.github/workflows/update-readmes.yml'      # workflow definition
   workflow_dispatch:
 
