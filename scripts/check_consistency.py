@@ -73,8 +73,34 @@ CLASS_CODE_RE = re.compile(r"^([A-Za-z][A-Za-z0-9_/]*(?::[A-Za-z0-9_/]*)?):\s*")
 # Strip trailing #-N instance suffixes (e.g. #-1, #-2)
 INSTANCE_SUFFIX_RE = re.compile(r"#-\d+$")
 
+VERSION_RE = re.compile(r"_v(\d+(?:\.\d+)*)\.tsv$")
+
+
+def parse_version(filename: str) -> Optional[Tuple[int, ...]]:
+    """Extract version tuple from a filename like 'model_v1.2.tsv' -> (1, 2)."""
+    m = VERSION_RE.search(filename)
+    if not m:
+        return None
+    try:
+        return tuple(int(p) for p in m.group(1).split("."))
+    except ValueError:
+        return None
+
 # Lines to skip: directives, comments, subgraph markers
 SKIP_RE = re.compile(r"^\s*//")
+
+VERSION_RE = re.compile(r"_v(\d+(?:\.\d+)*)\.tsv$")
+
+
+def parse_version(filename: str) -> Optional[Tuple[int, ...]]:
+    """Extract version tuple from a filename like 'sample_model_v1.2.tsv' -> (1, 2)."""
+    m = VERSION_RE.search(filename)
+    if not m:
+        return None
+    try:
+        return tuple(int(p) for p in m.group(1).split("."))
+    except ValueError:
+        return None
 
 
 def strip_instance_suffix(name: str) -> str:
