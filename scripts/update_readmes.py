@@ -36,6 +36,7 @@ from typing import Dict, List, Optional, Tuple
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 MODELS_DIR = REPO_ROOT / "models"
+REPORTS_DIR = REPO_ROOT / "reports"
 NG_MERMAID_FILE = MODELS_DIR / "ng_models_mermaid.mmd"
 ONTOLOGIES_FILE = REPO_ROOT / "scripts" / "ontologies.json"
 
