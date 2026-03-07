@@ -33,11 +33,25 @@ README.md
 
 | Version | Raw TSV | Visualisation |
 |---------|---------|---------------|
-| 0.1 | [TSV](https://raw.githubusercontent.com/RICHeS-UKRI/HSDS-NG-Models/refs/heads/main/models/ng_models_v0.1.tsv) | [Open in Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HSDS-NG-Models/refs/heads/main/models/ng_models_v0.1.tsv) |
+| 0.1 | [TSV](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/models/ng_models_v0.1.tsv) | [Open in Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/models/ng_models_v0.1.tsv) |
 
 ### Model folders
 
-- [`samples/`](./samples)
+- [`frame_part/`](./frame_part)
+- [`heritage_object/`](./heritage_object)
+- [`heritage_object_part/`](./heritage_object_part)
+- [`location/`](./location)
+- [`old_samples/`](./old_samples)
+- [`person/`](./person)
+- [`production_event/`](./production_event)
+- [`project/`](./project)
+- [`sample/`](./sample)
+- [`sample_modification/`](./sample_modification)
+- [`sample_site/`](./sample_site)
+- [`sample_storage_unit/`](./sample_storage_unit)
+- [`sample_taking_event/`](./sample_taking_event)
+- [`sampling_event/`](./sampling_event)
+- [`workflows/`](./workflows)
 <!-- END AUTO: MODEL-FOLDERS -->
 
 ---
