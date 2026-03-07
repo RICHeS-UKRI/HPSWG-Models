@@ -1,17 +1,41 @@
 # Model Consistency Report
 
-_Generated: 2026-03-07 20:31 UTC_
+_Generated: 2026-03-07 20:55 UTC_
 
 **Individual model files analysed:** 13  
 **Workflow/overview files analysed:** 1  
 
 This report checks consistency of inter-model linking nodes declared in each model's `//subgraph Linked Entities` block. Only declared linked entities are checked -- high-multiplicity classes such as E55 type terms are not flagged unless explicitly declared.
 
+## Link declaration syntax
+
+Each linked entity in a model's `//subgraph Linked Entities` block should have a `//links` directive declaring what it connects to. Two target types are supported:
+
+**Repo model targets** -- point to another model folder in this repository:
+```
+//links E39: Project Owner --> person, institution
+//links E7: Parent Project --> project
+```
+
+**Ontology references** -- follow standard CRM/extension ontology structure with no bespoke repo model needed:
+```
+//links E31: Related Documents --> crm:E31
+//links E94: Sampling Point --> crmsci:E94
+//links D1: Digital Object --> crmdig:D1
+```
+
+Multiple targets are comma-separated or joined with `or`.
+
+---
+
 **Status key:**
-- ✅ Consistent -- class codes match exactly
-- 🔵 Hierarchy match -- related via CRM class hierarchy, confirm intent
+- ✅ Consistent -- repo model, class codes match exactly
+- 🔵 Hierarchy match -- repo model, related via CRM hierarchy, confirm intent
 - ⚠️ Class mismatch -- classes not related, check required
 - ❓ Unknown target -- declared target folder not found in repo
+- 📖 Ontology reference -- follows standard CRM/extension ontology structure
+- 📖🔵 Ontology via hierarchy -- related class, confirm intent
+- 📖⚠️ Ontology mismatch -- class code does not match reference
 - ⚠ No declaration -- `//links` directive missing, suggestions provided
 
 ---
@@ -21,19 +45,19 @@ This report checks consistency of inter-model linking nodes declared in each mod
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
 
 <details>
-<summary><strong>heritage_object/heritage_object_v1.4.tsv</strong></summary>
+<summary><strong>heritage_object/heritage_object_v1.4.tsv</strong> -- 2 confirmed, 1 to review, 7 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E39: Institution or Person` | `E39` | `person` → `E21: Person` | 🔵 Hierarchy match -- confirm intent |
-|  |  | `institution` → -- | ❓ Target folder not found in repo |
+|  |  | `institution` | ❓ Target folder not found in repo |
 | `E53: Institution or Place` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E54: Dimensions` | `E54` | _No matching models found_ | ⚠ No declaration |
 | `E78: Collection (Curated Holding)` | `E78` | _No matching models found_ | ⚠ No declaration |
 | `E31: Report or Document` | `E31` | _No matching models found_ | ⚠ No declaration |
 | `E57: Medium` | `E57` | _No matching models found_ | ⚠ No declaration |
 | `E57: Other Material` | `E57` | _No matching models found_ | ⚠ No declaration |
-| `E22: Support` | `E22` | `heritage_object_part` → -- | ⚠️ Class mismatch -- check required |
+| `E22: Support` | `E22` | `heritage_object_part` | ⚠️ Class mismatch -- check required |
 | `E12: Production Event` | `E12` | `production_event` → `E12: Production` | ✅ Consistent |
 | `EX_Digital_Image: Main Object Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
 | `EX_Digital_Image: Object Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
@@ -41,7 +65,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>location/location_v1.0.tsv</strong></summary>
+<summary><strong>location/location_v1.0.tsv</strong> -- 2 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -51,7 +75,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>person/person_v0.9.tsv</strong></summary>
+<summary><strong>person/person_v0.9.tsv</strong> -- 4 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -63,7 +87,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>production_event/production_event_v1.0.tsv</strong></summary>
+<summary><strong>production_event/production_event_v1.0.tsv</strong> -- 4 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -75,7 +99,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>project/project_v1.0.tsv</strong></summary>
+<summary><strong>project/project_v1.0.tsv</strong> -- 4 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -87,7 +111,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample/sample_v1.6.tsv</strong></summary>
+<summary><strong>sample/sample_v1.6.tsv</strong> -- 11 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -106,7 +130,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_modification/sample_modification_v1.3.tsv</strong></summary>
+<summary><strong>sample_modification/sample_modification_v1.3.tsv</strong> -- 7 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -121,7 +145,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_site/sample_site_v1.4.tsv</strong></summary>
+<summary><strong>sample_site/sample_site_v1.4.tsv</strong> -- 8 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -137,7 +161,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_storage_unit/sample_storage_unit_v1.0.tsv</strong></summary>
+<summary><strong>sample_storage_unit/sample_storage_unit_v1.0.tsv</strong> -- 4 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -149,7 +173,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_taking_event/sample_taking_event_v1.4.tsv</strong></summary>
+<summary><strong>sample_taking_event/sample_taking_event_v1.4.tsv</strong> -- 7 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -164,7 +188,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sampling_event/sampling_event_v1.1.tsv</strong></summary>
+<summary><strong>sampling_event/sampling_event_v1.1.tsv</strong> -- 7 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
