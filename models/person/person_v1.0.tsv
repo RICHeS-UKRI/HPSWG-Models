@@ -1,0 +1,62 @@
+//flowchart LR
+E21: Person	tooltip	An individual (historic or modern) acting in research, conservation, authorship, etc.	actor-fs32|
+E21: Person	has note	Document Note: Person Model Overview
+Document Note: Person Model Overview	tooltip	This model identifies a person with PIDs, labels, and descriptions; records name parts and honorifics, external identifiers and web profiles, professional disciplines, life dates, affiliations, and a summarised “period of activity” for first/last active dates.
+//subgraph Linked Entities
+E40: Legal Body (Affiliation)	tooltip	An organisation the person is/was affiliated with.	actor-fs24|
+//links E40: Legal Body (Affiliation) --> crm:E40
+E74: Group (Membership)	tooltip	A (non-legal) group or team the person is/was a member of.	actor-fs24|
+//links E74: Group (Membership) --> crm:E74
+E41: Contact Point	tooltip	Contact info (email/phone) if appropriate to record.	literal-fs24|
+//links E41: Contact Point --> crm:E41
+E53: Place (Residence)	tooltip	A place where the person lives/lived.	place-fs24|
+//links E53: Place (Residence) --> location
+//end sg1
+// Identification & description
+E21: Person	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
+E21: Person	P1_is_identified_by (1 to 1)	E41: Unique System Label	|name
+E21: Person	P67i_is_referred_to_by (0 to n)	E73: Description Text	|literal
+E73: Description Text	P45i_is incorporated in (0 to n)	E31: Person Documents	|document
+// Names (as appellations typed by function)
+E21: Person	P1_is_identified_by (0 to 1)	E41: Given Name	|name
+E41: Given Name	P2_has_type (1 to 1)	E55: given-name	|type
+E21: Person	P1_is_identified_by (0 to 1)	E41: Family Name	|name
+E41: Family Name	P2_has_type (1 to 1)	E55: family-name	|type
+E21: Person	P1_is_identified_by (0 to 1)	E41: Honorific / Title	|name
+E41: Honorific / Title	P2_has_type (1 to 1)	E55: honorific-title	|type
+E41: Given Name	tooltip	The person’s given/first name as an appellation.	name-fs24|
+E41: Family Name	tooltip	The person’s family/last name as an appellation.	name-fs24|
+E41: Honorific / Title	tooltip	Honorifics or titles (e.g., Dr, Prof, Sir).	name-fs24|
+// External identifiers & web links (URLs as identifiers with types)
+E21: Person	P1_is_identified_by (0 to n)	E42: External Identifier	|url
+E42: External Identifier	P2_has_type (1 to 1)	E55: Identifier Type	|type
+E55: Identifier Type	has note	ORCID, VIAF, ISNI, Wikidata, ResearchGate, Google Scholar, personal-website
+// Life events
+E21: Person	P98i_was_born (0 to 1)	E67: Birth	|event
+E67: Birth	P4_has_time-span (0 to 1)	E52: Birth Date	|period
+E21: Person	P100i_died_in (0 to 1)	E69: Death	|event
+E69: Death	P4_has_time-span (0 to 1)	E52: Death Date	|period
+E67: Birth	tooltip	The person’s birth event.	event-fs24|
+E69: Death	tooltip	The person’s death event (if applicable).	event-fs24|
+E52: Birth Date	tooltip	Time-span for birth.	period-fs24|
+E52: Death Date	tooltip	Time-span for death.	period-fs24|
+// Period of activity (for first/last active dates)
+E21: Person	P14i_performed (1 to 1)	E7: Period of Activity
+E7: Period of Activity	P4_has_time-span (1 to 1)	E52: Activity Timespan	|period
+// Disciplines / fields
+E7: Period of Activity	P2_has_type (0 to n)	E55: Discipline	|type
+E55: Discipline	has note	Use controlled terms (e.g., paintings conservation, heritage science, analytical chemistry)
+// Affiliations	groups	contact	residence (optional)
+E21: Person	P107i_is_current_or_former_member_of (0 to n)	E40: Legal Body (Affiliation)	|actor
+E21: Person	P107i_is_current_or_former_member_of (0 to n)	E74: Group (Membership)	|actor
+E21: Person	P76_has_contact_point (0 to n)	E41: Contact Point	|literal
+E21: Person	P74_has_current_or_former_residence (0 to n)	E53: Place (Residence)	|place
+E41: Unique System Label	tooltip	ResearchSpace required label.	name-fs24|
+E42: Persistent Identifier (PID)	tooltip	A globally resolvable identifier for the person (e.g., Wikidata/ISNI).	object-fs24|
+E42: External Identifier	tooltip	Additional identifiers (e.g., ORCID, VIAF, ResearcherID).	object-fs24|
+E55: Identifier Type	tooltip	Type of external identifier (e.g., ORCID, VIAF, Wikidata, ISNI).	type-fs24|
+E55: Discipline	tooltip	Professional field(s) or domain(s) of practice (controlled list).	type-fs24|
+E73: Description Text	tooltip	Free-text biographical or role description.	literal-fs24|
+E31: Person Documents	tooltip	Documents that discuss or evidence the person (CVs, bios, authority files).	document-fs24|
+E7: Period of Activity	tooltip	Summarised activity period for “first/last active” dates.	event-fs24|
+E52: Activity Timespan	tooltip	Time-span covering earliest to latest known professional activity.	period-fs24|

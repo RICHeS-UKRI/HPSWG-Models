@@ -1,0 +1,33 @@
+//flowchart LR
+// ========================= LOCATION =========================
+E53: Location	tooltip	A place used for housing, display, or reference; supports hierarchical nesting and geometric definition.	place-fs32|
+E53: Location	has note	Document Note: Location Model Overview
+Document Note: Location Model Overview	tooltip	This model defines locations as CIDOC CRM places that can be nested (e.g., wall → room → building → institution → city → country) and identified with external authority IDs. Locations may be described by textual notes and documents and can be defined geometrically (points, lines, polygons, bounding boxes) via space primitives.
+//subgraph Linked Entities
+E31: Location Documents	tooltip	Documents or records describing or defining the location (e.g., floor plans, catalogues).	document-fs24|
+//links E31: Location Documents --> crm:E31
+E94: Geometry (Space Primitive)	tooltip	Geometric definition of the place (e.g., WKT/GeoJSON point, polygon, bbox).	name-fs24|
+//links E94: Geometry --> crm:E94
+//end sg1
+// Identification & description
+E53: Location	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
+E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580
+E53: Location	P1_is_identified_by (1 to 1)	E41: Unique System Label	|name
+E41: Unique System Label	tooltip	ResearchSpace required label.
+E53: Location	P67i_is_referred_to_by (0 to n)	E73: Description Text	|literal
+E73: Description Text	P45i_is incorporated in (0 to n)	E31: Location Documents	|document
+E53: Location	P67i_is_referred_to_by (0 to n)	E31: Location Documents	|document
+// External identifiers (authorities)
+E53: Location	P1_is_identified_by (0 to n)	E42: External Place Identifier	|url
+E42: External Place Identifier	P2_has_type (1 to 1)	E55: Identifier Type	|type
+E42: External Place Identifier	tooltip	An identifier from an external authority (e.g., TGN, GeoNames, Wikidata).
+E55: Identifier Type	tooltip	Type of external identifier (e.g., “TGN ID”, “GeoNames ID”, “Wikidata QID”).	type-fs24|
+// Geometry
+E53: Location	P168_place_is_defined_by (0 to n)	E94: Geometry (Space Primitive)	|object
+E94: Geometry (Space Primitive)	P2_has_type (0 to 1)	E55: Geometry Type	|type
+E55: Geometry Type	tooltip	Geometry form (e.g., point, polyline, polygon, bbox); match the literal format (WKT/GeoJSON).	type-fs24|
+// Hierarchy
+E53: Location	P89_falls_within (0 to 1)	E53: Location	|place
+E53: Location	P89i_contains (0 to n)	E53: Location	|place
+// Optional: map to an institution (if modelling an institutional place explicitly)
+// E53: Location	P74i_is_current_or_former_residence_of (0 to n)	E39: Institution or Person	|actor
