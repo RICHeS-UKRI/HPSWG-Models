@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-07 20:55 UTC_
+_Generated: 2026-03-07 21:05 UTC_
 
 **Individual model files analysed:** 13  
 **Workflow/overview files analysed:** 1  
@@ -65,24 +65,25 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>location/location_v1.0.tsv</strong> -- 2 undeclared</summary>
+<summary><strong>location/location_v1.1.tsv</strong> -- 2 confirmed, 1 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `E31: Location Documents` | `E31` | _No matching models found_ | ⚠ No declaration |
+| `E31: Location Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E94: Geometry (Space Primitive)` | `E94` | _No matching models found_ | ⚠ No declaration |
+| `E94: Geometry` | `E94` | `crm:E94` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
 <details>
-<summary><strong>person/person_v0.9.tsv</strong> -- 4 undeclared</summary>
+<summary><strong>person/person_v1.0.tsv</strong> -- 4 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `E40: Legal Body (Affiliation)` | `E40` | _No matching models found_ | ⚠ No declaration |
-| `E74: Group (Membership)` | `E74` | _No matching models found_ | ⚠ No declaration |
-| `E51: Contact Point` | `E51` | _No matching models found_ | ⚠ No declaration |
-| `E53: Place (Residence)` | `E53` | _Suggested: `location` (`E53: Location`)_ | ⚠ No declaration |
+| `E40: Legal Body (Affiliation)` | `E40` | `crm:E40` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E74: Group (Membership)` | `E74` | `crm:E74` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E41: Contact Point` | `E41` | `crm:E41` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E53: Place (Residence)` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 
 </details>
 
