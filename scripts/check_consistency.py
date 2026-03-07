@@ -257,7 +257,12 @@ def parse_model_file(mf: ModelFile) -> ModelAnalysis:
         pred = parts[1].strip().lower()
         if not subj_raw or not pred:
             continue
-        if pred in ("tooltip", "has note", "from list"):
+        # Inside the Linked Entities block, tooltip lines ARE the node declarations.
+        # Extract the subject from tooltip lines when inside the block.
+        # Outside the block, skip tooltip/metadata lines as usual.
+        if pred in ("has note", "from list"):
+            continue
+        if pred == "tooltip" and not in_linked_block:
             continue
 
         canonical = strip_instance_suffix(subj_raw)
@@ -266,11 +271,12 @@ def parse_model_file(mf: ModelFile) -> ModelAnalysis:
             continue
 
         # Key entity: first subject with a class code seen outside the block
+        # (never a tooltip line, since those are skipped outside the block)
         if ma.key_entity is None and not in_linked_block:
             ma.key_entity = canonical
             ma.key_class_code = code
 
-        # Linked entities: subjects inside the block
+        # Linked entities: subjects inside the block (including tooltip declarations)
         if in_linked_block and canonical not in linked_by_name:
             le = LinkedEntity(canonical)
             linked_by_name[canonical] = le
