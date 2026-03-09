@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-09 16:46 UTC_
+_Generated: 2026-03-09 16:56 UTC_
 
 **Individual model files analysed:** 14  
 **Workflow/overview files analysed:** 1  
@@ -45,7 +45,7 @@ Multiple targets are comma-separated or joined with `or`.
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
 
 <details>
-<summary><strong>heritage_object/heritage_object_v1.4.tsv</strong> -- 2 confirmed, 1 to review, 7 undeclared</summary>
+<summary><strong>heritage_object/heritage_object_v1.5.tsv</strong> -- 2 confirmed, 1 to review, 7 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
