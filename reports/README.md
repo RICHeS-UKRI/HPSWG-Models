@@ -8,7 +8,7 @@ This folder contains automatically generated reports produced by the GitHub Acti
 | Report | Description | Last modified |
 |--------|-------------|---------------|
 | [README.template.md](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/reports/README.template.md) | This folder contains automatically generated reports produced by the GitHub Actions workflow on every push that changes ... | 2026-03-07 |
-| [consistency_report.md](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/reports/consistency_report.md) | **Individual model files analysed:** 13 | 2026-03-07 |
+| [consistency_report.md](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/reports/consistency_report.md) | **Individual model files analysed:** 14 | 2026-03-09 |
 <!-- END AUTO: REPORT-LIST -->
 
 ## Adding new reports

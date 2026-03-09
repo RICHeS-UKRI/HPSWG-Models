@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-09 14:56 UTC_
+_Generated: 2026-03-09 16:46 UTC_
 
 **Individual model files analysed:** 14  
 **Workflow/overview files analysed:** 1  
@@ -87,14 +87,13 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>person/person_v1.1.tsv</strong> -- 4 confirmed</summary>
+<summary><strong>person/person_v1.2.tsv</strong> -- 3 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E74: Organisation (Affiliation)` | `E74` | `organisation` → `E74: Organisation` | ✅ Consistent |
-| `E74: Group (Membership)` | `E74` | `crm:E74` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E41: Contact Point` | `E41` | `crm:E41` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E53: Place (Residence)` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E31: Person Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
