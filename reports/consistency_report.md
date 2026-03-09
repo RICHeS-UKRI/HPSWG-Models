@@ -1,8 +1,8 @@
 # Model Consistency Report
 
-_Generated: 2026-03-07 21:12 UTC_
+_Generated: 2026-03-09 14:56 UTC_
 
-**Individual model files analysed:** 13  
+**Individual model files analysed:** 14  
 **Workflow/overview files analysed:** 1  
 
 This report checks consistency of inter-model linking nodes declared in each model's `//subgraph Linked Entities` block. Only declared linked entities are checked -- high-multiplicity classes such as E55 type terms are not flagged unless explicitly declared.
@@ -75,11 +75,23 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>person/person_v1.0.tsv</strong> -- 4 confirmed</summary>
+<summary><strong>organisation/organisation_v1.0.tsv</strong> -- 4 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `E40: Legal Body (Affiliation)` | `E40` | `crm:E40` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E21: Person (Member)` | `E21` | `person` → `E21: Person` | ✅ Consistent |
+| `E53: Location (Place of Organisation)` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E31: Organisation Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E74: Parent Organisation` | `E74` | `organisation` → `E74: Organisation` | ✅ Consistent |
+
+</details>
+
+<details>
+<summary><strong>person/person_v1.1.tsv</strong> -- 4 confirmed</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `E74: Organisation (Affiliation)` | `E74` | `organisation` → `E74: Organisation` | ✅ Consistent |
 | `E74: Group (Membership)` | `E74` | `crm:E74` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E41: Contact Point` | `E41` | `crm:E41` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E53: Place (Residence)` | `E53` | `location` → `E53: Location` | ✅ Consistent |
