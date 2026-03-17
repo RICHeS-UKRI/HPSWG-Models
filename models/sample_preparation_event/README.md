@@ -21,7 +21,7 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 
 | File | Raw link |
 |------|----------|
-| `sample_preparation_event_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/models/sample_preparation_event/sample_preparation_event_precursor_v1.0.txt) |
+| `sample_preparation_event_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_preparation_event/sample_preparation_event_precursor_v1.0.txt) |
 
 ## Contributing
 

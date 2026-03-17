@@ -21,7 +21,7 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 
 | File | Raw link |
 |------|----------|
-| `timespan_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/models/timespan/timespan_precursor_v1.0.txt) |
+| `timespan_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/timespan/timespan_precursor_v1.0.txt) |
 
 ## Contributing
 
