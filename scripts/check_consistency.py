@@ -51,7 +51,7 @@ SKIP_RE = re.compile(r"^\s*//")
 SUBGRAPH_START_RE = re.compile(r"^\s*//subgraph\s+Linked Entities", re.IGNORECASE)
 SUBGRAPH_END_RE = re.compile(r"^\s*//end", re.IGNORECASE)
 LINKS_RE = re.compile(
-    r"^\s*//links\s+(.+?)\s*-->\s*(.+)$", re.IGNORECASE
+    r"^\s*//links\s+(.+?)\s*-->\s*(.+?)\s*(\[confirmed\])?\s*$", re.IGNORECASE
 )
 INSTANCE_SUFFIX_RE = re.compile(r"#-\d+$")
 
@@ -169,6 +169,7 @@ class LinkedEntity:
         self.class_code = extract_class_code(full_name) or ""
         self.label = full_name.split(":", 1)[1].strip() if ":" in full_name else full_name
         self.declared_targets: List[str] = []   # folder names from //links
+        self.confirmed: bool = False            # True if [confirmed] flag present
 
 
 class ModelAnalysis:
@@ -246,14 +247,17 @@ def parse_model_file(mf: ModelFile) -> ModelAnalysis:
         if links_match:
             node_name = strip_instance_suffix(links_match.group(1).strip())
             targets = parse_targets(links_match.group(2))
+            confirmed = bool(links_match.group(3))
             # Match against known linked entities
             if node_name in linked_by_name:
                 linked_by_name[node_name].declared_targets = targets
+                linked_by_name[node_name].confirmed = confirmed
             else:
                 # Store for later matching (directive may precede node declaration)
-                if node_name not in linked_by_name:
-                    linked_by_name[node_name] = LinkedEntity(node_name)
-                    linked_by_name[node_name].declared_targets = targets
+                le = LinkedEntity(node_name)
+                le.declared_targets = targets
+                le.confirmed = confirmed
+                linked_by_name[node_name] = le
             continue
 
         # Skip remaining comment/directive lines
@@ -352,7 +356,7 @@ def analyse(
                         if norm_code == ref_code:
                             status = "ontology_ref"
                         elif are_related(norm_code, ref_code, hierarchy):
-                            status = "ontology_hierarchy"
+                            status = "confirmed_ontology_hierarchy" if le.confirmed else "ontology_hierarchy"
                         else:
                             status = "ontology_mismatch"
                         target_checks.append({
@@ -382,7 +386,7 @@ def analyse(
                     if norm_code == norm_target:
                         status = "consistent"
                     elif are_related(norm_code, norm_target, hierarchy):
-                        status = "hierarchy_match"
+                        status = "confirmed_hierarchy" if le.confirmed else "hierarchy_match"
                     else:
                         status = "class_mismatch"
 
@@ -433,27 +437,31 @@ def analyse(
 # ---------------------------------------------------------------------------
 
 STATUS_ICONS = {
-    "consistent":         "✅",
-    "hierarchy_match":    "🔵",
-    "class_mismatch":     "⚠️",
-    "unknown_target":     "❓",
-    "ontology_ref":       "📖",
-    "ontology_hierarchy": "📖🔵",
-    "ontology_mismatch":  "📖⚠️",
+    "consistent":                  "✅",
+    "confirmed_hierarchy":         "✅",
+    "hierarchy_match":             "🔵",
+    "class_mismatch":              "⚠️",
+    "unknown_target":              "❓",
+    "ontology_ref":                "📖",
+    "confirmed_ontology_hierarchy":"📖",
+    "ontology_hierarchy":          "📖🔵",
+    "ontology_mismatch":           "📖⚠️",
 }
 
 STATUS_NOTES = {
-    "consistent":         "Consistent",
-    "hierarchy_match":    "Hierarchy match -- confirm intent",
-    "class_mismatch":     "Class mismatch -- check required",
-    "unknown_target":     "Target folder not found in repo",
-    "ontology_ref":       "Ontology reference -- follows standard CRM structure",
-    "ontology_hierarchy": "Ontology reference via hierarchy -- confirm intent",
-    "ontology_mismatch":  "Ontology reference class mismatch -- check required",
+    "consistent":                  "Consistent",
+    "confirmed_hierarchy":         "Consistent (confirmed hierarchy match)",
+    "hierarchy_match":             "Hierarchy match -- confirm intent",
+    "class_mismatch":              "Class mismatch -- check required",
+    "unknown_target":              "Target folder not found in repo",
+    "ontology_ref":                "Ontology reference -- follows standard CRM structure",
+    "confirmed_ontology_hierarchy":"Ontology reference (confirmed hierarchy match)",
+    "ontology_hierarchy":          "Ontology reference via hierarchy -- confirm intent",
+    "ontology_mismatch":           "Ontology reference class mismatch -- check required",
 }
 
 # Statuses that count as positive for the accordion summary
-POSITIVE_STATUSES = {"consistent", "ontology_ref"}
+POSITIVE_STATUSES = {"consistent", "ontology_ref", "confirmed_hierarchy", "confirmed_ontology_hierarchy"}
 PARTIAL_STATUSES = {"hierarchy_match", "ontology_hierarchy"}
 
 
@@ -481,7 +489,10 @@ def generate_report(result: Dict, files: List[ModelFile]) -> str:
         "Only declared linked entities are checked -- high-multiplicity classes "
         "such as E55 type terms are not flagged unless explicitly declared.",
         "",
-        "## Link declaration syntax",
+        "<details>",
+        "<summary><strong>Link declaration syntax and status key</strong></summary>",
+        "",
+        "### Link declaration syntax",
         "",
         "Each linked entity in a model's `//subgraph Linked Entities` block should "
         "have a `//links` directive declaring what it connects to. Two target types "
@@ -503,17 +514,29 @@ def generate_report(result: Dict, files: List[ModelFile]) -> str:
         "",
         "Multiple targets are comma-separated or joined with `or`.",
         "",
-        "---",
+        "**Confirming intentional hierarchy matches** -- where a linked entity uses a "
+        "subclass or superclass of the target model's key entity and this is deliberate, "
+        "add `[confirmed]` to suppress the 'confirm intent' flag:",
+        "```",
+        "//links E39: Group or Artist --> person, organisation [confirmed]",
+        "```",
         "",
-        "**Status key:**",
-        "- ✅ Consistent -- repo model, class codes match exactly",
-        "- 🔵 Hierarchy match -- repo model, related via CRM hierarchy, confirm intent",
-        "- ⚠️ Class mismatch -- classes not related, check required",
-        "- ❓ Unknown target -- declared target folder not found in repo",
-        "- 📖 Ontology reference -- follows standard CRM/extension ontology structure",
-        "- 📖🔵 Ontology via hierarchy -- related class, confirm intent",
-        "- 📖⚠️ Ontology mismatch -- class code does not match reference",
-        "- ⚠ No declaration -- `//links` directive missing, suggestions provided",
+        "### Status key",
+        "",
+        "| Icon | Meaning |",
+        "|------|---------|",
+        "| ✅ | Consistent -- repo model, class codes match exactly |",
+        "| ✅ | Consistent (confirmed hierarchy match) |",
+        "| 🔵 | Hierarchy match -- repo model, related via CRM hierarchy, confirm intent |",
+        "| ⚠️ | Class mismatch -- classes not related, check required |",
+        "| ❓ | Unknown target -- declared target folder not found in repo |",
+        "| 📖 | Ontology reference -- follows standard CRM/extension ontology structure |",
+        "| 📖 | Ontology reference (confirmed hierarchy match) |",
+        "| 📖🔵 | Ontology via hierarchy -- related class, confirm intent |",
+        "| 📖⚠️ | Ontology mismatch -- class code does not match reference |",
+        "| ⚠ | No declaration -- `//links` directive missing, suggestions provided |",
+        "",
+        "</details>",
         "",
         "---",
         "",

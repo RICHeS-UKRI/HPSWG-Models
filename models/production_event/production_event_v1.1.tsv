@@ -8,7 +8,7 @@ E22: Heritage Object	tooltip	The physical artwork produced by this event.	object
 E39: Group or Artist	tooltip	The actor (artist, studio, workshop) who carried out the production.	actor-fs24|
 //links E39: Group or Artist --> person, organisation
 E53: Place of Production	tooltip	The place where the production activity occurred.	place-fs24|
-//link E53: Place of Production --> location
+//links E53: Place of Production --> location
 E31: Production Documents	tooltip	Documents that explicitly evidence or discuss the production event (e.g., contracts, workshop records, technical reports, catalogues).	document-fs24|
 //links E31: Production Documents --> crm:E31
 //end sg1
