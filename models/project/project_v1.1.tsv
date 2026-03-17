@@ -11,7 +11,7 @@ E39: Other Actors	tooltip	Other individuals or organisations involved in the pro
 E31: Related Documents	tooltip	Documents associated with the project (Alternative labels: Reports, Publications, Proposals).	document-fs24|
 //links E31: Related Documents --> crm:E31
 E7: Parent Project	tooltip	A broader project or programme within which this project is situated. Note: sometimes treated as E89 Propositional Object in other mappings, but can be implemented as E7 Activity in ResearchSpace.	event-fs24|
-//link E7: Parent Project --> project
+//links E7: Parent Project --> project
 //end sg1
 
 E7: Project	P48_has_preferred_identifier (0 to 1)	E42: Persistent Identifier (PID)	|url
