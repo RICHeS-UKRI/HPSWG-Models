@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-17 16:31 UTC_
+_Generated: 2026-03-17 16:33 UTC_
 
 **Individual model files analysed:** 14  
 **Workflow/overview files analysed:** 1  
@@ -138,7 +138,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>project/project_v1.1.tsv</strong> -- 5 confirmed, 1 undeclared</summary>
+<summary><strong>project/project_v1.1.tsv</strong> -- 6 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -147,7 +147,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E39: Other Actors` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
 | `E31: Related Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E7: Parent Project` | `E7` | _Suggested: `sampling_event` (`E7: Sampling Event`), `workflows` (`E7: Sampling Event`)_ | ⚠ No declaration |
+| `E7: Parent Project` | `E7` | `project` → `E7: Project` | ✅ Consistent |
 
 </details>
 
