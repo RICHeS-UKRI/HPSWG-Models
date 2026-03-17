@@ -1,0 +1,51 @@
+//flowchart LR
+S2: Sample Taking	tooltip	The event in which a material sample was physically removed from the painting.	event-fs32
+S2: Sample Taking	has note	Document Note: Sample Taking Model Overview
+Document Note: Sample Taking Model Overview	tooltip	This model defines the Sample Taking event (S2), which represents the physical act of removing a material sample from a painting for scientific or conservation purposes. It captures the essential contextual, procedural, and documentary elements that define when, where, how, and by whom the sampling took place. Each event is linked to the painting from which the sample was taken, the specific Sample Site (E26) on the object, and the Sample (S13) that was removed. The event records the actors responsible, the date or time span, and any motivating reasons or methodological references, ensuring that both procedural and scientific intent are clearly documented. The model also supports connections to Reports or Documents (E31) containing relevant descriptions, justifications, or results, and to a Sampling Location (E53) that identifies the place where the activity occurred—such as a conservation studio or laboratory. Together, these relationships provide a complete contextual record of the sampling process, enabling reproducibility, accountability, and interoperability within wider heritage science workflows.
+
+//subgraph Linked Entities
+E22: Heritage Object	tooltip	A human-made work of art that forms the physical source object from which the sample is taken.	object-fs24|
+//links E22: Heritage Object --> heritage_object
+S13: Sample	tooltip	A physical part removed from the painting for scientific or conservation analysis.	object-fs24|
+//links S13: Sample --> sample [confirmed]
+E31: Report or Document	tooltip	A textual or digital document recording information related to the sampling process, results, or reasoning.	document-fs24|
+//links E31: Report or Document --> crm:E31
+E29: Method or Procedure	tooltip	The defined process or protocol followed during the sampling or analysis activity.	document-fs24|
+//links E29: Method or Procedure --> crm:E29
+E39: Organisation or Person	tooltip	The actor (individual or organisation) responsible for carrying out or authorising the sampling activity.	actor-fs24|
+//links E39: Organisation or Person --> person. organisation [confirmed]
+E53: Sampling Location	tooltip	The physical place where the sampling event occurred, typically within an organisation or laboratory.	place-fs24|
+//links E53: Sampling Location --> location
+E26: Sample Site	tooltip	The specific point or small area on the painting where the sample was taken.	place-fs24|
+//link E26: Sample Site --> sample_site
+//end sg1
+
+///SAMPLE TAKING //////////////////////////////////////////////////////////////////////////////////////////////////
+S2: Sample Taking	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (UUID)	|url
+S2: Sample Taking	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+//E41: Unique System Label or ID	has note	Automatic: Preferred Painting ID - Sample Label - Sampling DATE - TBC
+S2: Sample Taking	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+S2: Sample Taking	P17_was_motivated_by (0 to 1)	E73: Reason for Sampling	|literal
+S2: Sample Taking	P67i_is_referred_to_by (1 to 1)	E73: Description	|literal
+//subgraph
+E73: Reason for Sampling	tooltip	The overall motivation for carrying out the sampling event. This describes the research, conservation, or technical question being addressed and may apply to one or more sample sites.
+E73: Description	tooltip	A brief factual description of the sampling event, focusing on any notable aspects of how the sample was removed or the nature of the material extracted. Use this to record observations, exceptions, or deviations from standard procedures, rather than to restate the sampling method, motivation, or site details.
+//end sg2-5-5
+E73: Description	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E73: Reason for Sampling	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+S2: Sample Taking	P14_carried_out_by (1 to n)	E39: Organisation or Person
+S2: Sample Taking	P4_has_time_span (1 to 1)	E52: Sampling Date	|period
+//S2: Sample Taking	P17_was_motivated_by (0 to n)	E55: material of interest	|type
+//E55: material of interest	tooltip	The material or material class that motivated the sampling, such as a varnish layer, paint component, or specific pigment. This field records the intended material focus of sampling and does not imply that the material was identified or confirmed analytically.
+S2: Sample Taking	P33_used_specific_technique (1 to n)	E29: Method or Procedure	|document
+S2: Sample Taking	P7_took_place_at (1 to 1)	E53: Sampling Location	|place
+S2: Sample Taking	O3_sampled_from (1 to 1)	E22: Heritage Object
+S2: Sample Taking	O5_removed (1 to 1)	S13: Sample
+S2: Sample Taking	O4_sampled_at (1 to 1)	E26: Sample Site
+S2: Sample Taking	P9_consists_of (1 to 1)	S4: Observation	|event
+S4: Observation	O8_observed (1 to 1)	E26: Sample Site
+S4: Observation	O16_observed_value (1 to 1)	E3: Condition state (Sample Site Status)	|period
+E3: Condition state (Sample Site Status)	P2_has_type (1 to 1)	E55: condition state type	|type
+E55: condition state type	tooltip	The current condition, treatment state, or lifecycle position of the sample site: conservation history, handling, availability, or degree of alteration over time.
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////

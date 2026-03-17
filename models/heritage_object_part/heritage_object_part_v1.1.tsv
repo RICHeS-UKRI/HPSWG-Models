@@ -1,0 +1,45 @@
+//flowchart LR
+
+//subgraph-LR E22/S20: Heritage Object Part
+S20: Heritage Object Part	tooltip	Use for integral, inseparable physical features of the object that have structural coherence -- paint layers, ground preparation, surface coatings, joints. Connected to parent via P46 or P56 depending on type.	object_bn-fs24|
+E22: Heritage Object Part	tooltip	Use when the part is a separable, human-made object in its own right -- frame, lining canvas, applied label or seal. May warrant a full Heritage Object record if studied independently. Connected to parent via P46 or P198 depending on type.	object-fs24|
+//end sg2-5-5
+
+E22/S20: Heritage Object Part	has note	A physically distinguishable component, feature, or zone of a Heritage Object that requires individual identification or connection to other entities in the knowledge graph. The appropriate class (E22 or S20) is determined by part type.	object-fs32|
+E22/S20: Heritage Object Part	has note	Document Note: Heritage Object Part Model Overview
+Document Note: Heritage Object Part Model Overview	tooltip	This model defines a Heritage Object Part as any physically distinguishable element of a Heritage Object that a researcher needs to individually identify, describe, or connect to other entities. Parts range from structural components (primary support, ground layer) to surface features (tool marks, inscriptions). The connecting property to the parent Heritage Object (P46, P56, or P198) is determined by part type. Where a part warrants a full metadata profile of its own -- such as a sample or sample site -- a dedicated model should be used instead.
+
+//subgraph Linked Entities
+E22: Heritage Object	tooltip	The parent Heritage Object of which this is a part.	object-fs24|
+//links E22: Heritage Object --> heritage_object
+E31: Report or Document	tooltip	Any document, report, or publication in which this part is described or documented.	document-fs24|
+//links E31: Report or Document --> crm:E31
+E57: Material	tooltip	The material composition of this part, where distinctive from the parent object.	object-fs24|
+//links E57: Material --> crm:E57
+E54: Dimensions	tooltip	The measured dimensions of this part, where recorded separately from the parent object.	dims-fs24|
+//links E54: Dimensions --> crm:E54
+E12: Production Event	tooltip	The production event by which this part was made, recorded only where the part was made separately from the parent object -- for example a frame or lining canvas.	event-fs24|
+//links E12: Production Event --> production_event
+S13: Material Sample	tooltip	A material sample taken from this part, connecting the part to scientific examination and analysis data.	object-fs24|
+//links S13: Material Sample --> sample
+//end sg1
+E22/S20: Heritage Object Part	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E22/S20: Heritage Object Part	P48_has_preferred_identifier (0 to 1)	E42: Persistent Identifier (PID)	|url
+E42: Persistent Identifier (PID)	tooltip	Only assigned if this part becomes the focus of independent research or publication.
+E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580	|type
+E22/S20: Heritage Object Part	P2_has_type (1 to n)	E55: part type	|type
+E55: part type	tooltip	Controlled list term determining both the CRM class (E22 or S20) and the connecting property to the parent Heritage Object (P46, P56, or P198).
+E55: part type	from list	part types	|note
+E22/S20: Heritage Object Part	P46i_forms_part_of (0 to 1)	E22: Heritage Object	|object
+E22/S20: Heritage Object Part	P56i_is_found_on (0 to 1)	E22: Heritage Object	|object
+E22/S20: Heritage Object Part	P198i_is_held_or_supported_by (0 to 1)	E22: Heritage Object	|object
+E22: Heritage Object	tooltip	The connecting property (P46i, P56i, or P198i) is determined by part type and should not require manual selection.
+E22/S20: Heritage Object Part	P67i_is_referred_to_by (0 to 1)	E73: Description	|literal
+E73: Description	P45i_is_incorporated_in (0 to n)	E31: Report or Document	|document
+E22/S20: Heritage Object Part	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+E22/S20: Heritage Object Part	P45_consists_of (0 to n)	E57: Material	|object
+E22/S20: Heritage Object Part	P43_has_dimension (0 to n)	E54: Dimensions	|dims
+E22/S20: Heritage Object Part	P108i_was_produced_by (0 to 1)	E12: Production Event	|event
+E22/S20: Heritage Object Part	P46i_forms_part_of (0 to 1)	S13: Material Sample	|object
+S13: Material Sample	tooltip	A sample is modelled as a specific type of part. Where sample metadata is required use the dedicated Sample model.
