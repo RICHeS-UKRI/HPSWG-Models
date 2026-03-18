@@ -6,7 +6,9 @@ Document Note: Observation Model Overview	tooltip	This model records a scientifi
 //subgraph Linked Entities
 //subgraph E22/S13: Heritage Sample
 E22: Physical Sample	tooltip	A curated physical artefact that contains or carries the sampled matter (S13). Serves as the object-management layer: it holds identifiers, condition records, custody, storage, and images. P46 is used as a pragmatic contains/carries proxy for collection management purposes.	object_bn-fs24|
+//links E22: Heritage Sample --> sample
 S13: Material Sample	tooltip	The removed matter treated as an amount of matter (CRMsci S13) whose identity is grounded in material continuity and representativity. Serves as the scientific layer: it is the subject of measurement, observation, modification, and splitting events.	object_bn-fs24|
+//links S13: Material Sample --> sample
 //end sg2-10-10
 //links E22/S13: Heritage Sample --> sample
 E39: Institution or Person	tooltip	The actor (individual or organisation) responsible for carrying out or authorising the observation.	actor-fs24|

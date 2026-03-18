@@ -29,7 +29,7 @@
   {
     "name": "ResearchSpace",
     "version": null,
-    "prefix": "EX",
+    "prefix": "rs",
     "namespace": "https://www.researchspace.org/resource/system/",
     "docs": "https://github.com/researchspace/researchspace",
     "download": null,
