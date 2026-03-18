@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-18 16:30 UTC_
+_Generated: 2026-03-18 16:38 UTC_
 
 **Individual model files analysed:** 15  
 **Workflow/overview files analysed:** 1  
@@ -202,18 +202,18 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_site/sample_site_v1.4.tsv</strong> -- 8 undeclared</summary>
+<summary><strong>sample_site/sample_site_v1.5.tsv</strong> -- 8 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `E22: Heritage Object` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample` (`E22: Physical Sample`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
-| `S13: Sample` | `S13` | _No matching models found_ | ⚠ No declaration |
-| `S2: Sample Taking` | `S2` | _Suggested: `sample_taking_event` (`S2: Sample Taking`)_ | ⚠ No declaration |
-| `E31: Report or Document` | `E31` | _No matching models found_ | ⚠ No declaration |
-| `EX_Digital_Image: Main Site Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
-| `EX_Digital_Image: Site Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
-| `E22: Heritage Object Part` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample` (`E22: Physical Sample`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
-| `E26: Area of Interest` | `E26` | _No matching models found_ | ⚠ No declaration |
+| `E22: Heritage Object` | `E22` | `heritage_object` → `E22: Heritage Object` | ✅ Consistent |
+| `E22/S13: Heritage Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
+| `S2: Sample Taking` | `S2` | `sample_taking_event` → `S2: Sample Taking` | ✅ Consistent |
+| `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `EX_Digital_Image: Main Site Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `EX_Digital_Image: Site Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E22: Heritage Object Part` | `E22` | `heritage_object_part` → `E22/S20: Heritage Object Part` | ✅ Consistent |
+| `E26: Area of Interest` | `E26` | `crm:E26` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
