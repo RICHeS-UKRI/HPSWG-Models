@@ -24,9 +24,9 @@ E22: Support	tooltip	The physical base material or structure on which the paint 
 E12: Production Event	tooltip	The creative or manufacturing event during which the painting was produced or completed.	event-fs24|
 //links E12: Production Event --> production_event
 EX_Digital_Image: Main Object Image	tooltip	Stuff	digital2-fs24|
-//links EX_Digital_Image --> EX:Digital_Image
+//links EX_Digital_Image: Main Object Image --> rs:EX_Digital_Image
 EX_Digital_Image: Object Image	tooltip	Stuff	digital2-fs24|
-//links EX_Digital_Image --> EX:Digital_Image
+//links EX_Digital_Image: Object Image --> rs:EX_Digital_Image
 //end sg1
 E22: Heritage Object	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
 E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580

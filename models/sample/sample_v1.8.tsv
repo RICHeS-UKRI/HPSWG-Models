@@ -26,7 +26,9 @@ S27: Observation	tooltip	An event in which qualitative or visual properties of t
 E11: Sample Modification	tooltip	An event that altered the sample after its initial removal, such as preparation, embedding, or coating.	event-fs24|
 //links E11: Sample Modification --> sample_modification
 EX_Digital_Image: Main Sample Image	tooltip	The primary representative image of the curated physical sample.	digital2-fs24|
+//links EX_Digital_Image: Main Sample Image --> rs:EX_Digital_Image
 EX_Digital_Image: Sample Image	tooltip	Additional documentary images of the curated physical sample.	digital2-fs24|
+//links EX_Digital_Image: Sample Image --> rs:EX_Digital_Image
 //subgraph Storage Options
 E53: Storage Location	tooltip	Option A: a named place where the sample is permanently stored (e.g. store room, cabinet room, institution). Use this when no further physical unit breakdown is required.	place-fs24|
 //links E53: Storage Location --> location
