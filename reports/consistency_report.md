@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-17 16:37 UTC_
+_Generated: 2026-03-18 13:58 UTC_
 
 **Individual model files analysed:** 14  
 **Workflow/overview files analysed:** 1  
@@ -78,7 +78,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>heritage_object_part/heritage_object_part_v1.1.tsv</strong> -- 6 confirmed</summary>
+<summary><strong>heritage_object_part/heritage_object_part_v1.1.tsv</strong> -- 5 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -87,7 +87,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E57: Material` | `E57` | `crm:E57` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E54: Dimensions` | `E54` | `crm:E54` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E12: Production Event` | `E12` | `production_event` → `E12: Production` | ✅ Consistent |
-| `S13: Material Sample` | `S13` | `sample` → `S13/E19: Sample` | ✅ Consistent |
+| `S13: Material Sample` | `S13` | `sample` → `E22: Physical Sample` | ⚠️ Class mismatch -- check required |
 
 </details>
 
@@ -152,23 +152,23 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample/sample_v1.7.tsv</strong> -- 9 confirmed, 3 undeclared</summary>
+<summary><strong>sample/sample_v1.8.tsv</strong> -- 10 confirmed, 2 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `S2: Sample Taking` | `S2` | `sample_taking_event` → `S2: Sample Taking` | ✅ Consistent |
 | `S24: Sample Splitting` | `S24` | `sample_splitting` | ❓ Target folder not found in repo |
-| `E53: Storage Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
-| `E22: Storage Unit` | `E22` | `sample_storage_unit` → `E22: Storage Unit` | ✅ Consistent |
 | `E39: Organisation or Person` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
 | `E53: Organisation or Address` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E31: Sample Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E16: Measurement` | `E16` | `crm:E16` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `S27: Observation` | `S27` | _No matching models found_ | ⚠ No declaration |
+| `S27: Observation` | `S27` | `crmsci:S27` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E11: Sample Modification` | `E11` | `sample_modification` → `E11: Sample Modification` | ✅ Consistent |
 | `EX_Digital_Image: Main Sample Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
 | `EX_Digital_Image: Sample Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
+| `E53: Storage Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E22: Storage Unit` | `E22` | `sample_storage_unit` → `E22: Storage Unit` | ✅ Consistent |
 
 </details>
 
@@ -177,7 +177,7 @@ Each model's linked entities are listed with their declared target models and co
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `S13: Sample` | `S13` | _Suggested: `sample` (`S13/E19: Sample`)_ | ⚠ No declaration |
+| `S13: Sample` | `S13` | _No matching models found_ | ⚠ No declaration |
 | `E39: Institution or Person` | `E39` | _No matching models found_ | ⚠ No declaration |
 | `E53: Place of Modification` | `E53` | _Suggested: `location` (`E53: Location`)_ | ⚠ No declaration |
 | `E31: Report or Document` | `E31` | _No matching models found_ | ⚠ No declaration |
@@ -192,13 +192,13 @@ Each model's linked entities are listed with their declared target models and co
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `E22: Heritage Object` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
-| `S13: Sample` | `S13` | _Suggested: `sample` (`S13/E19: Sample`)_ | ⚠ No declaration |
+| `E22: Heritage Object` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample` (`E22: Physical Sample`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
+| `S13: Sample` | `S13` | _No matching models found_ | ⚠ No declaration |
 | `S2: Sample Taking` | `S2` | _Suggested: `sample_taking_event` (`S2: Sample Taking`)_ | ⚠ No declaration |
 | `E31: Report or Document` | `E31` | _No matching models found_ | ⚠ No declaration |
 | `EX_Digital_Image: Main Site Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
 | `EX_Digital_Image: Site Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
-| `E22: Heritage Object Part` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
+| `E22: Heritage Object Part` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample` (`E22: Physical Sample`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
 | `E26: Area of Interest` | `E26` | _No matching models found_ | ⚠ No declaration |
 
 </details>
@@ -216,12 +216,12 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_taking_event/sample_taking_event_v1.5.tsv</strong> -- 5 confirmed, 1 undeclared</summary>
+<summary><strong>sample_taking_event/sample_taking_event_v1.5.tsv</strong> -- 4 confirmed, 1 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E22: Heritage Object` | `E22` | `heritage_object` → `E22: Heritage Object` | ✅ Consistent |
-| `S13: Sample` | `S13` | `sample` → `S13/E19: Sample` | ✅ Consistent |
+| `S13: Sample` | `S13` | `sample` → `E22: Physical Sample` | ⚠️ Class mismatch -- check required |
 | `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E29: Method or Procedure` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E39: Organisation or Person` | `E39` | `person. organisation` | ❓ Target folder not found in repo |
@@ -240,7 +240,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E39: Institution or Person` | `E39` | _No matching models found_ | ⚠ No declaration |
 | `E53: Sampling Location` | `E53` | _Suggested: `location` (`E53: Location`)_ | ⚠ No declaration |
 | `S2: Sample Taking` | `S2` | _Suggested: `sample_taking_event` (`S2: Sample Taking`)_ | ⚠ No declaration |
-| `E22: Heritage Object` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
+| `E22: Heritage Object` | `E22` | _Suggested: `heritage_object` (`E22: Heritage Object`), `heritage_object_part` (`E22/S20: Heritage Object Part`), `sample` (`E22: Physical Sample`), `sample_storage_unit` (`E22: Storage Unit`)_ | ⚠ No declaration |
 | `E7: Project` | `E7` | _Suggested: `project` (`E7: Project`), `workflows` (`E7: Sampling Event`)_ | ⚠ No declaration |
 
 </details>
