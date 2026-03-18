@@ -18,7 +18,7 @@ E31: Report or Document	tooltip	A textual or digital document recording informat
 E29: Method or Procedure	tooltip	The defined process or protocol followed during the sampling or analysis activity.	document-fs24|
 //links E29: Method or Procedure --> crm:E29
 E39: Organisation or Person	tooltip	The actor (individual or organisation) responsible for carrying out or authorising the sampling activity.	actor-fs24|
-//links E39: Organisation or Person --> person. organisation [confirmed]
+//links E39: Organisation or Person --> person, organisation [confirmed]
 E53: Sampling Location	tooltip	The physical place where the sampling event occurred, typically within an organisation or laboratory.	place-fs24|
 //links E53: Sampling Location --> location
 E26: Sample Site	tooltip	The specific point or small area on the painting where the sample was taken.	place-fs24|
