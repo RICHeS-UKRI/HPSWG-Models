@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-03-18 15:33 UTC_
+_Generated: 2026-03-18 16:14 UTC_
 
 **Individual model files analysed:** 15  
 **Workflow/overview files analysed:** 1  
@@ -58,7 +58,7 @@ Multiple targets are comma-separated or joined with `or`.
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
 
 <details>
-<summary><strong>heritage_object/heritage_object_v1.6.tsv</strong> -- 10 confirmed, 2 undeclared</summary>
+<summary><strong>heritage_object/heritage_object_v1.6.tsv</strong> -- 12 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -72,8 +72,8 @@ Each model's linked entities are listed with their declared target models and co
 | `E57: Other Material` | `E57` | `crm:E57` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E22: Support` | `E22` | `heritage_object_part` → `E22/S20: Heritage Object Part` | ✅ Consistent |
 | `E12: Production Event` | `E12` | `production_event` → `E12: Production` | ✅ Consistent |
-| `EX_Digital_Image: Main Object Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
-| `EX_Digital_Image: Object Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
+| `EX_Digital_Image: Main Object Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `EX_Digital_Image: Object Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
@@ -169,7 +169,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample/sample_v1.8.tsv</strong> -- 10 confirmed, 2 undeclared</summary>
+<summary><strong>sample/sample_v1.8.tsv</strong> -- 12 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -182,8 +182,8 @@ Each model's linked entities are listed with their declared target models and co
 | `E16: Measurement` | `E16` | `crm:E16` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `S27: Observation` | `S27` | `crmsci:S27` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E11: Sample Modification` | `E11` | `sample_modification` → `E11: Sample Modification` | ✅ Consistent |
-| `EX_Digital_Image: Main Sample Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
-| `EX_Digital_Image: Sample Image` | `EX_Digital_Image` | _No matching models found_ | ⚠ No declaration |
+| `EX_Digital_Image: Main Sample Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `EX_Digital_Image: Sample Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E53: Storage Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E22: Storage Unit` | `E22` | `sample_storage_unit` → `E22: Storage Unit` | ✅ Consistent |
 
