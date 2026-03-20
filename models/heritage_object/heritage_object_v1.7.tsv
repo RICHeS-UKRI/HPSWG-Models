@@ -89,6 +89,6 @@ E22: Heritage Object	P138i_has_representation (0 to n)	EX_Digital_Image: Object 
 //field E31: Report or Document | 18 | Related Document; Reports; Publications | behaviour:ingested
 //field EX_Digital_Image: Main Object Image | 19 | Main Object Image | behaviour:ingested
 //field EX_Digital_Image: Object Image | 20 | Object Image; Other Images | behaviour:ingested
-//field-via E12: Production Event > E39 | 21 | Creator of Heritage Object; Artist; Creator | behaviour:ingested
-//field-via E12: Production Event > E52 | 22 | Date of Production | behaviour:ingested
-//field-via E12: Production Event > E53 | 23 | Place of Production | behaviour:ingested
+//field-via E12: Production Event via E39 | 21 | Creator of Heritage Object; Artist; Creator | behaviour:ingested
+//field-via E12: Production Event via E52 | 22 | Date of Production | behaviour:ingested
+//field-via E12: Production Event via E53 | 23 | Place of Production | behaviour:ingested
