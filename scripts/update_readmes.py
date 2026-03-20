@@ -225,6 +225,15 @@ def discover_models() -> Dict[str, ModelFolder]:
     return folders
 
 
+def find_ng_models_latest(tsvs: List[Path]) -> Optional[Path]:
+    versioned = [(parse_version(p.name), p) for p in tsvs]
+    versioned = [(v, p) for v, p in versioned if v is not None]
+    if not versioned:
+        return None
+    versioned.sort(reverse=True, key=lambda vp: vp[0])
+    return versioned[0][1]
+
+
 # ---------------------------------------------------------------------------
 # Ontology config
 # ---------------------------------------------------------------------------
