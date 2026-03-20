@@ -65,6 +65,11 @@ _A human-made work of art; the primary entity in this model, from which ownershi
 | Optional | Report or Document | Related Document; Reports; Publications | E31 | ![behaviour: Ingested](https://img.shields.io/badge/%2F%2F-Ingested-7d5a00) | Any document, catalogue entry, publication, or report relating to the Heritage Object’s description, study, or conservation. |
 | Optional | EX_Digital_Image: Main Object Image | Main Object Image | EX_Digital_Image: Main Object Image | ![behaviour: Ingested](https://img.shields.io/badge/%2F%2F-Ingested-7d5a00) | The primary selected image representing the heritage object, used for thumbnails, search results, and default display. Normally a current, full front-facing view of the object. |
 | Optional | EX_Digital_Image: Object Image | Object Image; Other Images | EX_Digital_Image: Object Image | ![behaviour: Ingested](https://img.shields.io/badge/%2F%2F-Ingested-7d5a00) | All other images associated with the heritage object held in the system. Acts as a catch-all to support simple image lists and gallery displays; image type and capture technique are defined on the image record or related creation event. |
+| ✓* | Production Event | Creator of Heritage Object; Artist; Creator | E39 > E12 | -- | behaviour:ingested |
+| ✓* | Production Event | Date of Production | E52 > E12 | -- | behaviour:ingested |
+| ✓* | Production Event | Place of Production | E53 > E12 | -- | behaviour:ingested |
+
+_\* Required status could not be derived from the model and has been set to required by default. Please verify._
 
 ## Contributing
 
