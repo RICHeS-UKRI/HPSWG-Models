@@ -637,7 +637,7 @@ def _behaviour_badge(tag: str) -> str:
         return ""
     label, colour = entry
     # Encode hyphens in label as '--' for shields.io static badge URL
-    encoded_label = label.replace("-", "--")
+    encoded_label = label.replace("-", "--").replace(" ", "%20")
     url = f"https://img.shields.io/badge/behaviour-{encoded_label}-{colour}"
     return f"![behaviour: {label}]({url})"
 
