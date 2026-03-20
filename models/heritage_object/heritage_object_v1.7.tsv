@@ -69,26 +69,26 @@ E22: Heritage Object	PX_has_main_representation (0 to 1)	EX_Digital_Image: Main 
 E22: Heritage Object	P138i_has_representation (0 to n)	EX_Digital_Image: Object Image
 
 
-//field E42: Persistent Identifier (PID) | External ID; Persistent Identifier (PID) | behaviour:pid
-//field E41: Unique System Label or ID | System Label or ID; Database or System ID/Label | behaviour:system-id
-//field E73: Description Text | Description Text; Description | behaviour:ingested
-//field E73: Credit Line | Credit Line | behaviour:ingested
-//field E42: Accession Number (custodian) | Accession Number; Inventory Number | behaviour:ingested
-//field E42: Alternative Identifiers | Alternative Identifiers; Other Identifiers | behaviour:ingested
-//field E55: object type | Object Type; Object Class; Type; Class | behaviour:ingested
-//field E35: Full Title | Full Title | behaviour:ingested
-//field E35: Alternate Title | Alternate Title; Alternative Title | behaviour:ingested
-//field E39: Organisation or Person | Current Heritage Object Owner; Owner | behaviour:ingested
-//field E39: Organisation or Person#-1 | Current Heritage Object Keeper; Keeper | behaviour:ingested
-//field E78: Collection (Curated Holding) | Collection; Curated Holding | behaviour:ingested
-//field E53: Institution or Place | Current Permanent Location; Location | behaviour:ingested
-//field E54: Dimensions | Dimensions; Values and Ranges | behaviour:ingested
-//field E57: Medium | Medium | behaviour:ingested
-//field E57: Other Material | Other Materials | behaviour:ingested
-//field E22: Support | Support; Primary Support | behaviour:ingested
-//field E31: Report or Document | Related Document; Reports; Publications | behaviour:ingested
-//field EX_Digital_Image: Main Object Image | Main Object Image | behaviour:ingested
-//field EX_Digital_Image: Object Image | Object Image; Other Images | behaviour:ingested
-//field-via E12: Production Event > E39 | Creator of Heritage Object; Artist; Creator | behaviour:ingested
-//field-via E12: Production Event > E52 | Date of Production | behaviour:ingested
-//field-via E12: Production Event > E53 | Place of Production | behaviour:ingested
+//field E42: Persistent Identifier (PID) | 1 | External ID; Persistent Identifier (PID) | behaviour:pid
+//field E41: Unique System Label or ID | 2 | System Label or ID; Database or System ID/Label | behaviour:system-id
+//field E42: Accession Number (custodian) | 3 | Accession Number; Inventory Number | behaviour:ingested
+//field E42: Alternative Identifiers | 4 | Alternative Identifiers; Other Identifiers | behaviour:ingested
+//field E35: Full Title | 5 | Full Title | behaviour:ingested
+//field E35: Alternate Title | 6 | Alternate Title; Alternative Title | behaviour:ingested
+//field E55: object type | 7 | Object Type; Object Class; Type; Class | behaviour:ingested
+//field E39: Organisation or Person | 8 | Current Heritage Object Owner; Owner | behaviour:ingested
+//field E39: Organisation or Person#-1 | 9 | Current Heritage Object Keeper; Keeper | behaviour:ingested
+//field E78: Collection (Curated Holding) | 10 | Collection; Curated Holding | behaviour:ingested
+//field E53: Institution or Place | 11 | Current Permanent Location; Location | behaviour:ingested
+//field E54: Dimensions | 12 | Dimensions; Values and Ranges | behaviour:ingested
+//field E57: Medium | 13 | Medium | behaviour:ingested
+//field E57: Other Material | 14 | Other Materials | behaviour:ingested
+//field E22: Support | 15 | Support; Primary Support | behaviour:ingested
+//field E73: Description Text | 16 | Description Text; Description | behaviour:ingested
+//field E73: Credit Line | 17 | Credit Line | behaviour:ingested
+//field E31: Report or Document | 18 | Related Document; Reports; Publications | behaviour:ingested
+//field EX_Digital_Image: Main Object Image | 19 | Main Object Image | behaviour:ingested
+//field EX_Digital_Image: Object Image | 20 | Object Image; Other Images | behaviour:ingested
+//field-via E12: Production Event > E39 | 21 | Creator of Heritage Object; Artist; Creator | behaviour:ingested
+//field-via E12: Production Event > E52 | 22 | Date of Production | behaviour:ingested
+//field-via E12: Production Event > E53 | 23 | Place of Production | behaviour:ingested
