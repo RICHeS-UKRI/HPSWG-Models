@@ -1,7 +1,7 @@
 //flowchart LR
 S2: Sample Taking	tooltip	The event in which a material sample was physically removed from the painting.	event-fs32
 S2: Sample Taking	has note	Document Note: Sample Taking Model Overview
-Document Note: This model captures metadata specific to an individual sample taking event within a broader Sampling Activity. Many fields here are optional because values defined at the Sampling Activity level -- such as date, method, location, and responsible actor -- apply to all sample takings within that activity and do not need to be repeated unless they differ for this specific event. Fields that are always recorded at this level include the link to the sample produced, the sample site, the heritage object, and the system identifier.
+Document Note: Sample Taking Model Overview	tooltip	This model captures metadata specific to an individual sample taking event within a broader Sampling Activity. Many fields here are optional because values defined at the Sampling Activity level -- such as date, method, location, and responsible actor -- apply to all sample takings within that activity and do not need to be repeated unless they differ for this specific event. Fields that are always recorded at this level include the link to the sample produced, the sample site, the heritage object, and the system identifier.
 
 //subgraph Linked Entities
 E22: Heritage Object	tooltip	E22 is a duplicate to the one defined at the parent activity but a key property is required here for the CRM Sci linking the S2, via an O3 to the E22.	object-fs24|
