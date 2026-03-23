@@ -25,7 +25,7 @@ E7: Project	tooltip	A project to which the sample taking belongs, e.g. conservat
 // Sampling Activity (shared metadata captured once at the object level)
 ////////////////////////////////////////////////////////////////////////////////////////////////
 E7: Sampling Activity	P48_has_preferred_identifier (0 to 1)	E42: Sampling activity PID	|url
-E42: Sampling activity	PID  tooltip	An optional public unique identifier (PID) for the sample activity. Any of the IDs defined could be flagged as a preferred ID within a documentation system.
+E42: Sampling activity PID	tooltip	An optional public unique identifier (PID) for the sample activity. Any of the IDs defined could be flagged as a preferred ID within a documentation system.
 E7: Sampling Activity	P12_occurred_in_the_presence_of (1 to 1)	E22: Heritage Object
 E7: Sampling Activity	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
 E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
