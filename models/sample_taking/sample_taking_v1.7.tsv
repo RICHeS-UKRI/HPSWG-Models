@@ -65,13 +65,17 @@ S13: Material Sample	P46i_forms_part_of (1 to 1)	E22: Physical Sample
 //field E42: Sample taking PID | 1 | Persistent Identifier (PID); PID | behaviour:pid
 //field E41: Unique System Label or ID | 2 | Database or System ID; Sample Taking System ID | behaviour:system-id
 //field E52: Sampling Date | 3 | Sample Taking Date; Date | behaviour:free-text
-//field E73: Sample taking comment | 4 | Description | behaviour:free-text
+//field E39: Sample taken by | 4 | Sampler; Taken by; Sampling carried out by | behaviour:select
 //field E73: Reason for Sampling | 5 |  | behaviour:free-text
-//field E31: Report or Document | 6 | Related Document; Reports; Publications; Summaries | behaviour:select
-//field S13: Heritage Sample | 7 | | behaviour:select; Cross-reference to Sample; Removed; Sample; Created, a reference to the sample that was taken in this sample taking event – Class to be Confirmed as dual S13/E22 construct may be needed for the sample.
-//field E26: Sample Site | 8 | Cross-reference to Sample Site | behaviour:select
-//field E29: Method or Procedure | 9 | Sampling Method; Method; Procedure | behaviour:select
-//field E53: Sampling Location | 10 | Location of Sample Taking Event | behaviour:select
-//field E39: Sample taken by | 11 | Sampler; Taken by; Sampling carried out by | behaviour:select
-//field-via E3: Condition state (Sample Site Status) via S4: Observation | 12 | State of Sampling Site at Time of Sampling; Object Status | The condition or treatment state of the sample site at the time of sampling, for example varnish removed. | behaviour:list
+//field E73: Sample taking comment | 6 | Description | behaviour:free-text
+//field-via E3: Condition state (Sample Site Status) via S4: Observation | 7 | State of Sampling Site at Time of Sampling; Object Status | The condition or treatment state of the sample site at the time of sampling, for example varnish removed. | behaviour:list
+//field E29: Method or Procedure | 8 | Sampling Method; Method; Procedure | behaviour:select
+//field E53: Sampling Location | 9 | Location of Sample Taking Event | behaviour:select
+//field E31: Report or Document | 10 | Related Document; Reports; Publications; Summaries | behaviour:select
+//field S13: Heritage Sample | 11 | | behaviour:select; Cross-reference to Sample; Removed; Sample; Created, a reference to the sample that was taken in this sample taking event – Class to be Confirmed as dual S13/E22 construct may be needed for the sample.
+//field E26: Sample Site | 12 | Cross-reference to Sample Site | behaviour:select
+
+
+
+
 //field E22: Heritage Object | 13 | Cross-reference to Heritage Object; Heritage Object; Link to Heritage Object | behaviour:select
