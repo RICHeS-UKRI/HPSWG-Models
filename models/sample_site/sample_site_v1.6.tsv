@@ -85,16 +85,19 @@ EX_Digital_Image_Region	P106i_forms_part_of (1 to 1)	EX_Digital_Image: Annotatio
 //field E41: Unique System Label or ID | 2 | Database or System ID; Sample Site System ID | behaviour:system-id
 //field E41: Sample Site Name/Number | 3 | Site Label; Site Name; Site Code | behaviour:free-text
 //field E73: Sample Site Description | 4 | Description Text; Description | behaviour:free-text
-//field E73: Site Selection Comment | 5 |  | behaviour:free-text
-//field E54: Sample Site Coordinates (object) | 6 |  | behaviour:free-text
-//field E54: Sample Site Coordinates (annotation image) | 7 | Digital Image Region; Image Annotation | behaviour:auto
-//field E73: Reason for Sample Site Selection | 8 | Site Selection Description | behaviour:free-text
-//field E26: Area of Interest | 9 | Object Part | behaviour:select
-//field E31: Report or Document | 10 | Related Document; Reports; Publications; Summaries | behaviour:select
-//field E22: Heritage Object | 11 | Heritage Object; Link to Heritage Object | behaviour:select
-//field E22: Heritage Object Part | 12 | Heritage Object Part; Link to Heritage Object Part | behaviour:select
-//field S13: Heritage Sample | 13 | Sample | behaviour:select; Cross-reference to Sample; Removed; Sample; Created, a reference to the sample that was taken from this sample site – Class to be Confirmed as dual S13/E22 construct may be needed for the sample.
-//field S2: Sample Taking | 14 | Cross-reference to Sample Taking; Sample Creation | behaviour:select
-//field EX_Digital_Image: Sample Site reference image | 15 | Digital Image; Reference Image; Reference Detail; Main Site Image | behaviour:select
-//field EX_Digital_Image: Other Site Image | 16 | Site Image | behaviour:select
-//field EX_Digital_Image_Region | 17 | Image Annotation; Digital Image Region | behaviour:select
+//field E73: Reason for Sample Site Selection | 5 | Site Selection Description | behaviour:free-text
+//field E73: Site Selection Comment | 6 |  | behaviour:free-text
+//field E26: Area of Interest | 7 | Object Part | behaviour:select
+//field E54: Sample Site Coordinates (object) | 8 |  | behaviour:free-text
+//field EX_Digital_Image_Region | 9 | Image Annotation; Digital Image Region | behaviour:select
+//field E54: Sample Site Coordinates (annotation image) | 10 | Digital Image Region; Image Annotation | behaviour:auto
+//field EX_Digital_Image: Sample Site reference image | 11 | Digital Image; Reference Image; Reference Detail; Main Site Image | behaviour:select
+//field EX_Digital_Image: Other Site Image | 12 | Site Image | behaviour:select
+//field E31: Report or Document | 13 | Related Document; Reports; Publications; Summaries | behaviour:select
+//field E22: Heritage Object | 14 | Heritage Object; Link to Heritage Object | behaviour:select
+//field E22: Heritage Object Part | 15 | Heritage Object Part; Link to Heritage Object Part | behaviour:select
+//field S13: Heritage Sample | 16 | Sample | behaviour:select; Cross-reference to Sample; Removed; Sample; Created, a reference to the sample that was taken from this sample site – Class to be Confirmed as dual S13/E22 construct may be needed for the sample.
+//field S2: Sample Taking | 17 | Cross-reference to Sample Taking; Sample Creation | behaviour:select
+
+
+
