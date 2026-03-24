@@ -12,16 +12,15 @@ S2: Sample Taking	tooltip	The event during which the sample was physically remov
 //links S2: Sample Taking --> sample_taking
 S24: Sample Splitting	tooltip	The event during which a new child sample was physically separated from the parent sample.	event-fs24|
 //links S24: Sample Splitting --> sample_splitting
-E39: Organisation or Person	tooltip	The legal owner of the sample.	actor-fs24|
-//links E39: Organisation or Person --> person, organisation [confirmed]
+E39: Sample Owner	tooltip	The legal owner of the sample.	actor-fs24|
+//links E39: Sample Owner --> person, organisation [confirmed]
 E53: Organisation or Address	tooltip	The current location of the sample if different to its permanent location.	place-fs24|
 //links E53: Organisation or Address --> location
-E39: Organisation or Person#-1	tooltip	The organisation responsible for the care, storage, or management of the physical sample.	actor-fs24|
-E31: Sample Documents	tooltip	Any document, note, report, or publication describing or relating to the sample.	document-fs24|
+E39: Sample Keeper	tooltip	The organisation responsible for the care, storage, or management of the physical sample.	actor-fs24|
+//links E39: Sample Keeper --> person, organisation [confirmed]
+E31: Sample Documents	tooltip	Primarily related to authored notes, reports and publications, however there is a whole range of relevant documents that can reference or be linked to this sample.	document-fs24|
 //links E31: Sample Documents --> crm:E31
-E16: Measurement	tooltip	An event in which one or more quantitative properties of the sample were measured.	event-fs24|
-//links E16: Measurement --> crm:E16
-S27: Observation	tooltip	An event in which qualitative or visual properties of the sample were examined.	event-fs24|
+S27: Observation	tooltip	An observation or examination event related to the sample, ranging from simple visual inspection or interpretation to quantitative measurement or analytical investigation. These events may or may not result in recorded images, data, or other outputs. (S27 is a parent of the standard Core CRM Measurement)	event-fs24|
 //links S27: Observation --> sample_observation
 E11: Sample Modification	tooltip	An event that altered the sample after its initial removal, such as preparation, embedding, or coating.	event-fs24|
 //links E11: Sample Modification --> sample_modification
@@ -29,12 +28,12 @@ EX_Digital_Image: Main Sample Image	tooltip	The primary representative image of 
 //links EX_Digital_Image: Main Sample Image --> rs:EX_Digital_Image
 EX_Digital_Image: Sample Image	tooltip	Additional documentary images of the curated physical sample.	digital2-fs24|
 //links EX_Digital_Image: Sample Image --> rs:EX_Digital_Image
-//subgraph Storage Options
-E53: Storage Location	tooltip	Option A: a named place where the sample is permanently stored (e.g. store room, cabinet room, institution). Use this when no further physical unit breakdown is required.	place-fs24|
+
+E53: Storage Location	tooltip	A named place where a sample is permanently stored, such as an institution, department, building, or room. Use this option when no physical storage unit record exists for the sample. If a storage unit is known, link to that instead and allow the location to be inherited through the unit's own records.	place-fs24|
 //links E53: Storage Location --> location
-E22: Storage Unit	tooltip	Option B: a discrete physical storage container (e.g. drawer, box, tray, cabinet) in which the sample sits. Link this unit to an E53: Storage Location via P54, and nest further units as needed before resolving to a place.	object-fs24|
+E22: Storage Unit	tooltip	A discrete physical container in which a sample is stored, such as a cabinet, drawer, box, or tray. Storage units should themselves carry a permanent location (E53) or link to a larger containing unit, which in turn resolves to a named location. Units may be nested to any depth before resolving to a place. Use this option in preference to a direct location link when the specific unit is known.	object-fs24|
 //links E22: Storage Unit --> sample_storage_unit
-//end sg1-5-5
+
 //end sg1
 
 // --- Identifiers and labels (E22: Physical Sample carries persistent identity) ---
@@ -42,18 +41,21 @@ E22: Physical Sample	P48_has_preferred_identifier (1 to 1)	E42: Persistent Ident
 E42: Persistent Identifier (e.g. IGSN)	tooltip	For samples not defined with a fully resolvable PID like an IGSN the preferred ID is likely to be the same as or based on the E41: Sample Label/No/ID.
 E22: Physical Sample	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
 E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as the ResearchSpace required label.
+E22: Physical Sample	P1_is_identified_by (1 to 1)	E41: Sample Name or Code	|name
+E41: Sample Name or Code	tooltip	A human-readable name or number used to identify the sample in documentation or images, typically visible on labels or microscope slides. This field will generally need to follow an agreed local naming protocol.
 E41: Unique System Label or ID	has note	Automatic: Preferred Heritage Object ID - Sample Label
 E22: Physical Sample	P1_is_identified_by (0 to n)	E42: Alternative Identifier	|url
-E42: Alternative Identifier	tooltip	A locally assigned identifier, sample number or code used by the organisation responsible for managing the physical sample, by which the sample may be known in external systems, publications, or legacy records. Similar identifiers assigned by other organisations can also be recorded here.
+E42: Alternative Identifier	tooltip	Any other identifier or code by which the sample may be known in external systems, publications, or legacy records. This also includes identifiers assigned by other systems and organisations.
 
 // --- Description (E22: Physical Sample as subject of documentation) ---
-E22: Physical Sample	P67i_is_referred_to_by (0 to n)	E73: Description Text	|literal
-E73: Description Text	P45i_is_incorporated_in (0 to n)	E31: Sample Documents	|document
+E22: Physical Sample	P67i_is_referred_to_by (0 to n)	E73: Sample description	|literal
+E73: Sample description	tooltip	This could include a whole range of descriptions relating to the sample.
+E73: Sample description	P45i_is_incorporated_in (0 to n)	E31: Sample Documents	|document
 E22: Physical Sample	P70i_is_documented_in (0 to n)	E31: Sample Documents	|document
 
 // --- Classification (E22: Physical Sample -- curation and format properties) ---
 E22: Physical Sample	P2_has_type (1 to 1)	E55: sample format	|type
-E55: sample format	tooltip	Classification of how the sample has been organised or modified for storage or examination. Terms could include: unmounted flake, resin-embedded block, polished cross-section, carbon-coated cross-section, gold-coated cross-section, dispersion, thin section, microtome thin section, KBr pellet, diamond cell / compression cell, SEM stub mount, grain mount, filter mount, mATR mount.
+E55: sample format	tooltip	The physical form of the sample as a material object. The format of the sample may change over time.
 E22: Physical Sample	P2_has_type (0 to n)	E55: sample keywords	|type
 E55: sample keywords	tooltip	Keywords or classification terms used for discovery, retrieval, and contextualisation of the sample record (e.g., class, technique, composition).
 
@@ -69,11 +71,11 @@ E3: Condition state (Sample Status)	P2_has_type (1 to 1)	E55: condition state ty
 E55: condition state type	tooltip	The current condition, treatment state, or lifecycle position of a heritage sample, reflecting analytical preparation, handling, availability, or degree of alteration over time.
 
 // --- Custody and storage (E22: Physical Sample) ---
-E22: Physical Sample	P52_has_current_owner (1 to n)	E39: Organisation or Person	|actor
-E22: Physical Sample	P50_has_current_keeper (1 to 1)	E39: Organisation or Person#-1	|actor
-Storage Options	has note	Storage Option Note
-Storage Option Note	tooltip	Two mutually exclusive storage approaches are supported. Option A (simple): link the Physical Sample directly to an E53: Storage Location (a named place such as a store room or institution). Option B (detailed): link the Physical Sample to one or more E22: Storage Unit records (e.g. drawer, box, cabinet), each of which resolves via P54 to an E53: Storage Location. Storage units may be nested before resolving to a place. Do not use both approaches for the same sample.
-E22: Physical Sample	P54_has_current_permanent_location (0 to 1)	Storage Options	|place
+E22: Physical Sample	P52_has_current_owner (1 to n)	E39: Sample Owner
+E22: Physical Sample	P50_has_current_keeper (1 to 1)	E39: Sample Keeper
+
+E22: Physical Sample	P54_has_current_permanent_location (0 to 1)	E53: Storage Location
+E22: Physical Sample	P54_has_current_permanent_location (0 to 1)	E22: Storage Unit
 
 E22: Storage Unit	P54_has_current_permanent_location (0 to 1)	E53: Storage Location
 E22: Physical Sample	P55_has_current_location (0 to 1)	E53: Organisation or Address	|place
@@ -92,7 +94,6 @@ S2: Sample Taking	O5_removed (1 to 1)	S13: Material Sample	|event
 S13: Material Sample	O5i_was_removed_by (1 to 1)	S2: Sample Taking
 
 // --- Scientific events (S13: Material Sample -- scientific layer) ---
-S13: Material Sample	O24i_was_measured_by (0 to n)	E16: Measurement	|event
 S13: Material Sample	O35i_was_observed_by (0 to n)	S27: Observation	|event
 S13: Material Sample	P31i_was_modified_by (0 to n)	E11: Sample Modification	|event
 
@@ -113,3 +114,26 @@ S13: Material Sample#-1	P46i_forms_part_of (1 to 1)	E22: Physical Sample#-1
 // --- Heritage Object connection (via S2, not direct -- see workflow) ---
 E22: Heritage Object	tooltip	The artwork or object from which the sample originated.	object-fs24|
 S2: Sample Taking	O3_sampled_from (1 to 1)	E22: Heritage Object	|event
+
+
+//field E42: Persistent Identifier (e.g. IGSN) | 1 | Sample PID; PID; Persistent Identifier | behaviour:pid
+//field E42: Alternative Identifier | 2 | Alternative Sample ID; Sample No; Sample Code | behaviour:free-text
+//field E41: Unique System Label or ID | 3 | Sample System ID; Database ID; System Label | behaviour:system-id
+//field E41: Sample Name or Code | 4 | Sample ID; Sample No; Sample Code; Sample Name | behaviour:free-text
+//field E73: Sample description | 5 | Sample Description; Description | behaviour:free-text
+//field E55: sample format | 6 | Sample Format | behaviour:list
+//field E55: sample material type | 7 | Sample Material Type; Material Class; Material of Interest | behaviour:list
+//field E55: sample keywords | 8 | Sample Keyword; Keywords | behaviour:list
+//field E54: Sample size | 9 | Sample Size; Size Class; Size Range | behaviour:list
+//field EX_Digital_Image: Main Sample Image | 10 | Main Sample Image; Reference Image; Preferred Image | behaviour:image
+//field EX_Digital_Image: Sample Image | 11 | Sample Image; Digital Image | behaviour:image
+//field E39: Sample Owner | 12 | Current Owner of Sample; Sample Owner | behaviour:select
+//field E39: Sample Keeper | 13 | Current Keeper of Sample; Sample Keeper | behaviour:select
+//field E53: Storage Location | 14 | Current Permanent Location; Storage Location | behaviour:select
+//field E22: Storage Unit | 15 | Current Storage Unit; Storage Unit; Cabinet; Drawer | behaviour:select
+//field E53: Organisation or Address | 16 | Current Location; Sample Temporary Location | behaviour:select
+//field-via E3: Condition state (Sample Status) | 17 | Sample State; Condition State; Condition | behaviour:list
+//field S27: Observation | 18 | Sample Examination Event; Sample Observation; Sample Measurement | behaviour:select
+//field E11: Sample Modification | 19 | Sample Modification Event; Sample Preparation | behaviour:select
+//field E31: Sample Documents | 20 | Related Document; Related Documents; Reports; Publications | behaviour:select
+//field S2: Sample Taking | 21 | Source Event; Sample Taking Event; Sample Splitting Event | behaviour:select
