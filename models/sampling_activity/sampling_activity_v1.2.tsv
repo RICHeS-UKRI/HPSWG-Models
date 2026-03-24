@@ -56,13 +56,13 @@ E55: condition state type	tooltip	The current condition, treatment state, or lif
 //field E42: Sampling activity PID | 1 | Persistent Identifier (UUID); PID | behaviour:pid
 //field E41: Unique System Label or ID | 2 | Database or System ID; Label | behaviour:system-id
 //field E22: Heritage Object | 3 | Heritage Object; Link to Heritage Object | behaviour:select
-//field E73: Reason for Sampling | 4 | Reason for Sampling Activity; Overall Purpose | behaviour:free-text
-//field E73: Sampling Activity Comment | 5 | Description | behaviour:free-text
-//field E31: Report or Document | 6 | Related Document(s); Reports; Publications; Summaries | behaviour:select
-//field E52: Sampling Date | 7 | Date of Sampling Activity; Sampling Date; Date | behaviour:free-text
-//field E29: Method or Procedure | 8 | Method; Procedure | behaviour:select
-//field E39: Planned by | 9 | Institution; Person | behaviour:select
-//field E53: Sampling Location | 10 | Location of Sampling Activity; Location; Sampling Location | behaviour:select
-//field E7: Project | 11 | Project | behaviour:select
-//field-via E3: Condition state (Object Status) via S4: Observation | 12 | Status of Heritage Object at Time of Sampling; Object Status | The state of the object as a whole at the time of sampling, for example during cleaning. | behaviour:list
+//field E7: Project | 4 | Project | behaviour:select
+//field E52: Sampling Date | 5 | Date of Sampling Activity; Sampling Date; Date | behaviour:free-text
+//field E39: Planned by | 6 | Institution; Person | behaviour:select
+//field E73: Reason for Sampling | 7 | Reason for Sampling Activity; Overall Purpose | behaviour:free-text
+//field E73: Sampling Activity Comment | 8 | Description | behaviour:free-text
+//field-via E3: Condition state (Object Status) via S4: Observation | 9 | Status of Heritage Object at Time of Sampling; Object Status | The state of the object as a whole at the time of sampling, for example during cleaning. | behaviour:list
+//field E29: Method or Procedure | 10 | Method; Procedure | behaviour:select
+//field E53: Sampling Location | 11 | Location of Sampling Activity; Location; Sampling Location | behaviour:select
+//field E31: Report or Document | 12 | Related Document(s); Reports; Publications; Summaries | behaviour:select
 //field S2: Sample Taking | 13 | Cross-reference to Sample Taking | behaviour:select
