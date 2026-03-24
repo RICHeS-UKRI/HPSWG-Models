@@ -34,8 +34,8 @@ E26: Area of Interest	tooltip	This optional field is a link to a wider area/plac
 //links E26: Area of Interest --> crm:E26
 E54: Sample Site Coordinates (object)	tooltip	The measured height, width, and position of the sample site relative to the physical Heritage Object.	dims-fs24|
 //links Sample Site Coordinates (object) --> crm:E54
-E54: Sample Site Coordinates (annotation image)	tooltip	The recorded pixel dimensions; shape, height, width, and or position of the sample site relative to a define annotation image depicting the Heritage Object. It is not required but this is expected to be achieved via the use of IIIF based solutions. Analogue annotations (on a print/photograph) are expected to be transferred to a digital image to create these values.	dims-fs24|
-//links Sample Site Coordinates (annotation image) --> crm:E54
+E54: E54: Sample Site Coordinates (annotation image)	tooltip	The recorded pixel dimensions; shape, height, width, and or position of the sample site relative to a define annotation image depicting the Heritage Object. It is not required but this is expected to be achieved via the use of IIIF based solutions. Analogue annotations (on a print/photograph) are expected to be transferred to a digital image to create these values.	dims-fs24|
+//links E54: Sample Site Coordinates (annotation image) --> crm:E54
 //end sg1
 
 
