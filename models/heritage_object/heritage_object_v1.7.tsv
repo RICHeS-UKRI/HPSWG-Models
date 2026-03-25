@@ -1,0 +1,95 @@
+//flowchart LR
+E22: Heritage Object	tooltip	A human-made work of art; the primary entity in this model, from which ownership, collection context, production, documentation, and scientific data are all derived.	object-fs32|
+E22: Heritage Object	has note	Document Note: Heritage Object Model Overview
+Document Note: Heritage Object Model Overview	tooltip	This model defines the Heritage Object (E22) as the core object from which technical study data, and descriptive documentation are derived. It records ownership, collection context, dimensions, support, and medium, linking the artwork to its production event, associated documentation, and any related scientific or curatorial information. Together, these relationships provide a foundation for integrating technical study, provenance, and contextual research across connected datasets.
+//subgraph Linked Entities
+E39: Organisation or Person	tooltip	The legal owner or holding institution of the Heritage Object.	actor-fs24|
+//links E39: Organisation or Person --> person, organisation [confirmed]
+E39: Organisation or Person#-1	tooltip	The institution or person currently responsible for the Heritage Object’s care or location.	actor-fs24|
+
+E53: Institution or Place	tooltip	The physical location or site where the Heritage Object is housed or displayed.	place-fs24|
+//links E53: Institution or Place --> location
+E54: Dimensions	tooltip	The measured height, width, and optionally depth of the Heritage Object, recorded as dimensional attributes.	dims-fs24|
+//links E54: Dimensions --> crm:E54
+E78: Collection (Curated Holding)	tooltip	The collection or sub-collection to which the Heritage Object formally belongs.	object-fs24|
+//links E78: Collection (Curated Holding) --> crm:E78
+E31: Report or Document	tooltip	Any document, catalogue entry, publication, or report relating to the Heritage Object’s description, study, or conservation.	document-fs24|
+//links E31: Report or Document --> crm:E31
+E57: Medium	tooltip	The medium of the material used in creating the object on the support (e.g. paint binding medium, drawing material, pastel etc).	object-fs24|
+//links E57: Medium --> crm:E57
+E57: Other Material	tooltip	Any material forming part of the original composition or manufacture of a heritage object or sample, beyond media or supports.	object-fs24|
+//links E57: Other Material --> crm:E57
+E22: Support	tooltip	The physical base material or structure of the heritage object. This can include designation of different types of support, for example, primary support (eg original canvas) and secondary support (eg lining canvas) as parts of a painting.	object-fs24|
+//links E22: Support --> heritage_object_part
+E12: Production Event	tooltip	The creative or manufacturing event during which the Heritage Object was produced or completed.	event-fs24|
+//links E12: Production Event --> production
+EX_Digital_Image: Main Object Image	tooltip	The primary selected image representing the heritage object, used for thumbnails, search results, and default display. Normally a current, full front-facing view of the object.	digital2-fs24|
+//links EX_Digital_Image: Main Object Image --> rs:EX_Digital_Image
+EX_Digital_Image: Object Image	tooltip	All other images associated with the heritage object held in the system. Acts as a catch-all to support simple image lists and gallery displays; image type and capture technique are defined on the image record or related creation event.	digital2-fs24|
+//links EX_Digital_Image: Object Image --> rs:EX_Digital_Image
+//end sg1
+E22: Heritage Object	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
+E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580
+E42: Persistent Identifier (PID)	tooltip	A unique identifier for the heritage object as defined by an institution external to the keeper or owner of the object (e.g. Getty ID, a URI, WikiData ID, Cultural Object Name Authority). Any of the IDs defined could be flagged as a preferred ID within a documentation system.
+E22: Heritage Object	P1_is_identified_by (0 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E22: Heritage Object	P67i_is_referred_to_by (0 to 1)	E73: Description Text	|literal
+E73: Description Text	tooltip	A brief statement describing the heritage object.
+E22: Heritage Object	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+E31: Report or Document	tooltip	Can include a whole range of descriptions, reports, notes, publications etc.
+E73: Description Text	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E22: Heritage Object	P67i_is_referred_to_by (1 to 1)	E73: Credit Line	|literal
+E73: Credit Line	tooltip	A brief text, commonly relating to the acquisition or an influence on the acquisition - commonly a description of the actor who has funded it.
+E73: Credit Line	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E22: Heritage Object	P1_is_identified_by (1 to 1)	E42: Accession Number (custodian)	|url
+E42: Accession Number (custodian)	P2_has_type (1 to 1)	aat:300312355
+E42: Accession Number (custodian)	tooltip	A unique identifier for the heritage object as defined by the keeper or owner of the object (e.g. an institutional persistent identifier). Any of the IDs defined could be flagged as a preferred ID within a documentation system.
+E22: Heritage Object	P1_is_identified_by (0 to n)	E42: Alternative Identifiers	|url
+E42: Alternative Identifiers	tooltip	A wide range of different additional identifiers can be associated to a Heritage Object from historic codes to other globally resolvable PIDs.
+E22: Heritage Object	P2_has_type (1 to n)	E55: object type	|type
+E55: object type	tooltip	Multiple values selected from a defined controlled list.
+E22: Heritage Object	P102_has_title (1 to 1)	E35: Full Title	|name
+E35: Full Title	tooltip	The official long title given to the object.
+E35: Full Title	P2_has_type (1 to 1)	aat:300417209
+E22: Heritage Object	P102_has_title (0 to n)	E35: Alternate Title	|name
+E35: Alternate Title	tooltip	Another version of the title, commonly shorter and often used for web and software presentations, or historic titles used in the past.
+E35: Alternate Title	P2_has_type (1 to 1)	aat:300417227
+E22: Heritage Object	P52_has_current_owner (1 to n)	E39: Organisation or Person	|actor
+E22: Heritage Object	P50_has_current_keeper (1 to 1)	E39: Organisation or Person#-1	|actor
+E22: Heritage Object	P46i_forms_part_of (0 to n)	E78: Collection (Curated Holding)	|object
+E22: Heritage Object	P54_has_current_permanent_location (1 to 1)	E53: Institution or Place	|place
+E22: Heritage Object	P43_has_dimension (1 to n)	E54: Dimensions	|dims
+E22: Heritage Object	P45_consists_of (1 to n)	E57: Medium	|object
+E22: Heritage Object	P45_consists_of (0 to n)	E57: Other Material	|object
+E22: Heritage Object	P46_is_composed_of (1 to 1)	E22: Support	|object
+
+
+E22: Heritage Object	P108i_was_produced_by (1 to 1)	E12: Production Event	|event
+E22: Heritage Object	PX_has_main_representation (0 to 1)	EX_Digital_Image: Main Object Image
+E22: Heritage Object	P138i_has_representation (0 to n)	EX_Digital_Image: Object Image
+
+
+//field E42: Persistent Identifier (PID) | 1 | External ID; Persistent Identifier (PID) | behaviour:pid
+//field E41: Unique System Label or ID | 2 | System Label or ID; Database or System ID/Label | behaviour:system-id
+//field E42: Accession Number (custodian) | 3 | Accession Number; Inventory Number | behaviour:ingested
+//field E42: Alternative Identifiers | 4 | Alternative Identifiers; Other Identifiers | behaviour:ingested
+//field E35: Full Title | 5 | Full Title | behaviour:ingested
+//field E35: Alternate Title | 6 | Alternate Title; Alternative Title | behaviour:ingested
+//field E55: object type | 7 | Object Type; Object Class; Type; Class | behaviour:ingested
+//field E39: Organisation or Person | 8 | Current Heritage Object Owner; Owner | behaviour:ingested
+//field E39: Organisation or Person#-1 | 9 | Current Heritage Object Keeper; Keeper | behaviour:ingested
+//field E78: Collection (Curated Holding) | 10 | Collection; Curated Holding | behaviour:ingested
+//field E53: Institution or Place | 11 | Current Permanent Location; Location | behaviour:ingested
+//field E54: Dimensions | 12 | Dimensions; Values and Ranges | behaviour:ingested
+//field E57: Medium | 13 | Medium | behaviour:ingested
+//field E57: Other Material | 14 | Other Materials | behaviour:ingested
+//field E22: Support | 15 | Support; Primary Support | behaviour:ingested
+//field E73: Description Text | 16 | Description Text; Description | behaviour:ingested
+//field E73: Credit Line | 17 | Credit Line | behaviour:ingested
+//field E31: Report or Document | 18 | Related Document; Reports; Publications | behaviour:ingested
+//field EX_Digital_Image: Main Object Image | 19 | Main Object Image | behaviour:ingested
+//field EX_Digital_Image: Object Image | 20 | Object Image; Other Images | behaviour:ingested
+
+//field-via E39: Creator via E12 | 21 | Creator of Heritage Object; Artist; Creator | The actor (artist, studio, workshop) who carried out the production. | behaviour:ingested
+//field-via E52: Date of Production via E12 | 22 | Date of Production | The date or timespan during which the heritage object was produced. | behaviour:ingested
+//field-via E53: Place of Production via E12 | 23 | Place of Production | The location where the heritage object was created. | behaviour:ingested

@@ -1,7 +1,7 @@
 //flowchart LR
-E7: Sampling Event	tooltip	The overall sampling session or campaign event in which one or more individual sample extractions were carried out.	event-fs32
-E7: Sampling Event	has note	Document Note: Sampling Event Model Overview
-Document Note: Sampling Event Model Overview	tooltip	This model defines a broader Sampling Event (E7) at the Object level, that groups shared metadata (who, when, where, why, and documentation) for one or more individual sample extraction activities. Each extraction is represented as a nested S2: Sample Taking event linked from the Sampling Event. This allows shared context to be captured once, while extraction-specific links (sample site, removed sample, and observation) are recorded per individual Sample Taking event.
+E7: Sampling Activity	tooltip	The overall sampling session or campaign event in which one or more individual sample extractions were carried out.	event-fs32
+E7: Sampling Activity	has note	Document Note: Sampling Activity Model Overview
+Document Note: Sampling Activity Model Overview	tooltip	This model defines a broader Sampling Activity (E7) at the Object level, that groups shared metadata (who, when, where, why, and documentation) for one or more individual sample extraction activities. Each extraction is represented as a nested S2: Sample Taking event linked from the Sampling Activity. This allows shared context to be captured once, while extraction-specific links (sample site, removed sample, and observation) are recorded per individual Sample Taking event.
 
 //subgraph Linked Entities
 E31: Report or Document	tooltip	A textual or digital document recording information related to the sampling process, results, or reasoning.	document-fs24|
@@ -13,7 +13,7 @@ E39: Institution or Person	tooltip	The actor (individual or organisation) respon
 E53: Sampling Location	tooltip	The physical place where the sampling activity occurred, typically within an institution or laboratory.	place-fs24|
 //links E53: Sampling Location --> location
 S2: Sample Taking	tooltip	The individual event of taking a sample.	event-fs24|
-//links S2: Sample Taking --> sample_taking_event
+//links S2: Sample Taking --> sample_taking
 E22: Heritage Object	tooltip	A human-made work of art that forms the physical source object from which the sample is taken.	object-fs24|
 //links E22: Heritage Object --> heritage_object
 E7: Project	tooltip	The individual event of taking a sample.	event2-fs24|
@@ -22,30 +22,30 @@ E7: Project	tooltip	The individual event of taking a sample.	event2-fs24|
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// SAMPLING EVENT (shared metadata captured once at the object level)
+// Sampling Activity (shared metadata captured once at the object level)
 ////////////////////////////////////////////////////////////////////////////////////////////////
-E7: Sampling Event	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (UUID)	|url
-E7: Sampling Event	P12_occurred_in_the_presence_of (1 to 1)	E22: Heritage Object
-E7: Sampling Event	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E7: Sampling Activity	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (UUID)	|url
+E7: Sampling Activity	P12_occurred_in_the_presence_of (1 to 1)	E22: Heritage Object
+E7: Sampling Activity	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
 E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
 //E41: Unique System Label or ID	has note	Automatic: Preferred Painting ID - Sample Label - Sampling DATE - TBC
-E7: Sampling Event	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
-E7: Sampling Event	P17_was_motivated_by (0 to 1)	E73: Reason for Sampling	|literal
-E7: Sampling Event	P67i_is_referred_to_by (1 to 1)	E73: Description	|literal
-E73: Reason for Sampling	tooltip	The overall motivation for carrying out the sampling event/session. This describes the research, conservation, or technical question being addressed and may apply to one or more individual sample takings.
-E73: Description	tooltip	A brief factual description of the overall sampling event/session (global context), focusing on notable session-level circumstances or exceptions, without repeating details that belong to individual sample taking events.
+E7: Sampling Activity	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+E7: Sampling Activity	P17_was_motivated_by (0 to 1)	E73: Reason for Sampling	|literal
+E7: Sampling Activity	P67i_is_referred_to_by (1 to 1)	E73: Description	|literal
+E73: Reason for Sampling	tooltip	The overall motivation for carrying out the Sampling Activity/session. This describes the research, conservation, or technical question being addressed and may apply to one or more individual sample takings.
+E73: Description	tooltip	A brief factual description of the overall Sampling Activity/session (global context), focusing on notable session-level circumstances or exceptions, without repeating details that belong to individual sample taking events.
 E73: Description	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
 E73: Reason for Sampling	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
-E7: Sampling Event	P14_carried_out_by (1 to n)	E39: Institution or Person
-E7: Sampling Event	P4_has_time_span (1 to 1)	E52: Sampling Date	|period
+E7: Sampling Activity	P14_carried_out_by (1 to n)	E39: Institution or Person
+E7: Sampling Activity	P4_has_time_span (1 to 1)	E52: Sampling Date	|period
 E52: Sampling Date	tooltip	The period of the full event including all the time spans of all of the related sample taking events.
-//E7: Sampling Event	P17_was_motivated_by (0 to n)	E55: material of interest	|type
+//E7: Sampling Activity	P17_was_motivated_by (0 to n)	E55: material of interest	|type
 //E55: material of interest	tooltip	The material or material class that motivated the sampling, such as a varnish layer, paint component, or specific pigment. This records the intended focus and does not imply analytical confirmation.
-E7: Sampling Event	P33_used_specific_technique (1 to n)	E29: Method or Procedure	|document
-E7: Sampling Event	P7_took_place_at (1 to 1)	E53: Sampling Location	|place
-E7: Sampling Event	P9_consists_of (1 to n)	S2: Sample Taking	|event
-E7: Sampling Event	crm:P9i_forms_part_of	E7: Project
-E7: Sampling Event	P9_consists_of (1 to 1)	S4: Observation	|event
+E7: Sampling Activity	P33_used_specific_technique (1 to n)	E29: Method or Procedure	|document
+E7: Sampling Activity	P7_took_place_at (1 to 1)	E53: Sampling Location	|place
+E7: Sampling Activity	P9_consists_of (1 to n)	S2: Sample Taking	|event
+E7: Sampling Activity	crm:P9i_forms_part_of	E7: Project
+E7: Sampling Activity	P9_consists_of (1 to 1)	S4: Observation	|event
 S4: Observation	O8_observed (1 to 1)	E22: Heritage Object
 S4: Observation	O16_observed_value (1 to 1)	E3: Condition state (Object Status)	|period
 E3: Condition state (Object Status)	P2_has_type (1 to 1)	E55: condition state type	|type

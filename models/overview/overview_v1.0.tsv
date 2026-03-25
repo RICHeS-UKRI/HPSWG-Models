@@ -1,0 +1,136 @@
+// Overview
+//Flowchart LR
+heritage_object	tooltip	E22: Heritage Object	event-fs24|
+heritage_object_part	tooltip	E22/S20: Heritage Object Part	event-fs24|
+location	tooltip	E53: Location	event-fs24|
+organisation	tooltip	E74: Organisation	event-fs24|
+person	tooltip	E21: Person	event-fs24|
+production	tooltip	E12: Production	event-fs24|
+project	tooltip	E7: Project	event-fs24|
+sample	tooltip	E22: Physical Sample	event-fs24|
+sample_modification	tooltip	E11: Sample Modification	event-fs24|
+sample_observation	tooltip	S27: Sample Observation	event-fs24|
+sample_site	tooltip	E26: Sample Site	event-fs24|
+sample_splitting	tooltip	S24: Sample Splitting	event-fs24|
+sample_storage_unit	tooltip	E22: Storage Unit	event-fs24|
+sample_taking	tooltip	S2: Sample Taking	event-fs24|
+sampling_activity	tooltip	E7: Sampling Activity	event-fs24|
+crm_E26	tooltip	crm:E26	crm-fs24|
+crm_E29	tooltip	crm:E29	crm-fs24|
+crm_E31	tooltip	crm:E31	crm-fs24|
+crm_E54	tooltip	crm:E54	crm-fs24|
+crm_E57	tooltip	crm:E57	crm-fs24|
+crm_E70	tooltip	crm:E70	crm-fs24|
+crm_E78	tooltip	crm:E78	crm-fs24|
+crm_E94	tooltip	crm:E94	crm-fs24|
+rs_EX_Digital_Image	tooltip	rs:EX_Digital_Image	crm-fs24|
+rs_EX_Digital_Image_Region	tooltip	rs:EX_Digital_Image_Region	crm-fs24|
+annotation_image	tooltip	annotation_image	missing-5-5|
+heritage_object	E39: Organisation or Person	person
+heritage_object	E39: Organisation or Person	organisation
+heritage_object	E53: Institution or Place	location
+heritage_object	E54: Dimensions	crm_E54
+heritage_object	E78: Collection (Curated Holding)	crm_E78
+heritage_object	E31: Report or Document	crm_E31
+heritage_object	E57: Medium	crm_E57
+heritage_object	E57: Other Material	crm_E57
+heritage_object	E22: Support	heritage_object_part
+heritage_object	E12: Production Event	production
+heritage_object	EX_Digital_Image: Main Object Image	rs_EX_Digital_Image
+heritage_object	EX_Digital_Image: Object Image	rs_EX_Digital_Image
+heritage_object_part	E22: Heritage Object	heritage_object
+heritage_object_part	E31: Report or Document	crm_E31
+heritage_object_part	E57: Material	crm_E57
+heritage_object_part	E54: Dimensions	crm_E54
+heritage_object_part	E12: Production Event	production
+heritage_object_part	E22/S13: Heritage Sample	sample
+location	E31: Location Documents	crm_E31
+location	E94: Geometry (Space Primitive)	crm_E94
+organisation	E21: Person (Member)	person
+organisation	E53: Location (Place of Organisation)	location
+organisation	E31: Organisation Documents	crm_E31
+organisation	E74: Parent Organisation	organisation
+person	E74: Organisation (Affiliation)	organisation
+person	E53: Place (Residence)	location
+person	E31: Person Documents	crm_E31
+production	E22: Heritage Object	heritage_object
+production	E39: Group or Artist	person
+production	E39: Group or Artist	organisation
+production	E53: Place of Production	location
+production	E31: Production Documents	crm_E31
+project	E39: Project Owner	person
+project	E39: Project Owner	organisation
+project	E39: Other Actors	person
+project	E39: Other Actors	organisation
+project	E31: Related Documents	crm_E31
+project	E7: Parent Project	project
+sample	S2: Sample Taking	sample_taking
+sample	S24: Sample Splitting	sample_splitting
+sample	E39: Sample Owner	person
+sample	E39: Sample Owner	organisation
+sample	E53: Organisation or Address	location
+sample	E39: Sample Keeper	person
+sample	E39: Sample Keeper	organisation
+sample	E31: Sample Documents	crm_E31
+sample	S27: Observation	sample_observation
+sample	E11: Sample Modification	sample_modification
+sample	EX_Digital_Image: Main Sample Image	rs_EX_Digital_Image
+sample	EX_Digital_Image: Sample Image	rs_EX_Digital_Image
+sample	E53: Storage Location	location
+sample	E22: Storage Unit	sample_storage_unit
+sample_modification	E22/S13: Heritage Sample	sample
+sample_modification	E39: Institution or Person	person
+sample_modification	E39: Institution or Person	organisation
+sample_modification	E53: Place of Modification	location
+sample_modification	E31: Report or Document	crm_E31
+sample_modification	E29: Method / Protocol	crm_E29
+sample_modification	E57: Material Used	crm_E57
+sample_modification	E70: Tool / Equipment	crm_E70
+sample_observation	E22/S13: Heritage Sample	sample
+sample_observation	E39: Institution or Person	person
+sample_observation	E39: Institution or Person	organisation
+sample_observation	E53: Place of Observation	location
+sample_observation	E31: Report or Document	crm_E31
+sample_observation	E29: Method / Protocol	crm_E29
+sample_observation	E70: Instrument / Equipment	crm_E70
+sample_site	E22: Heritage Object	heritage_object
+sample_site	E22/S13: Heritage Sample	sample
+sample_site	S2: Sample Taking	sample_taking
+sample_site	E31: Report or Document	crm_E31
+sample_site	EX_Digital_Image_Region	rs_EX_Digital_Image_Region
+sample_site	EX_Digital_Image: Annotation Image	annotation_image
+sample_site	EX_Digital_Image: Sample Site reference image	rs_EX_Digital_Image
+sample_site	EX_Digital_Image: Other Site Image	rs_EX_Digital_Image
+sample_site	E22: Heritage Object Part	heritage_object_part
+sample_site	E26: Area of Interest	crm_E26
+sample_site	E54: Sample Site Coordinates (object)	crm_E54
+sample_site	E54: Sample Site Coordinates (annotation image)	crm_E54
+sample_splitting	E22/S13: Source Sample	sample
+sample_splitting	E22/S13: Sub-Sample	sample
+sample_splitting	E39: Organisation or Person	person
+sample_splitting	E39: Organisation or Person	organisation
+sample_splitting	E53: Splitting Location	location
+sample_splitting	E31: Report or Document	crm_E31
+sample_splitting	E29: Method or Procedure	crm_E29
+sample_splitting	E70: Tool / Equipment	crm_E70
+sample_storage_unit	E39: Storage Keeper	person
+sample_storage_unit	E39: Storage Keeper	organisation
+sample_storage_unit	E53: Storage Location (Place)	location
+sample_storage_unit	E31: Storage Documents	crm_E31
+sample_storage_unit	E29: Storage Method / Protocol	crm_E29
+sample_taking	E22: Heritage Object	heritage_object
+sample_taking	E22/S13: Heritage Sample	sample
+sample_taking	E31: Report or Document	crm_E31
+sample_taking	E29: Method or Procedure	crm_E29
+sample_taking	E39: Sample taken by	person
+sample_taking	E39: Sample taken by	organisation
+sample_taking	E53: Sampling Location	location
+sample_taking	E26: Sample Site	sample_site
+sampling_activity	E31: Report or Document	crm_E31
+sampling_activity	E29: Method or Procedure	crm_E29
+sampling_activity	E39: Planned by	person
+sampling_activity	E39: Planned by	organisation
+sampling_activity	E53: Sampling Location	location
+sampling_activity	S2: Sample Taking	sample_taking
+sampling_activity	E22: Heritage Object	heritage_object
+sampling_activity	E7: Project	project

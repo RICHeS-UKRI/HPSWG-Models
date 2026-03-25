@@ -15,7 +15,7 @@ S13: Material Sample	tooltip	The removed matter treated as an amount of matter (
 //links E22/S13: Heritage Sample --> sample
 
 S2: Sample Taking	tooltip	The event in which a material sample was physically removed from the painting.	event-fs24
-//links S2: Sample Taking --> sample_taking_event
+//links S2: Sample Taking --> sample_taking
 E31: Report or Document	tooltip	A textual or digital document recording information related to the sampling process, results, or reasoning.	document-fs24|
 //links E31: Report or Document --> crm:E31
 EX_Digital_Image_Region	tooltip	A defined digital region on an image corresponding to the physical sample site on the painting.	place2-fs24|

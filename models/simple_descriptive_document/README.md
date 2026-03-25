@@ -21,7 +21,7 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 
 | File | Raw link |
 |------|----------|
-| `simple_descriptive_document_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_descriptive_document/simple_descriptive_document_precursor_v1.0.txt) |
+| `simple_descriptive_document_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/jpadfield/HPSWG-Models/refs/heads/main/models/simple_descriptive_document/simple_descriptive_document_precursor_v1.0.txt) |
 
 ## Contributing
 

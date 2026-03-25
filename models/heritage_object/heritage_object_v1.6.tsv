@@ -22,7 +22,7 @@ E57: Other Material	tooltip	Any material forming part of the original compositio
 E22: Support	tooltip	The physical base material or structure on which the paint was applied (e.g., canvas, panel, metal).	object-fs24|
 //links E22: Support --> heritage_object_part
 E12: Production Event	tooltip	The creative or manufacturing event during which the painting was produced or completed.	event-fs24|
-//links E12: Production Event --> production_event
+//links E12: Production Event --> production
 EX_Digital_Image: Main Object Image	tooltip	Stuff	digital2-fs24|
 //links EX_Digital_Image: Main Object Image --> rs:EX_Digital_Image
 EX_Digital_Image: Object Image	tooltip	Stuff	digital2-fs24|

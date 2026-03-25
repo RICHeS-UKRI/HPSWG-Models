@@ -1,0 +1,103 @@
+//flowchart LR
+E26: Sample Site	tooltip	The specific point or area on the painting where the sample was taken. Can also be considered as a E53 Place.	place-fs32|
+E26: Sample Site	has note	Document Note: Sample Site Model Overview
+Document Note: Sample Site Model Overview	tooltip	This model defines the relationships surrounding the Sample Site within the context of sampling events on paintings following CIDOC CRM and CRMsci principles. The Sample Site (E26) represents the precise point or small area on the painting from which a material sample was taken. It is physically located on the painting or a defined Painting Part (E22) and may also be situated within a broader Area of Interest (E26) allowing multiple related sampling points or observations to be grouped together. Each Sample Site can be linked to digital image regions that visually represent its position and to descriptive or contextual notes incorporated within related documents. The model records both its role in the Sample Taking event (S2) and its former association with the removed Sample (S13). These relationships establish a clear and reusable structure for documenting where samples originate how they are contextualized within the painting and how they relate to analytical and descriptive records across digital and physical domains.
+
+
+//subgraph Linked Entities
+E22: Heritage Object	tooltip	A human-made work of art that forms the physical source object from which the sample is taken.	object-fs24|
+//links E22: Heritage Object --> heritage_object
+
+//subgraph E22/S13: Heritage Sample
+E22: Physical Sample	tooltip	A curated physical artefact that contains or carries the sampled matter (S13). Serves as the object-management layer: it holds identifiers, condition records, custody, storage, and images. P46 is used as a pragmatic contains/carries proxy for collection management purposes.	object_bn-fs24|
+S13: Material Sample	tooltip	The removed matter treated as an amount of matter (CRMsci S13) whose identity is grounded in material continuity and representativity. Serves as the scientific layer: it is the subject of measurement, observation, modification, and splitting events.	object_bn-fs24|
+//end sg2-10-10
+//links E22/S13: Heritage Sample --> sample
+
+S2: Sample Taking	tooltip	The specific Sample Taking event to which the sample site is related.	event-fs24
+//links S2: Sample Taking --> sample_taking
+E31: Report or Document	tooltip	Primarily related to reports and publications, however there is a whole range of documents that can be created to describe or reference the sample site.	document-fs24|
+//links E31: Report or Document --> crm:E31
+
+EX_Digital_Image_Region	tooltip	A defined digital region on an image corresponding to the physical sample site on the painting.	place2-fs24|
+//links EX_Digital_Image_Region --> rs:EX_Digital_Image_Region
+EX_Digital_Image: Annotation Image	tooltip	A digital image to which annotations have been applied to define the position of the sample site. The image region (EX_Digital_Image_Region) is derived from this annotation.	digital2-fs24|
+//links EX_Digital_Image: Annotation Image --> annotation_image
+
+EX_Digital_Image: Sample Site reference image	tooltip	Reference to an image that indicates the sample site (e.g. a scan of an annotated photograph).	digital2-fs24|
+//links EX_Digital_Image: Sample Site reference image --> rs:EX_Digital_Image
+EX_Digital_Image: Other Site Image	tooltip	Reference to any additional images that indicates the sample site (e.g. a scan of an annotated photograph).	digital2-fs24|
+//links EX_Digital_Image: Other Site Image --> rs:EX_Digital_Image
+E22: Heritage Object Part	tooltip	Optional connection to a defined sub part of a heritage object if a relevant one has been defined. E.g. back/front/extension etc. Could also be defined as a E25 Human made feature.	object-fs24|
+//links E22: Heritage Object Part --> heritage_object_part
+E26: Area of Interest	tooltip	This optional field is a link to a wider area/place/feature on an object or object part within which the sample site lies. This allows, for example, 3 samples from the same red drapery to be linked. Any text description of this would sit on the Area of interest entity.  	place-fs24|
+//links E26: Area of Interest --> crm:E26
+E54: Sample Site Coordinates (object)	tooltip	The measured height, width, and position of the sample site relative to the physical Heritage Object.	dims-fs24|
+//links E54: Sample Site Coordinates (object) --> crm:E54
+E54: Sample Site Coordinates (annotation image)	tooltip	The recorded pixel dimensions; shape, height, width, and or position of the sample site relative to a define annotation image depicting the Heritage Object. It is not required but this is expected to be achieved via the use of IIIF based solutions. Analogue annotations (on a print/photograph) are expected to be transferred to a digital image to create these values.	dims-fs24|
+//links E54: Sample Site Coordinates (annotation image) --> crm:E54
+//end sg1
+
+
+///SAMPLE SITE //////////////////////////////////////////////////////////////////////////////////////////////////
+E26: Sample Site	P48_has_preferred_identifier (0 to 1)	E42: Sample Site PID	|url
+E42: Sample Site PID	tooltip	Various types of PIDs can be used here, please note that again IGSNs are an option. Any of the IDs defined could be flagged as a preferred ID within a documentation system.
+E26: Sample Site	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E26: Sample Site	P1_is_identified_by (1 to 1)	E41: Sample Site Name/Number	|name
+E41: Sample Site Name/Number	tooltip	The name, number or code given to identify the sample site for humans. An agreed local protocol for the structure of this name is still recommended.
+E26: Sample Site	P70i_is_documented_in (0 to n)	E31: Report or Document	|document
+E26: Sample Site	P67i_is_referred_to_by (1 to 1)	E73: Sample Site Description	|literal
+E26: Sample Site	P67i_is_referred_to_by (0 to 1)	E73: Reason for Sample Site Selection	|literal
+E26: Sample Site	P67i_is_referred_to_by (0 to 1)	E73: Site Selection Comment	|literal
+//subgraph
+E73: Reason for Sample Site Selection	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E73: Reason for Sample Site Selection	tooltip	An optional explanation of why this specific location was selected for sampling. Use this only when the choice of site requires additional justification beyond the overall reason for the sample taking event.
+E73: Sample Site Description	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E73: Sample Site Description	tooltip	A concise description of the physical location and appearance of the sampling point on the object. This should describe where the site is and any relevant visual or material features, without explaining why it was chosen, e.g. shadow of red drapery of the saint, left edge.
+E73: Site Selection Comment	P45i_is incorporated in (0 to n)	E31: Report or Document	|document
+E73: Site Selection Comment	tooltip	Any additional text describing any observations recorded about the specific sample site (e.g. area of over-paint, degraded area etc) that do not fit in the general description. Any uncertainty over the exact sample site location can also be described here.
+//end sg2-5-5
+E26: Sample Site	P138i_has_representation (0 to n)	EX_Digital_Image_Region	|place2
+E26: Sample Site	PX_has_main_representation (0 to 1)	EX_Digital_Image: Sample Site reference image
+E26: Sample Site	P138i_has_representation (0 to n)	EX_Digital_Image: Other Site Image
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+E26: Sample Site	P56i_is_found_on (1 to 1)	E22: Heritage Object
+E26: Sample Site	P53i_is_former_or_current_location_of (1 to n)	E22/S13: Heritage Sample
+E26: Sample Site	O4i_was_sampling_location_of (1 to 1)	S2: Sample Taking
+E26: Sample Site	P89_falls_within (0 to n)	E26: Area of Interest	|place-fs24
+E73: Reason for Sample Site Selection	P67_refers_to (0 to n)	E26: Area of Interest
+E26: Sample Site	P46i_forms_part_of (0 to 1)	E22: Heritage Object Part	|object-fs24
+E73: Reason for Sample Site Selection	P67_refers_to (0 to n)	E22: Heritage Object Part	|literal
+E26: Area of Interest	P138i_has_representation (0 to n)	EX_Digital_Image_Region
+
+// Dual-layer internal connection
+E22: Physical Sample	P46_is_composed_of (1 to n)	S13: Material Sample	|object
+S13: Material Sample	P46i_forms_part_of (1 to 1)	E22: Physical Sample
+
+E26: Sample Site	P43_has_dimension (0 to n)	E54: Sample Site Coordinates (object)
+E26: Sample Site	P43_has_dimension (0 to n)	E54: Sample Site Coordinates (annotation image)
+
+EX_Digital_Image_Region	P106i_forms_part_of (1 to 1)	EX_Digital_Image: Annotation Image
+
+
+//field E42: Sample Site PID | 1 | Persistent Identifier (PID); PID | behaviour:pid
+//field E41: Unique System Label or ID | 2 | Database or System ID; Sample Site System ID | behaviour:system-id
+//field E41: Sample Site Name/Number | 3 | Site Label; Site Name; Site Code | behaviour:free-text
+//field E73: Sample Site Description | 4 | Description Text; Description | behaviour:free-text
+//field E73: Reason for Sample Site Selection | 5 | Site Selection Description | behaviour:free-text
+//field E73: Site Selection Comment | 6 |  | behaviour:free-text
+//field E26: Area of Interest | 7 | Object Part | behaviour:select
+//field E54: Sample Site Coordinates (object) | 8 |  | behaviour:free-text
+//field EX_Digital_Image_Region | 9 | Image Annotation; Digital Image Region | behaviour:select
+//field E54: Sample Site Coordinates (annotation image) | 10 | Digital Image Region; Image Annotation | behaviour:auto
+//field EX_Digital_Image: Sample Site reference image | 11 | Digital Image; Reference Image; Reference Detail; Main Site Image | behaviour:select
+//field EX_Digital_Image: Other Site Image | 12 | Site Image | behaviour:select
+//field E31: Report or Document | 13 | Related Document; Reports; Publications; Summaries | behaviour:select
+//field E22: Heritage Object | 14 | Heritage Object; Link to Heritage Object | behaviour:select
+//field E22: Heritage Object Part | 15 | Heritage Object Part; Link to Heritage Object Part | behaviour:select
+//field S13: Heritage Sample | 16 | Sample | behaviour:select; Cross-reference to Sample; Removed; Sample; Created, a reference to the sample that was taken from this sample site – Class to be Confirmed as dual S13/E22 construct may be needed for the sample.
+//field S2: Sample Taking | 17 | Cross-reference to Sample Taking; Sample Creation | behaviour:select
+
+
+

@@ -1,0 +1,48 @@
+//flowchart LR
+E7: Project	tooltip	An organised activity or campaign with a defined purpose, scope, ownership, and timeframe. In practice this may represent a research project, survey, or documentation campaign.	event-fs32|
+E7: Project	has note	Document Note: Project Model Overview
+Document Note: Project Model Overview	tooltip	This model defines a Project (E7) as a high-level activity used to group and manage related work (e.g., sampling campaigns, research initiatives, surveys). It brings together identifiers, title, ownership and participation, a short descriptive summary, dates/time-span, related documentation, and simple status/type flags. Projects may optionally sit within a broader parent project or programme.
+
+//subgraph Linked Entities
+E39: Project Owner	tooltip	The primary organisation or individual responsible for the project (Alternative labels: Responsible Institution or Person).	actor-fs24|
+//links E39: Project Owner --> person, organisation [confirmed]
+E39: Other Actors	tooltip	Other individuals or organisations involved in the project (Alternative labels: Contributors, Collaborators).	actor-fs24|
+//links E39: Other Actors --> person, organisation [confirmed]
+E31: Related Documents	tooltip	Documents associated with the project (Alternative labels: Reports, Publications, Proposals).	document-fs24|
+//links E31: Related Documents --> crm:E31
+E7: Parent Project	tooltip	A broader project or programme within which this project is situated. Note: sometimes treated as E89 Propositional Object in other mappings, but can be implemented as E7 Activity in ResearchSpace.	event-fs24|
+//links E7: Parent Project --> project
+//end sg1
+
+E7: Project	P48_has_preferred_identifier (0 to 1)	E42: Persistent Identifier (PID)	|url
+E7: Project	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E42: Persistent Identifier (PID)	tooltip	Optional public unique identifier for the project (Alternative labels: Project ID, PID).
+E7: Project	P1_is_identified_by (1 to 1)	E35: Project Title	|name
+E35: Project Title	tooltip	Human-readable title for the project or campaign (Alternative labels: Name).
+E7: Project	P14_carried_out_by (1 to 1)	E39: Project Owner	|actor
+E7: Project	P11_had_participant (0 to n)	E39: Other Actors	|actor
+E7: Project	P67i_is_referred_to_by (1 to 1)	E73: Project Description	|literal
+E73: Project Description	tooltip	Short description outlining the purpose and scope of the project (Alternative labels: Summary, Scope).
+E73: Project Description	P45i_is incorporated in (0 to n)	E31: Related Documents	|document
+E7: Project	P4_has_time-span (1 to 1)	E52: Project Dates	|period
+E52: Project Dates	tooltip	The timeframe during which the project was active (Alternative labels: Start Date / End Date).
+E7: Project	P70i_is_documented_in (0 to n)	E31: Related Documents	|document
+E7: Project	P10_falls_within (0 to 1)	E7: Parent Project	|event
+E7: Project	P2_has_type (1 to n)	E55: Project Type	|type
+E55: Project Type	tooltip	A simple classification describing the nature of the project (Alternative labels: Campaign, Research Project, Survey).
+E7: Project	P44_has_condition (1 to n)	E3: Condition state (Project Status)	|period
+E3: Condition state (Project Status)	P2_has_type (1 to 1)	E55: condition state type	|type
+E55: condition state type	tooltip	Indicates the current state or completion level of the project (Alternative labels: Planned, Ongoing, Completed, Legacy).
+
+//field E42: Persistent Identifier (PID) | 1 | Project ID; PID
+//field E41: Unique System Label or ID | 2 | Database or System ID/Label
+//field E35: Project Title | 3 | Name
+//field E39: Project Owner | 4 | Responsible Institution or Person
+//field E39: Other Actors | 5 | Contributors; Collaborators
+//field E73: Project Description | 6 | Summary; Scope
+//field E52: Project Dates | 7 | Start Date; End Date
+//field E31: Related Documents | 8 | Reports; Publications; Proposals
+//field E7: Parent Project | 9 | Programme; Umbrella Project | Could be mapped as E89 Propositional Object but ResearchSpace implements it as E7 Activity.
+//field E55: Project Type | 10 | Campaign; Research Project; Survey
+//field E55: condition state type | 11 | Planned; Ongoing; Completed; Legacy

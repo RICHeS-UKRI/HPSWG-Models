@@ -6,7 +6,7 @@ Document Note: Sample Model Overview	tooltip	This model defines the Sample (S13)
 
 //subgraph Linked Entities
 S2: Sample Taking	tooltip	The event during which the sample was physically removed from its source object.	event-fs24|
-//links S2: Sample Taking --> sample_taking_event
+//links S2: Sample Taking --> sample_taking
 S24: Sample Splitting	tooltip	The event during which a new child sample was physically removed from its parent sample.	event-fs24|
 //links S24: Sample Splitting --> sample_splitting
 E53: Storage Location	tooltip	Optional direct link to the place where the sample is currently housed or permanently stored.	place-fs24|

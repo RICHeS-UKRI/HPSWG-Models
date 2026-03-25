@@ -11,6 +11,7 @@ on:
       - 'models/**/*.txt'                           # precursor files
       - 'scripts/update_readmes.py'                 # generator logic
       - 'scripts/check_consistency.py'              # consistency checker
+      - 'scripts/generate_overview.py'              # overview diagram generator
       - 'scripts/ontologies.json'                   # ontology config
       - 'scripts/crm_hierarchy.json'                # CRM class hierarchy
       - 'README.template.md'                        # top-level template
@@ -63,6 +64,10 @@ jobs:
           echo "Fetching Mermaid for ${RAW_URL}"
           curl -s "https://research.nationalgallery.org.uk/lab/modelling/?url=${RAW_URL}&getmermaid" \
             -o ng_models_mermaid.mmd || true
+
+      - name: Generate inter-model overview diagram
+        run: |
+          python scripts/generate_overview.py
 
       - name: Run README generator
         env:

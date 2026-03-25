@@ -19,7 +19,7 @@ E57: Material	tooltip	The material composition of this part, where distinctive f
 E54: Dimensions	tooltip	The measured dimensions of this part, where recorded separately from the parent object.	dims-fs24|
 //links E54: Dimensions --> crm:E54
 E12: Production Event	tooltip	The production event by which this part was made, recorded only where the part was made separately from the parent object -- for example a frame or lining canvas.	event-fs24|
-//links E12: Production Event --> production_event
+//links E12: Production Event --> production
 
 //subgraph E22/S13: Heritage Sample
 E22: Physical Sample	tooltip	A curated physical artefact that contains or carries the sampled matter (S13). Serves as the object-management layer: it holds identifiers, condition records, custody, storage, and images. P46 is used as a pragmatic contains/carries proxy for collection management purposes.	object_bn-fs24|
