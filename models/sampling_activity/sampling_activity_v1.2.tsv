@@ -48,8 +48,8 @@ E7: Sampling Activity	P9_consists_of (1 to n)	S2: Sample Taking	|event
 E7: Sampling Activity	crm:P9i_forms_part_of (0 to n)	E7: Project
 E7: Sampling Activity	P9_consists_of (1 to 1)	S4: Observation	|event
 S4: Observation	O8_observed (1 to 1)	E22: Heritage Object
-S4: Observation	O16_observed_value (1 to 1)	E3: Condition state (Object Status)	|period
-E3: Condition state (Object Status)	P2_has_type (1 to 1)	E55: condition state type	|type
+S4: Observation	O16_observed_value (1 to 1)	E3: Condition state	|period
+E3: Condition state	P2_has_type (1 to 1)	E55: condition state type	|type
 E55: condition state type	tooltip	The current condition, treatment state, or lifecycle position of a heritage object, conservation history, handling, availability, or degree of alteration over time.
 
 
@@ -61,7 +61,7 @@ E55: condition state type	tooltip	The current condition, treatment state, or lif
 //field E39: Planned by | 6 | Institution; Person | behaviour:select
 //field E73: Reason for Sampling | 7 | Reason for Sampling Activity; Overall Purpose | behaviour:free-text
 //field E73: Sampling Activity Comment | 8 | Description | behaviour:free-text
-//field-via E3: Condition state (Object Status) via S4: Observation | 9 | Status of Heritage Object at Time of Sampling; Object Status | The state of the object as a whole at the time of sampling, for example during cleaning. | behaviour:list
+//field-via E55: Condition state via S4: Observation | 9 | Status of Heritage Object at Time of Sampling; Object Status | The state of the object as a whole at the time of sampling, for example during cleaning. | behaviour:list
 //field E29: Method or Procedure | 10 | Method; Procedure | behaviour:select
 //field E53: Sampling Location | 11 | Location of Sampling Activity; Location; Sampling Location | behaviour:select
 //field E31: Report or Document | 12 | Related Document(s); Reports; Publications; Summaries | behaviour:select
