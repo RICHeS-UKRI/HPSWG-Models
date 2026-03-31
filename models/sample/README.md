@@ -22,7 +22,7 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 
 | | Version | Created | Last modified | Open in Modeller |
 | :---: | :---: | :---: | :---: | --- |
-| :heavy_check_mark: | v1.8 | 2026-03-18 | 2026-03-24 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.8.tsv) |
+| :heavy_check_mark: | v1.8 | 2026-03-18 | 2026-03-31 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.8.tsv) |
 |  | v1.7 | 2025-11-28 | 2026-03-23 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.7.tsv) |
 |  | v1.6 | 2025-11-28 | 2026-03-07 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.6.tsv) |
 |  | v1.5 | 2025-11-28 | 2026-03-07 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.5.tsv) |
@@ -63,10 +63,13 @@ _A curated physical artefact that contains or carries the sampled matter (S13). 
 | Optional | Storage Location | Current Permanent Location | E53 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | A named place where a sample is permanently stored, such as an institution, department, building, or room. Use this option when no physical storage unit record exists for the sample. If a storage unit is known, link to that instead and allow the location to be inherited through the unit's own records. |
 | Optional | Storage Unit | Current Storage Unit; Cabinet; Drawer | E22 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | A discrete physical container in which a sample is stored, such as a cabinet, drawer, box, or tray. Storage units should themselves carry a permanent location (E53) or link to a larger containing unit, which in turn resolves to a named location. Units may be nested to any depth before resolving to a place. Use this option in preference to a direct location link when the specific unit is known. |
 | Optional | Organisation or Address | Current Location; Sample Temporary Location | E53 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | The current location of the sample if different to its permanent location. |
+| ✓* | Condition state | Sample State; Condition State; Condition | E3 > E55 | -- | behaviour:list |
 | Optional | Observation | Sample Examination Event; Sample Observation; Sample Measurement | S27 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | An observation or examination event related to the sample, ranging from simple visual inspection or interpretation to quantitative measurement or analytical investigation. These events may or may not result in recorded images, data, or other outputs. (S27 is a parent of the standard Core CRM Measurement) |
 | Optional | Sample Modification | Sample Modification Event; Sample Preparation | E11 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | An event that altered the sample after its initial removal, such as preparation, embedding, or coating. |
 | Optional | Sample Documents | Related Document; Related Documents; Reports; Publications | E31 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | Primarily related to authored notes, reports and publications, however there is a whole range of relevant documents that can reference or be linked to this sample. |
 | ✓ | Sample Taking | Source Event; Sample Taking Event; Sample Splitting Event | S2 | ![behaviour: Select Entity](https://img.shields.io/badge/%2F%2F-Select%20Entity-8250df) | The event during which the sample was physically removed from its source object. (When required this creation event can also be a S24: Sample Splitting event - The event during which a new child sample was physically separated from the parent sample.) |
+
+_\* Required status could not be derived from the model and has been set to required by default. Please verify._
 
 ## Contributing
 
