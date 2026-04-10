@@ -19,7 +19,7 @@ institutions. Additional collaborators will be acknowledged as models continue t
 ## Visual Overview of All Models
 
 <!-- BEGIN AUTO: NG-MODEL-VISUAL -->
-[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.3.tsv)
+[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.4.tsv)
 
 ```mermaid
 %%{init: {'flowchart': {'wrappingWidth': 600}}}%%
@@ -70,13 +70,13 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object["E22: Heritage Object\nheritage_object"]:::object
   heritage_object_part["E22/S20: Heritage Object Part\nheritage_object_part"]:::object
   location["E53: Location\nlocation"]:::place
+  observation["S27: Observation\nobservation"]:::event
   organisation["E74: Organisation\norganisation"]:::actor
   person["E21: Person\nperson"]:::actor
   production["E12: Production\nproduction"]:::event
   project["E7: Project\nproject"]:::event
   sample["E22: Physical Sample\nsample"]:::object
   sample_modification["E11: Sample Modification\nsample_modification"]:::event
-  sample_observation["S27: Sample Observation\nsample_observation"]:::event
   sample_site["E26: Sample Site\nsample_site"]:::place
   sample_splitting["S24: Sample Splitting\nsample_splitting"]:::event
   sample_storage_unit["E22: Storage Unit\nsample_storage_unit"]:::object
@@ -89,13 +89,12 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   crm_E31["crm:E31"]:::document_bn
   crm_E54["crm:E54"]:::dims_bn
   crm_E57["crm:E57"]:::object_bn
-  crm_E70["crm:E70"]:::object_bn
   crm_E78["crm:E78"]:::object_bn
   crm_E94["crm:E94"]:::place2_bn
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   annotation_image["annotation_image"]:::missing
-  document_provenance["document_provenance"]:::missing
+  data_set["data_set"]:::missing
 
   document_creation ---->|"E31: Document"|simple_document
   document_creation ---->|"E31: Influenced By"|simple_document
@@ -116,6 +115,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object ---->|"E12: Production Event"|production
   heritage_object ---->|"EX_Digital_Image: Main Object Image"|rs_EX_Digital_Image
   heritage_object ---->|"EX_Digital_Image: Object Image"|rs_EX_Digital_Image
+  heritage_object ---->|"S27: Observation"|observation
   heritage_object_part ---->|"E22: Heritage Object"|heritage_object
   heritage_object_part ---->|"E31: Report or Document"|crm_E31
   heritage_object_part ---->|"E57: Material"|crm_E57
@@ -124,6 +124,14 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object_part ---->|"E22/S13: Heritage Sample"|sample
   location ---->|"E31: Location Documents"|crm_E31
   location ---->|"E94: Geometry (Space Primitive)"|crm_E94
+  observation ---->|"E1: Observed Entity"|crm_E1
+  observation ---->|"E39: Institution or Person"|person
+  observation ---->|"E39: Institution or Person"|organisation
+  observation ---->|"E53: Location"|location
+  observation ---->|"E31: Report or Document"|crm_E31
+  observation ---->|"E29: Method / Protocol"|crm_E29
+  observation ---->|"D1: Digital Result"|data_set
+  observation ---->|"E26: Area of Interest"|crm_E26
   organisation ---->|"E21: Person (Member)"|person
   organisation ---->|"E53: Location (Place of Organisation)"|location
   organisation ---->|"E31: Organisation Documents"|crm_E31
@@ -150,7 +158,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample ---->|"E39: Sample Keeper"|person
   sample ---->|"E39: Sample Keeper"|organisation
   sample ---->|"E31: Sample Documents"|crm_E31
-  sample ---->|"S27: Observation"|sample_observation
+  sample ---->|"S27: Observation"|observation
   sample ---->|"E11: Sample Modification"|sample_modification
   sample ---->|"EX_Digital_Image: Main Sample Image"|rs_EX_Digital_Image
   sample ---->|"EX_Digital_Image: Sample Image"|rs_EX_Digital_Image
@@ -159,18 +167,9 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample_modification ---->|"E22/S13: Heritage Sample"|sample
   sample_modification ---->|"E39: Institution or Person"|person
   sample_modification ---->|"E39: Institution or Person"|organisation
-  sample_modification ---->|"E53: Place of Modification"|location
+  sample_modification ---->|"E53: Location"|location
   sample_modification ---->|"E31: Report or Document"|crm_E31
   sample_modification ---->|"E29: Method / Protocol"|crm_E29
-  sample_modification ---->|"E57: Material Used"|crm_E57
-  sample_modification ---->|"E70: Tool / Equipment"|crm_E70
-  sample_observation ---->|"E22/S13: Heritage Sample"|sample
-  sample_observation ---->|"E39: Institution or Person"|person
-  sample_observation ---->|"E39: Institution or Person"|organisation
-  sample_observation ---->|"E53: Place of Observation"|location
-  sample_observation ---->|"E31: Report or Document"|crm_E31
-  sample_observation ---->|"E29: Method / Protocol"|crm_E29
-  sample_observation ---->|"E70: Instrument / Equipment"|crm_E70
   sample_site ---->|"E22: Heritage Object"|heritage_object
   sample_site ---->|"E22/S13: Heritage Sample"|sample
   sample_site ---->|"S2: Sample Taking"|sample_taking
@@ -185,12 +184,11 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample_site ---->|"E54: Sample Site Coordinates (annotation image)"|crm_E54
   sample_splitting ---->|"E22/S13: Source Sample"|sample
   sample_splitting ---->|"E22/S13: Sub-Sample"|sample
-  sample_splitting ---->|"E39: Organisation or Person"|person
-  sample_splitting ---->|"E39: Organisation or Person"|organisation
-  sample_splitting ---->|"E53: Splitting Location"|location
+  sample_splitting ---->|"E39: Undertaken by"|person
+  sample_splitting ---->|"E39: Undertaken by"|organisation
+  sample_splitting ---->|"E53: Location"|location
   sample_splitting ---->|"E31: Report or Document"|crm_E31
   sample_splitting ---->|"E29: Method or Procedure"|crm_E29
-  sample_splitting ---->|"E70: Tool / Equipment"|crm_E70
   sample_storage_unit ---->|"E39: Storage Keeper"|person
   sample_storage_unit ---->|"E39: Storage Keeper"|organisation
   sample_storage_unit ---->|"E53: Storage Location (Place)"|location
@@ -213,7 +211,8 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sampling_activity ---->|"E22: Heritage Object"|heritage_object
   sampling_activity ---->|"E7: Project"|project
   simple_document ---->|"E1: Documented Entity"|crm_E1
-  simple_document ---->|"E65: Document Contribution"|document_provenance
+  simple_document ---->|"E65: Document Creation"|document_creation
+  simple_document ---->|"E65: Document Update"|document_update
   simple_document ---->|"EX_Digital_Image: Incorporated Image"|rs_EX_Digital_Image
   simple_document ---->|"E31: Simple Document (Part)"|simple_document
 ```
@@ -251,27 +250,27 @@ Individual CIDOC CRM domain models, each covering a specific aspect of heritage 
 | Name | Type / Status | Folder | Latest TSV | Visualisation |
 |------|--------------|--------|-----------|---------------|
 | Document creation | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/document_creation`](models/document_creation/) | [v1.0](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.0.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.0.tsv) |
-| Document update | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/document_update`](models/document_update/) | [v0.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_provenance_v0.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_provenance_v0.1.tsv) |
-| Heritage object | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/heritage_object`](models/heritage_object/) | [v1.7](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.7.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.7.tsv) |
+| Document update | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/document_update`](models/document_update/) | [v0.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_update_v0.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_update_v0.1.tsv) |
+| Heritage object | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/heritage_object`](models/heritage_object/) | [v1.8](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.8.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.8.tsv) |
 | Heritage object component | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/heritage_object_component`](models/heritage_object_component/) | _Precursor files only_ | -- |
 | Heritage object image | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/heritage_object_image`](models/heritage_object_image/) | _Precursor files only_ | -- |
 | Heritage object layer | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/heritage_object_layer`](models/heritage_object_layer/) | _Precursor files only_ | -- |
 | Heritage object part | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/heritage_object_part`](models/heritage_object_part/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object_part/heritage_object_part_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object_part/heritage_object_part_v1.1.tsv) |
 | Location | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/location`](models/location/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/location/location_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/location/location_v1.1.tsv) |
+| Observation | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/observation`](models/observation/) | [v1.0](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/observation/observation_v1.0.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/observation/observation_v1.0.tsv) |
 | Organisation | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/organisation`](models/organisation/) | [v1.0](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/organisation/organisation_v1.0.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/organisation/organisation_v1.0.tsv) |
 | Person | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/person`](models/person/) | [v1.2](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/person/person_v1.2.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/person/person_v1.2.tsv) |
 | Production | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/production`](models/production/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/production/production_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/production/production_v1.1.tsv) |
 | Project | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/project`](models/project/) | [v1.3](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/project/project_v1.3.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/project/project_v1.3.tsv) |
-| Sample | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample`](models/sample/) | [v1.8](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.8.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.8.tsv) |
+| Sample | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample`](models/sample/) | [v1.9](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.9.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample/sample_v1.9.tsv) |
 | Sample component | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/sample_component`](models/sample_component/) | _Precursor files only_ | -- |
 | Sample image | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/sample_image`](models/sample_image/) | _Precursor files only_ | -- |
 | Sample imaging | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/sample_imaging`](models/sample_imaging/) | _Precursor files only_ | -- |
 | Sample layer | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/sample_layer`](models/sample_layer/) | _Precursor files only_ | -- |
-| Sample modification | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_modification`](models/sample_modification/) | [v1.4](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_modification/sample_modification_v1.4.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_modification/sample_modification_v1.4.tsv) |
-| Sample observation | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_observation`](models/sample_observation/) | [v0.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_observation/sample_observation_v0.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_observation/sample_observation_v0.1.tsv) |
+| Sample modification | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_modification`](models/sample_modification/) | [v1.5](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_modification/sample_modification_v1.5.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_modification/sample_modification_v1.5.tsv) |
 | Sample preparation | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/sample_preparation`](models/sample_preparation/) | _Precursor files only_ | -- |
 | Sample site | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_site`](models/sample_site/) | [v1.6](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_site/sample_site_v1.6.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_site/sample_site_v1.6.tsv) |
-| Sample splitting | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_splitting`](models/sample_splitting/) | [v0.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_splitting/sample_splitting_v0.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_splitting/sample_splitting_v0.1.tsv) |
+| Sample splitting | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_splitting`](models/sample_splitting/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_splitting/sample_splitting_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_splitting/sample_splitting_v1.1.tsv) |
 | Sample storage unit | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_storage_unit`](models/sample_storage_unit/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_storage_unit/sample_storage_unit_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_storage_unit/sample_storage_unit_v1.1.tsv) |
 | Sample taking | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_taking`](models/sample_taking/) | [v1.7](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_taking/sample_taking_v1.7.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_taking/sample_taking_v1.7.tsv) |
 | Sampling activity | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sampling_activity`](models/sampling_activity/) | [v1.2](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sampling_activity/sampling_activity_v1.2.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sampling_activity/sampling_activity_v1.2.tsv) |

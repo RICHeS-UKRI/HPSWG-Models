@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-04-10 08:24 UTC_
+_Generated: 2026-04-10 13:05 UTC_
 
 **Individual model files analysed:** 19  
 **Workflow/overview files analysed:** 1  
@@ -70,7 +70,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>document_update/document_provenance_v0.1.tsv</strong> -- 1 confirmed, 2 to review</summary>
+<summary><strong>document_update/document_update_v0.1.tsv</strong> -- 1 confirmed, 2 to review</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -81,7 +81,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>heritage_object/heritage_object_v1.7.tsv</strong> -- 12 confirmed</summary>
+<summary><strong>heritage_object/heritage_object_v1.8.tsv</strong> -- 13 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -97,6 +97,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E12: Production Event` | `E12` | `production` → `E12: Production` | ✅ Consistent |
 | `EX_Digital_Image: Main Object Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `EX_Digital_Image: Object Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `S27: Observation` | `S27` | `observation` → `S27: Observation` | ✅ Consistent |
 
 </details>
 
@@ -121,6 +122,23 @@ Each model's linked entities are listed with their declared target models and co
 | --- | --- | --- | --- |
 | `E31: Location Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E94: Geometry (Space Primitive)` | `E94` | `crm:E94` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+
+</details>
+
+<details>
+<summary><strong>observation/observation_v1.0.tsv</strong> -- 7 confirmed, 1 missing target, 1 undeclared</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `S15: Observed Entity` | `S15` | _No matching models found_ | ⚠ No declaration |
+| `E1: Observed Entity` | `E1` | `crm:E1` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E39: Institution or Person` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
+|  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
+| `E53: Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `D1: Digital Result` | `D1` | `data_set` | ❓ Missing target -- folder not found in repo |
+| `E26: Area of Interest` | `E26` | `crm:E26` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
@@ -175,7 +193,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample/sample_v1.8.tsv</strong> -- 14 confirmed</summary>
+<summary><strong>sample/sample_v1.9.tsv</strong> -- 14 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -187,7 +205,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E39: Sample Keeper` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
 | `E31: Sample Documents` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `S27: Observation` | `S27` | `sample_observation` → `S27: Sample Observation` | ✅ Consistent |
+| `S27: Observation` | `S27` | `observation` → `S27: Observation` | ✅ Consistent |
 | `E11: Sample Modification` | `E11` | `sample_modification` → `E11: Sample Modification` | ✅ Consistent |
 | `EX_Digital_Image: Main Sample Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `EX_Digital_Image: Sample Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
@@ -197,33 +215,16 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_modification/sample_modification_v1.4.tsv</strong> -- 8 confirmed</summary>
+<summary><strong>sample_modification/sample_modification_v1.5.tsv</strong> -- 6 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E22/S13: Heritage Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
 | `E39: Institution or Person` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
-| `E53: Place of Modification` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E53: Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E57: Material Used` | `E57` | `crm:E57` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E70: Tool / Equipment` | `E70` | `crm:E70` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-
-</details>
-
-<details>
-<summary><strong>sample_observation/sample_observation_v0.1.tsv</strong> -- 7 confirmed</summary>
-
-| Linked entity | Class code | Declared target(s) | Status |
-| --- | --- | --- | --- |
-| `E22/S13: Heritage Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
-| `E39: Institution or Person` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
-|  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
-| `E53: Place of Observation` | `E53` | `location` → `E53: Location` | ✅ Consistent |
-| `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E70: Instrument / Equipment` | `E70` | `crm:E70` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
@@ -247,18 +248,17 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_splitting/sample_splitting_v0.1.tsv</strong> -- 8 confirmed</summary>
+<summary><strong>sample_splitting/sample_splitting_v1.1.tsv</strong> -- 7 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E22/S13: Source Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
 | `E22/S13: Sub-Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
-| `E39: Organisation or Person` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
+| `E39: Undertaken by` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
-| `E53: Splitting Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
+| `E53: Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E29: Method or Procedure` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E70: Tool / Equipment` | `E70` | `crm:E70` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>
 
@@ -308,12 +308,14 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>simple_document/simple_document_v1.1.tsv</strong> -- 3 confirmed, 1 missing target</summary>
+<summary><strong>simple_document/simple_document_v1.1.tsv</strong> -- 4 confirmed, 1 mismatch, 1 undeclared</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
 | `E1: Documented Entity` | `E1` | `crm:E1` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `E65: Document Contribution` | `E65` | `document_provenance` | ❓ Missing target -- folder not found in repo |
+| `E65: Document Creation` | `E65` | `document_creation` → `E65: Document Creation` | ✅ Consistent |
+| `E13: Document Update` | `E13` | _Suggested: `document_update` (`E13: Document Update`)_ | ⚠ No declaration |
+| `E65: Document Update` | `E65` | `document_update` → `E13: Document Update` | ⚠️ Class mismatch -- check required |
 | `EX_Digital_Image: Incorporated Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E31: Simple Document (Part)` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
 

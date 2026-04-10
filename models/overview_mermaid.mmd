@@ -46,13 +46,13 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object["E22: Heritage Object\nheritage_object"]:::object
   heritage_object_part["E22/S20: Heritage Object Part\nheritage_object_part"]:::object
   location["E53: Location\nlocation"]:::place
+  observation["S27: Observation\nobservation"]:::event
   organisation["E74: Organisation\norganisation"]:::actor
   person["E21: Person\nperson"]:::actor
   production["E12: Production\nproduction"]:::event
   project["E7: Project\nproject"]:::event
   sample["E22: Physical Sample\nsample"]:::object
   sample_modification["E11: Sample Modification\nsample_modification"]:::event
-  sample_observation["S27: Sample Observation\nsample_observation"]:::event
   sample_site["E26: Sample Site\nsample_site"]:::place
   sample_splitting["S24: Sample Splitting\nsample_splitting"]:::event
   sample_storage_unit["E22: Storage Unit\nsample_storage_unit"]:::object
@@ -65,13 +65,12 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   crm_E31["crm:E31"]:::document_bn
   crm_E54["crm:E54"]:::dims_bn
   crm_E57["crm:E57"]:::object_bn
-  crm_E70["crm:E70"]:::object_bn
   crm_E78["crm:E78"]:::object_bn
   crm_E94["crm:E94"]:::place2_bn
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   annotation_image["annotation_image"]:::missing
-  document_provenance["document_provenance"]:::missing
+  data_set["data_set"]:::missing
 
   document_creation ---->|"E31: Document"|simple_document
   document_creation ---->|"E31: Influenced By"|simple_document
@@ -92,6 +91,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object ---->|"E12: Production Event"|production
   heritage_object ---->|"EX_Digital_Image: Main Object Image"|rs_EX_Digital_Image
   heritage_object ---->|"EX_Digital_Image: Object Image"|rs_EX_Digital_Image
+  heritage_object ---->|"S27: Observation"|observation
   heritage_object_part ---->|"E22: Heritage Object"|heritage_object
   heritage_object_part ---->|"E31: Report or Document"|crm_E31
   heritage_object_part ---->|"E57: Material"|crm_E57
@@ -100,6 +100,14 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object_part ---->|"E22/S13: Heritage Sample"|sample
   location ---->|"E31: Location Documents"|crm_E31
   location ---->|"E94: Geometry (Space Primitive)"|crm_E94
+  observation ---->|"E1: Observed Entity"|crm_E1
+  observation ---->|"E39: Institution or Person"|person
+  observation ---->|"E39: Institution or Person"|organisation
+  observation ---->|"E53: Location"|location
+  observation ---->|"E31: Report or Document"|crm_E31
+  observation ---->|"E29: Method / Protocol"|crm_E29
+  observation ---->|"D1: Digital Result"|data_set
+  observation ---->|"E26: Area of Interest"|crm_E26
   organisation ---->|"E21: Person (Member)"|person
   organisation ---->|"E53: Location (Place of Organisation)"|location
   organisation ---->|"E31: Organisation Documents"|crm_E31
@@ -126,7 +134,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample ---->|"E39: Sample Keeper"|person
   sample ---->|"E39: Sample Keeper"|organisation
   sample ---->|"E31: Sample Documents"|crm_E31
-  sample ---->|"S27: Observation"|sample_observation
+  sample ---->|"S27: Observation"|observation
   sample ---->|"E11: Sample Modification"|sample_modification
   sample ---->|"EX_Digital_Image: Main Sample Image"|rs_EX_Digital_Image
   sample ---->|"EX_Digital_Image: Sample Image"|rs_EX_Digital_Image
@@ -135,18 +143,9 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample_modification ---->|"E22/S13: Heritage Sample"|sample
   sample_modification ---->|"E39: Institution or Person"|person
   sample_modification ---->|"E39: Institution or Person"|organisation
-  sample_modification ---->|"E53: Place of Modification"|location
+  sample_modification ---->|"E53: Location"|location
   sample_modification ---->|"E31: Report or Document"|crm_E31
   sample_modification ---->|"E29: Method / Protocol"|crm_E29
-  sample_modification ---->|"E57: Material Used"|crm_E57
-  sample_modification ---->|"E70: Tool / Equipment"|crm_E70
-  sample_observation ---->|"E22/S13: Heritage Sample"|sample
-  sample_observation ---->|"E39: Institution or Person"|person
-  sample_observation ---->|"E39: Institution or Person"|organisation
-  sample_observation ---->|"E53: Place of Observation"|location
-  sample_observation ---->|"E31: Report or Document"|crm_E31
-  sample_observation ---->|"E29: Method / Protocol"|crm_E29
-  sample_observation ---->|"E70: Instrument / Equipment"|crm_E70
   sample_site ---->|"E22: Heritage Object"|heritage_object
   sample_site ---->|"E22/S13: Heritage Sample"|sample
   sample_site ---->|"S2: Sample Taking"|sample_taking
@@ -161,12 +160,11 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sample_site ---->|"E54: Sample Site Coordinates (annotation image)"|crm_E54
   sample_splitting ---->|"E22/S13: Source Sample"|sample
   sample_splitting ---->|"E22/S13: Sub-Sample"|sample
-  sample_splitting ---->|"E39: Organisation or Person"|person
-  sample_splitting ---->|"E39: Organisation or Person"|organisation
-  sample_splitting ---->|"E53: Splitting Location"|location
+  sample_splitting ---->|"E39: Undertaken by"|person
+  sample_splitting ---->|"E39: Undertaken by"|organisation
+  sample_splitting ---->|"E53: Location"|location
   sample_splitting ---->|"E31: Report or Document"|crm_E31
   sample_splitting ---->|"E29: Method or Procedure"|crm_E29
-  sample_splitting ---->|"E70: Tool / Equipment"|crm_E70
   sample_storage_unit ---->|"E39: Storage Keeper"|person
   sample_storage_unit ---->|"E39: Storage Keeper"|organisation
   sample_storage_unit ---->|"E53: Storage Location (Place)"|location
@@ -189,6 +187,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sampling_activity ---->|"E22: Heritage Object"|heritage_object
   sampling_activity ---->|"E7: Project"|project
   simple_document ---->|"E1: Documented Entity"|crm_E1
-  simple_document ---->|"E65: Document Contribution"|document_provenance
+  simple_document ---->|"E65: Document Creation"|document_creation
+  simple_document ---->|"E65: Document Update"|document_update
   simple_document ---->|"EX_Digital_Image: Incorporated Image"|rs_EX_Digital_Image
   simple_document ---->|"E31: Simple Document (Part)"|simple_document
