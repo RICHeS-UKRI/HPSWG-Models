@@ -19,7 +19,7 @@ institutions. Additional collaborators will be acknowledged as models continue t
 ## Visual Overview of All Models
 
 <!-- BEGIN AUTO: NG-MODEL-VISUAL -->
-[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.4.tsv)
+[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.5.tsv)
 
 ```mermaid
 %%{init: {'flowchart': {'wrappingWidth': 600}}}%%
@@ -91,6 +91,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   crm_E57["crm:E57"]:::object_bn
   crm_E78["crm:E78"]:::object_bn
   crm_E94["crm:E94"]:::place2_bn
+  crmsci_S15["crmsci:S15"]:::crm_bn
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   annotation_image["annotation_image"]:::missing
@@ -124,7 +125,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   heritage_object_part ---->|"E22/S13: Heritage Sample"|sample
   location ---->|"E31: Location Documents"|crm_E31
   location ---->|"E94: Geometry (Space Primitive)"|crm_E94
-  observation ---->|"E1: Observed Entity"|crm_E1
+  observation ---->|"S15: Observed Entity"|crmsci_S15
   observation ---->|"E39: Institution or Person"|person
   observation ---->|"E39: Institution or Person"|organisation
   observation ---->|"E53: Location"|location
@@ -212,7 +213,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   sampling_activity ---->|"E7: Project"|project
   simple_document ---->|"E1: Documented Entity"|crm_E1
   simple_document ---->|"E65: Document Creation"|document_creation
-  simple_document ---->|"E65: Document Update"|document_update
+  simple_document ---->|"E13: Document Update"|document_update
   simple_document ---->|"EX_Digital_Image: Incorporated Image"|rs_EX_Digital_Image
   simple_document ---->|"E31: Simple Document (Part)"|simple_document
 ```
