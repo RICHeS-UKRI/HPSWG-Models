@@ -1,6 +1,6 @@
-# Simple document
+# Document creation
 
-![Status: Mixed](https://img.shields.io/badge/status-mixed-yellow)
+![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen)
 
 This folder contains versioned model files for use with the [National Gallery Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/). Models are expressed as tab-separated triples aligned to CIDOC CRM and related extension ontologies.
 
@@ -18,21 +18,13 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 ## Model versions
 
 <details>
-<summary><strong>Simple document</strong>: latest version <a href="https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.1.tsv">v1.1</a></summary>
+<summary><strong>Document creation</strong>: latest version <a href="https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.0.tsv">v1.0</a></summary>
 
 | | Version | Created | Last modified | Open in Modeller |
 | :---: | :---: | :---: | :---: | --- |
-| :heavy_check_mark: | v1.1 | 2026-04-10 | 2026-04-10 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.1.tsv) |
+| :heavy_check_mark: | v1.0 | 2026-04-10 | 2026-04-10 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.0.tsv) |
 
 </details>
-
-## Precursor files
-
-> **Status: Precursor** -- This model is in early development. The files below contain field mapping notes and draft content that will form the basis of the TSV model.
-
-| File | Raw link |
-|------|----------|
-| `simple_document_precursor_v1.0.txt` | [View raw](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_precursor_v1.0.txt) |
 
 ## Contributing
 

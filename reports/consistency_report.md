@@ -1,8 +1,8 @@
 # Model Consistency Report
 
-_Generated: 2026-04-08 09:12 UTC_
+_Generated: 2026-04-10 08:24 UTC_
 
-**Individual model files analysed:** 16  
+**Individual model files analysed:** 19  
 **Workflow/overview files analysed:** 1  
 
 This report checks consistency of inter-model linking nodes declared in each model's `//subgraph Linked Entities` block. Only declared linked entities are checked -- high-multiplicity classes such as E55 type terms are not flagged unless explicitly declared.
@@ -56,6 +56,29 @@ Multiple targets are comma-separated or joined with `or`.
 ## 1. Per-model link validation
 
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
+
+<details>
+<summary><strong>document_creation/document_creation_v1.0.tsv</strong> -- 2 confirmed, 2 to review</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `E31: Document` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
+| `E31: Influenced By` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
+| `E39: Author` | `E39` | `person` → `E21: Person` | 🔵 Hierarchy match -- confirm intent |
+|  |  | `organisation` → `E74: Organisation` | 🔵 Hierarchy match -- confirm intent |
+
+</details>
+
+<details>
+<summary><strong>document_update/document_provenance_v0.1.tsv</strong> -- 1 confirmed, 2 to review</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `E31: Document` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
+| `E39: Editor` | `E39` | `person` → `E21: Person` | 🔵 Hierarchy match -- confirm intent |
+|  |  | `organisation` → `E74: Organisation` | 🔵 Hierarchy match -- confirm intent |
+
+</details>
 
 <details>
 <summary><strong>heritage_object/heritage_object_v1.7.tsv</strong> -- 12 confirmed</summary>
@@ -281,6 +304,18 @@ Each model's linked entities are listed with their declared target models and co
 | `S2: Sample Taking` | `S2` | `sample_taking` → `S2: Sample Taking` | ✅ Consistent |
 | `E22: Heritage Object` | `E22` | `heritage_object` → `E22: Heritage Object` | ✅ Consistent |
 | `E7: Project` | `E7` | `project` → `E7: Project` | ✅ Consistent |
+
+</details>
+
+<details>
+<summary><strong>simple_document/simple_document_v1.1.tsv</strong> -- 3 confirmed, 1 missing target</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `E1: Documented Entity` | `E1` | `crm:E1` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E65: Document Contribution` | `E65` | `document_provenance` | ❓ Missing target -- folder not found in repo |
+| `EX_Digital_Image: Incorporated Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E31: Simple Document (Part)` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
 
 </details>
 
