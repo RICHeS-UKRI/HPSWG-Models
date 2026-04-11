@@ -1,0 +1,117 @@
+//flowchart LR
+EX_Digital_Image: Annotation Image	tooltip	A digital image designated for use as an annotation base within a heritage science documentation system. Annotation images provide the visual reference against which sample sites, areas of interest, condition features, and local examination and analysis events are spatially documented. The same image may serve multiple annotation purposes simultaneously. Images are uploaded independently and associated with one or more annotation group types. A link to a dataset record is optional where the image also forms part of a formal analytical output.	digital2-fs32|
+EX_Digital_Image: Annotation Image	has note	Document Note: Annotation Image Model Overview
+Document Note: Annotation Image Model Overview	tooltip	This model records a digital image used as an annotation base. It captures identification, image metadata, capture provenance, rights, annotation group classification, and links to the heritage object depicted. The image may also be linked optionally to a dataset record where it forms part of a formal analytical output. Annotation of the image itself -- the spatial recording of sample sites, areas of interest, and examination positions -- is handled in the annotation_image workflow and related models, not here.
+
+//subgraph Linked Entities
+E22: Heritage Object	tooltip	The heritage object depicted in this image. Required.	object-fs24|
+//links E22: Heritage Object --> heritage_object
+E22: Heritage Object Part	tooltip	An optional link to a defined part or feature of the heritage object depicted, such as a specific face, reverse, or structural element. Note: E25 Human-Made Feature may be more appropriate in some cases -- to be reviewed during modelling of the heritage_object_part domain.	object-fs24|
+//links E22: Heritage Object Part --> heritage_object_part [confirmed]
+E39: Captured By	tooltip	The person or institution responsible for capturing the image.	actor-fs24|
+//links E39: Captured By --> person, organisation [confirmed]
+E39: Designated By	tooltip	The person or institution responsible for designating this image for use as an annotation base.	actor-fs24|
+//links E39: Designated By --> person, organisation [confirmed]
+E29: Imaging Protocol	tooltip	The imaging protocol or method statement used to create this image. Provides fuller procedural detail beyond the capture technique type classification.	document-fs24|
+//links E29: Imaging Protocol --> crm:E29
+E31: Related Document	tooltip	A document referencing or providing context for this image, such as an imaging report or conservation record.	document-fs24|
+//links E31: Related Document --> simple_document
+D1: Digital Dataset	tooltip	An optional link to a dataset record where this image also forms part of a formal analytical output.	digital2-fs24|
+//links D1: Digital Dataset --> data_set
+//end sg1
+
+// Identification
+EX_Digital_Image: Annotation Image	P48_has_preferred_identifier (0 to 1)	E42: IIIF URL	|url
+E42: IIIF URL	tooltip	The source IIIF URL for this image. Where ResearchSpace is used for annotation, images must be ingested into the system and an internal reference will also be assigned. Note: the IIIF URL could alternatively be modelled as a link to an E31 document (IIIF info.json or manifest) -- this remains an open design question to be resolved during implementation.
+E42: IIIF URL	P2_has_type (1 to 1)	E55: iiif url	|type
+EX_Digital_Image: Annotation Image	P1_is_identified_by (1 to 1)	E41: Image Label	|name
+E41: Image Label	tooltip	A human-readable name or code used to identify this image within documentation or reporting systems. (Alternative labels: Image Code)
+EX_Digital_Image: Annotation Image	P1_is_identified_by (0 to 1)	E41: Image File Name	|name
+E41: Image File Name	tooltip	The original file name of the digital image file. Note: ResearchSpace may require a system-specific property for this value -- to be confirmed during implementation.
+EX_Digital_Image: Annotation Image	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E41: Unique System Label or ID	has note	Automatic: Preferred TBC
+
+// Image metadata
+EX_Digital_Image: Annotation Image	P2_has_type (1 to 1)	E55: Capture Technique	|type
+E55: Capture Technique	tooltip	The technique used to capture this image. Drawn from a controlled list (e.g., visible light photography, raking light, ultraviolet fluorescence, infrared reflectography, X-radiography). Provides a summary classification; fuller detail is recorded in the linked imaging protocol. (Alternative labels: Image Type; Capture Type)
+EX_Digital_Image: Annotation Image	P2_has_type (0 to 1)	E55: File Format	|type
+E55: File Format	tooltip	The file format of this image. Drawn from a controlled list (e.g., TIFF, JPEG, PNG).
+EX_Digital_Image: Annotation Image	P2_has_type (0 to n)	E55: Annotation Group Type	|type
+E55: Annotation Group Type	tooltip	The type or group of annotations for which this image is currently being used (e.g., Sample Site Annotations, Area of Interest Annotations, Condition Mapping, Local Examination and Analysis Annotations). The same image may be associated with multiple annotation group types simultaneously. Drawn from a controlled list -- vocabulary still under development.
+EX_Digital_Image: Annotation Image	P67i_is_referred_to_by (0 to 1)	E73: Description	|literal
+E73: Description	tooltip	A concise description of the image content and any notable features relevant to its use as an annotation base.
+EX_Digital_Image: Annotation Image	P67i_is_referred_to_by (0 to 1)	E73: Default Caption	|literal
+E73: Default Caption	tooltip	A default human-readable caption suitable for display alongside the image in reports or interfaces.
+EX_Digital_Image: Annotation Image	P67i_is_referred_to_by (1 to 1)	E73: Image Credit	|literal
+E73: Image Credit	tooltip	Credit line or source statement for this image.
+EX_Digital_Image: Annotation Image	P67i_is_referred_to_by (1 to 1)	E73: Image Reuse Licence	|literal
+E73: Image Reuse Licence	tooltip	The licence or rights statement governing reuse of this image. Where a standard licence URL exists (e.g. a Creative Commons licence), a URL is preferred over a free-text statement. Consistency with the Licence URL / Licence Statement pattern used in the data_set model is recommended.
+
+// Dimensions
+EX_Digital_Image: Annotation Image	P43_has_dimension (1 to 1)	E54: Image Width	|dims
+E54: Image Width	tooltip	The width of this image in pixels.
+E54: Image Width	P2_has_type (1 to 1)	E55: pixel width	|type
+EX_Digital_Image: Annotation Image	P43_has_dimension (1 to 1)	E54: Image Height	|dims
+E54: Image Height	tooltip	The height of this image in pixels.
+E54: Image Height	P2_has_type (1 to 1)	E55: pixel height	|type
+EX_Digital_Image: Annotation Image	P43_has_dimension (0 to 1)	E54: Relative Resolution	|dims
+E54: Relative Resolution	tooltip	The resolution of this image expressed as pixels per millimetre on the object surface. This value is often unknown and should only be recorded where it has been formally established. (Alternative labels: Pixels per mm; Spatial Resolution)
+E54: Relative Resolution	P2_has_type (1 to 1)	E55: pixels per mm	|type
+
+// Capture provenance
+EX_Digital_Image: Annotation Image	P14i_performed (0 to 1)	E65: Image Capture Event	|event_bn
+E65: Image Capture Event	tooltip	The event during which this image was captured. Used to record the capture date and responsible actor without requiring a full observation model entry.
+E65: Image Capture Event	P4_has_time-span (0 to 1)	E52: Date of Image Capture	|timespan
+E52: Date of Image Capture	tooltip	The date on which this image was captured. (Alternative labels: Capture Date; Image Date)
+E65: Image Capture Event	P14_carried_out_by (0 to 1)	E39: Captured By
+E65: Image Capture Event	P33_used_specific_technique (0 to 1)	E29: Imaging Protocol
+
+// Annotation designation provenance
+EX_Digital_Image: Annotation Image	P14i_performed (0 to 1)	E13: Annotation Designation Event	|event_bn
+E13: Annotation Designation Event	tooltip	The event by which this image was designated for use as an annotation base. Captures who made the designation and when.
+E13: Annotation Designation Event	P4_has_time-span (0 to 1)	E52: Date Designated for Annotation	|timespan
+E52: Date Designated for Annotation	tooltip	The date on which this image was designated for use as an annotation base. (Alternative labels: Annotation Date)
+E13: Annotation Designation Event	P14_carried_out_by (0 to 1)	E39: Designated By
+
+// Condition at capture
+EX_Digital_Image: Annotation Image	P62i_is_depicted_by (0 to 1)	E3: Condition State at Capture	|event_bn
+E3: Condition State at Capture	tooltip	The condition or treatment state of the heritage object at the time this image was captured (e.g., before treatment, after cleaning, with varnish removed). Captured here as a simple typed classification for display purposes; a fuller condition record would be modelled via a dedicated condition or observation event.
+E3: Condition State at Capture	P2_has_type (1 to 1)	E55: condition state type	|type
+
+// Heritage object links
+EX_Digital_Image: Annotation Image	P62_depicts (1 to 1)	E22: Heritage Object
+EX_Digital_Image: Annotation Image	P62_depicts (0 to n)	E22: Heritage Object Part
+// Note: E25 Human-Made Feature may be more semantically appropriate than E22 for some
+// heritage object parts or features -- to be reviewed during heritage_object_part modelling.
+
+// Document links
+EX_Digital_Image: Annotation Image	P70i_is_documented_in (0 to n)	E31: Related Document
+
+// Optional dataset link
+EX_Digital_Image: Annotation Image	P165i_is_incorporated_in (0 to 1)	D1: Digital Dataset
+
+//field E41: Image Label | 10 | Image Label; Image Code | behaviour:free-text
+//field E41: Image File Name | 20 | Image File Name | Note: may require a system-specific property in ResearchSpace. behaviour:free-text
+//field E42: IIIF URL | 30 | IIIF URL; Source URL | IIIF source URL for this image. May alternatively be modelled as a link to an E31 document (info.json or IIIF manifest) -- open design question. behaviour:url
+//field E41: Unique System Label or ID | 40 | System Label | behaviour:system-id
+//field E55: Capture Technique | 50 | Capture Technique; Image Type | behaviour:select
+//field E55: File Format | 60 | File Format; Image Format | behaviour:select
+//field E55: Annotation Group Type | 70 | Annotation Group Type; Annotation Purpose | An image may be associated with multiple annotation group types simultaneously. behaviour:select
+//field E73: Description | 80 | Description | behaviour:free-text
+//field E73: Default Caption | 90 | Default Caption; Image Caption | behaviour:free-text
+//field E73: Image Credit | 100 | Image Credit; Credit Line | behaviour:free-text
+//field E73: Image Reuse Licence | 110 | Image Reuse Licence | Prefer a licence URL where a standard licence exists. behaviour:free-text
+//field E54: Image Width | 120 | Image Width (pixels); Pixel Width | behaviour:free-text
+//field E54: Image Height | 130 | Image Height (pixels); Pixel Height | behaviour:free-text
+//field E54: Relative Resolution | 140 | Relative Resolution; Pixels per mm | Only record where formally established. behaviour:free-text
+//field E52: Date of Image Capture | 150 | Date of Image Capture; Capture Date | behaviour:free-text
+//field-via E39: Captured By via E65: Image Capture Event | 160 | Captured By; Photographer | The person or institution responsible for capturing this image. | behaviour:pid
+//field-via E29: Imaging Protocol via E65: Image Capture Event | 170 | Imaging Protocol; Method Statement | The imaging protocol or method statement used to create this image. | behaviour:pid
+//field E52: Date Designated for Annotation | 180 | Date Designated for Annotation; Annotation Date | behaviour:free-text
+//field-via E39: Designated By via E13: Annotation Designation Event | 190 | Designated for Annotation By | The person or institution responsible for designating this image for annotation use. | behaviour:pid
+//field-via E55: condition state type via E3: Condition State at Capture | 200 | Condition State at Capture; Object Condition at Capture | The condition or treatment state of the heritage object at the time of image capture. | behaviour:select
+//field-via E22: Heritage Object via P62_depicts | 210 | Heritage Object | Required link to the heritage object depicted in this image. | behaviour:pid
+//field-via E22: Heritage Object Part via P62_depicts | 220 | Heritage Object Part; Feature | Optional link to a defined part or feature of the heritage object. E25 Human-Made Feature may be more appropriate in some cases -- to be reviewed. | behaviour:pid
+//field-via E31: Related Document via P70i_is_documented_in | 230 | Related Document; Report | A document referencing or providing context for this image. | behaviour:pid
+//field-via D1: Digital Dataset via P165i_is_incorporated_in | 240 | Digital Dataset | Optional link to a dataset record where this image forms part of a formal analytical output. | behaviour:pid

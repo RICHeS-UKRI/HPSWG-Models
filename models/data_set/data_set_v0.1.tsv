@@ -1,0 +1,97 @@
+//flowchart LR
+D1: Digital Dataset	tooltip	A digital dataset produced as the output of a scientific or technical observation event. Covers the full range of digital outputs in heritage science including images, spectra, elemental maps, numerical datasets, and documentary records. May incorporate individual file records or grouped collections of files. Versioning is supported via a version number and links to related dataset versions.	digital2-fs32|
+D1: Digital Dataset	has note	Document Note: Data Set Model Overview
+Document Note: Data Set Model Overview	tooltip	This model records a digital dataset produced by a heritage science observation event. It captures identification, description, dataset typing, rights and access conditions, version information, and links to constituent file records or file groups. Links back to the generating observation event and optionally to a method or protocol document. Raw-to-processed dataset relationships are not modelled here; these will be handled by a future data_processing event model or resolved at the digital_file level.
+
+//subgraph Linked Entities
+S27: Observation Event	tooltip	The observation or examination event that produced this dataset. Provides upstream provenance linking the dataset to the observed entity, the responsible actors, and the equipment and methods employed.	event-fs24|
+//links S27: Observation Event --> sample_observation
+E39: Rights Holder	tooltip	The person or organisation that holds rights over this dataset. Multiple rights holders are permitted to accommodate collaborative or jointly-owned resources.	actor-fs24|
+//links E39: Rights Holder --> person, organisation [confirmed]
+E29: Method / Protocol	tooltip	The method or protocol document describing the procedure used to produce this dataset. Provides fuller procedural detail beyond the technique type classification recorded on the dataset itself.	document-fs24|
+//links E29: Method / Protocol --> crm:E29
+E31: Related Document	tooltip	A document referencing or providing context for this dataset, such as an analytical report, condition report, or publication.	document-fs24|
+//links E31: Related Document --> simple_document
+D1: File Group or File Record	tooltip	A digital file group or individual file record incorporated within this dataset. File groups may be nested and may themselves incorporate further file groups or individual file records. Individual file records are defined in the digital_file model.	digital2-fs24|
+//links D1: File Group or File Record --> digital_file
+D1: Related Dataset Version	tooltip	Another version of this dataset, or a related dataset from which this one was derived. Relationship direction and ordering are established via the version number or creation date rather than the property direction.	digital2-fs24|
+//links D1: Related Dataset Version --> data_set
+//end sg1
+
+// Identification
+D1: Digital Dataset	P48_has_preferred_identifier (1 to 1)	E42: Persistent Identifier (PID)	|url
+E42: Persistent Identifier (PID)	tooltip	A globally unique and persistent identifier for this dataset, such as a DOI, ARK, or handle. Supports citation and long-term discovery.
+E42: Persistent Identifier (PID)	P2_has_type (1 to 1)	aat:300387580
+D1: Digital Dataset	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label.
+E41: Unique System Label or ID	has note	Automatic: Preferred TBC
+D1: Digital Dataset	P1_is_identified_by (1 to 1)	E35: Dataset Title	|name
+E35: Dataset Title	tooltip	A human-readable title for this dataset, suitable for display in interfaces and publications.
+D1: Digital Dataset	P1_is_identified_by (0 to n)	E42: Repository Record URL	|url
+E42: Repository Record URL	tooltip	A URL pointing to an external repository record for this dataset, such as a Zenodo, B2SHARE, or institutional repository deposit. Use where the dataset or a copy of it has been deposited externally. Distinct from the preferred PID.
+E42: Repository Record URL	P2_has_type (1 to 1)	E55: repository record	|type
+
+// Description and typing
+D1: Digital Dataset	P67i_is_referred_to_by (0 to 1)	E73: Description	|literal
+E73: Description	tooltip	A concise description or abstract of the dataset content, scope, and any notable features relevant to its interpretation or reuse.
+D1: Digital Dataset	P2_has_type (1 to n)	E55: Dataset Type	|type
+E55: Dataset Type	tooltip	The type of data output represented by this dataset (e.g., XRF spectrum, Raman spectrum, FORS spectrum, EDS map, multispectral image stack, X-radiograph, IRR image, numerical dataset, documentary record).
+D1: Digital Dataset	P2_has_type (0 to n)	E55: Technique Type	|type
+E55: Technique Type	tooltip	The analytical or imaging technique used to produce this dataset at a summary classification level (e.g., XRF, Raman spectroscopy, FORS, IRR, X-radiography, optical microscopy). Provides a discovery-level term. Fuller procedural detail is recorded in the linked method or protocol document.
+D1: Digital Dataset	P2_has_type (0 to n)	E55: Keywords	|type
+E55: Keywords	tooltip	Subject or content keywords supporting discovery. May be drawn from a controlled vocabulary or entered as free text.
+
+// Rights and access
+D1: Digital Dataset	P104_is_subject_to (1 to n)	E30: Rights	|idea
+E30: Rights	tooltip	The rights conditions applicable to this dataset.
+E30: Rights	P75i_is_possessed_by (1 to n)	E39: Rights Holder
+E30: Rights	P67i_is_referred_to_by (0 to 1)	E42: Licence URL	|url
+E42: Licence URL	tooltip	A URL pointing to the licence under which this dataset is made available (e.g., https://creativecommons.org/licenses/by/4.0/). Preferred over a licence statement where a standard licence URL exists.
+E30: Rights	P67i_is_referred_to_by (0 to 1)	E73: Licence Statement	|literal
+E73: Licence Statement	tooltip	A free-text licence statement for cases where no standard licence URL is available. Use the Licence URL field in preference where possible.
+E30: Rights	P2_has_type (1 to 1)	E55: Access Status	|type
+E55: Access Status	tooltip	The access status of this dataset. Drawn from a controlled list: open, restricted, embargoed.
+E30: Rights	P4_has_time-span (0 to 1)	E52: Embargo End Date	|timespan
+E52: Embargo End Date	tooltip	The date on which an embargo on this dataset expires and the dataset becomes available under its stated licence. Only applicable where Access Status is embargoed.
+
+// Version information
+D1: Digital Dataset	P43_has_dimension (0 to 1)	E54: Version Number	|dims
+E54: Version Number	tooltip	The version number of this dataset. Increment when a new version of the dataset is created. Version ordering is established by this number or by the creation date of the associated observation event.
+E54: Version Number	P2_has_type (1 to 1)	E55: version number	|type
+D1: Digital Dataset	P130_shows_features_of (0 to n)	D1: Related Dataset Version
+// Note: P130_shows_features_of is used here as a pragmatic approximation for version succession
+// and dataset relationships. Version ordering is established via the version number or creation date.
+// Raw-to-processed dataset derivation relationships will be handled by a future data_processing
+// event model or at the digital_file level via relationships between individual file records.
+
+// Provenance links
+D1: Digital Dataset	P94i_was_created_by (0 to 1)	S27: Observation Event
+D1: Digital Dataset	P33i_was_used_by (0 to 1)	E29: Method / Protocol
+D1: Digital Dataset	P70i_is_documented_in (0 to n)	E31: Related Document
+
+// File incorporation
+// A dataset may incorporate file groups or individual file records directly.
+// File groups may themselves incorporate further file groups (nested) or individual file records.
+// The same property (P165_incorporates) operates at all levels of the hierarchy.
+// Individual file records are defined in the digital_file model (planned).
+D1: Digital Dataset	P165_incorporates (0 to n)	D1: File Group or File Record
+
+//field E42: Persistent Identifier (PID) | 10 | PID; DOI; Dataset ID | behaviour:pid
+//field E41: Unique System Label or ID | 20 | System Label | behaviour:system-id
+//field E35: Dataset Title | 30 | Title | behaviour:free-text
+//field E42: Repository Record URL | 40 | Repository URL; External Deposit URL | behaviour:url
+//field E73: Description | 50 | Abstract; Description | behaviour:free-text
+//field E55: Dataset Type | 60 | Dataset Type | behaviour:select
+//field E55: Technique Type | 70 | Technique; Method Type | behaviour:select
+//field E55: Keywords | 80 | Keywords | behaviour:list
+//field E42: Licence URL | 90 | Licence URL | behaviour:url
+//field E73: Licence Statement | 100 | Licence Statement | behaviour:free-text
+//field E55: Access Status | 110 | Access Status | behaviour:select
+//field E52: Embargo End Date | 120 | Embargo End Date | behaviour:free-text
+//field E54: Version Number | 130 | Version Number | behaviour:free-text
+//field-via D1: Related Dataset Version via P130_shows_features_of | 140 | Related Version; Previous Version | Related dataset version -- used for version succession and related dataset links. Ordering established by version number or creation date. | behaviour:pid
+//field-via S27: Observation Event via P94i_was_created_by | 150 | Observation Event | The observation or examination event that produced this dataset. | behaviour:pid
+//field-via E29: Method / Protocol via P33i_was_used_by | 160 | Method; Protocol | The method or protocol document used to produce this dataset. | behaviour:pid
+//field-via E31: Related Document via P70i_is_documented_in | 170 | Related Document; Report | A document referencing or providing context for this dataset. | behaviour:pid
+//field-via E39: Rights Holder via E30: Rights | 180 | Rights Holder | The person or organisation holding rights over this dataset. Multiple rights holders are permitted. | behaviour:pid
+//field-via D1: File Group or File Record via P165_incorporates | 190 | File Group; File Record | A file group or individual file record incorporated within this dataset. File groups may be nested. | behaviour:pid
