@@ -19,7 +19,7 @@ institutions. Additional collaborators will be acknowledged as models continue t
 ## Visual Overview of All Models
 
 <!-- BEGIN AUTO: NG-MODEL-VISUAL -->
-[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.6.tsv)
+[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.7.tsv)
 
 ```mermaid
 %%{init: {'flowchart': {'wrappingWidth': 600}}}%%
@@ -65,6 +65,7 @@ classDef timespan stroke:blue,fill:#ddfffe,color:black,rx:20px,ry:20px;
 classDef place2 stroke:#3a7a3a,fill:#aff090,color:black,rx:20px,ry:20px;
 classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
 
+  data_set["D1: Digital Dataset\ndata_set"]:::digital2
   document_creation["E65: Document Creation\ndocument_creation"]:::event
   document_update["E13: Document Update\ndocument_update"]:::crm
   heritage_object["E22: Heritage Object\nheritage_object"]:::object
@@ -95,8 +96,16 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   annotation_image["annotation_image"]:::missing
-  data_set["data_set"]:::missing
+  digital_file["digital_file"]:::missing
+  sample_observation["sample_observation"]:::missing
 
+  data_set ---->|"S27: Observation Event"|sample_observation
+  data_set ---->|"E39: Rights Holder"|person
+  data_set ---->|"E39: Rights Holder"|organisation
+  data_set ---->|"E29: Method / Protocol"|crm_E29
+  data_set ---->|"E31: Related Document"|simple_document
+  data_set ---->|"D1: File Group or File Record"|digital_file
+  data_set ---->|"D1: Related Dataset Version"|data_set
   document_creation ---->|"E31: Document"|simple_document
   document_creation ---->|"E31: Influenced By"|simple_document
   document_creation ---->|"E31: Previous Version"|simple_document
@@ -252,6 +261,8 @@ Individual CIDOC CRM domain models, each covering a specific aspect of heritage 
 
 | Name | Type / Status | Folder | Latest TSV | Visualisation |
 |------|--------------|--------|-----------|---------------|
+| Annotation image | ![Status: Planned](https://img.shields.io/badge/status-planned-lightgrey) | [`models/annotation_image`](models/annotation_image/) | -- | -- |
+| Data set | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/data_set`](models/data_set/) | [v0.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/data_set/data_set_v0.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/data_set/data_set_v0.1.tsv) |
 | Document creation | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/document_creation`](models/document_creation/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_creation/document_creation_v1.1.tsv) |
 | Document update | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/document_update`](models/document_update/) | [v1.0](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_update_v1.0.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/document_update/document_update_v1.0.tsv) |
 | Heritage object | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/heritage_object`](models/heritage_object/) | [v1.8](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.8.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/heritage_object/heritage_object_v1.8.tsv) |

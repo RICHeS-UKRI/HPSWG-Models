@@ -1,8 +1,8 @@
 # Model Consistency Report
 
-_Generated: 2026-04-10 22:38 UTC_
+_Generated: 2026-04-11 19:31 UTC_
 
-**Individual model files analysed:** 19  
+**Individual model files analysed:** 20  
 **Workflow/overview files analysed:** 1  
 
 This report checks consistency of inter-model linking nodes declared in each model's `//subgraph Linked Entities` block. Only declared linked entities are checked -- high-multiplicity classes such as E55 type terms are not flagged unless explicitly declared.
@@ -56,6 +56,21 @@ Multiple targets are comma-separated or joined with `or`.
 ## 1. Per-model link validation
 
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
+
+<details>
+<summary><strong>data_set/data_set_v0.1.tsv</strong> -- 5 confirmed, 2 missing target</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `S27: Observation Event` | `S27` | `sample_observation` | ❓ Missing target -- folder not found in repo |
+| `E39: Rights Holder` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
+|  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
+| `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E31: Related Document` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
+| `D1: File Group or File Record` | `D1` | `digital_file` | ❓ Missing target -- folder not found in repo |
+| `D1: Related Dataset Version` | `D1` | `data_set` → `D1: Digital Dataset` | ✅ Consistent |
+
+</details>
 
 <details>
 <summary><strong>document_creation/document_creation_v1.1.tsv</strong> -- 5 confirmed</summary>
@@ -127,7 +142,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>observation/observation_v1.0.tsv</strong> -- 7 confirmed, 1 missing target</summary>
+<summary><strong>observation/observation_v1.0.tsv</strong> -- 8 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -137,7 +152,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E53: Location` | `E53` | `location` → `E53: Location` | ✅ Consistent |
 | `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `D1: Digital Result` | `D1` | `data_set` | ❓ Missing target -- folder not found in repo |
+| `D1: Digital Result` | `D1` | `data_set` → `D1: Digital Dataset` | ✅ Consistent |
 | `E26: Area of Interest` | `E26` | `crm:E26` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 
 </details>

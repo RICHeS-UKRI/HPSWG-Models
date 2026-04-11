@@ -41,6 +41,7 @@ classDef timespan stroke:blue,fill:#ddfffe,color:black,rx:20px,ry:20px;
 classDef place2 stroke:#3a7a3a,fill:#aff090,color:black,rx:20px,ry:20px;
 classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
 
+  data_set["D1: Digital Dataset\ndata_set"]:::digital2
   document_creation["E65: Document Creation\ndocument_creation"]:::event
   document_update["E13: Document Update\ndocument_update"]:::crm
   heritage_object["E22: Heritage Object\nheritage_object"]:::object
@@ -71,8 +72,16 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   annotation_image["annotation_image"]:::missing
-  data_set["data_set"]:::missing
+  digital_file["digital_file"]:::missing
+  sample_observation["sample_observation"]:::missing
 
+  data_set ---->|"S27: Observation Event"|sample_observation
+  data_set ---->|"E39: Rights Holder"|person
+  data_set ---->|"E39: Rights Holder"|organisation
+  data_set ---->|"E29: Method / Protocol"|crm_E29
+  data_set ---->|"E31: Related Document"|simple_document
+  data_set ---->|"D1: File Group or File Record"|digital_file
+  data_set ---->|"D1: Related Dataset Version"|data_set
   document_creation ---->|"E31: Document"|simple_document
   document_creation ---->|"E31: Influenced By"|simple_document
   document_creation ---->|"E31: Previous Version"|simple_document
