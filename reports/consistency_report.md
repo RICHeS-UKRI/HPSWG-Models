@@ -1,8 +1,8 @@
 # Model Consistency Report
 
-_Generated: 2026-04-11 19:31 UTC_
+_Generated: 2026-04-12 12:08 UTC_
 
-**Individual model files analysed:** 20  
+**Individual model files analysed:** 21  
 **Workflow/overview files analysed:** 1  
 
 This report checks consistency of inter-model linking nodes declared in each model's `//subgraph Linked Entities` block. Only declared linked entities are checked -- high-multiplicity classes such as E55 type terms are not flagged unless explicitly declared.
@@ -56,6 +56,23 @@ Multiple targets are comma-separated or joined with `or`.
 ## 1. Per-model link validation
 
 Each model's linked entities are listed with their declared target models and consistency status. Where no `//links` declaration exists, possible targets are suggested based on matching class codes.
+
+<details>
+<summary><strong>annotation_image/annotation_image_v0.1.tsv</strong> -- 9 confirmed</summary>
+
+| Linked entity | Class code | Declared target(s) | Status |
+| --- | --- | --- | --- |
+| `E22: Heritage Object` | `E22` | `heritage_object` → `E22: Heritage Object` | ✅ Consistent |
+| `E22: Heritage Object Part` | `E22` | `heritage_object_part` → `E22/S20: Heritage Object Part` | ✅ Consistent |
+| `E39: Captured By` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
+|  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
+| `E39: Designated By` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
+|  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
+| `E29: Imaging Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
+| `E31: Related Document` | `E31` | `simple_document` → `E31: Simple Document` | ✅ Consistent |
+| `D1: Digital Dataset` | `D1` | `data_set` → `D1: Digital Dataset` | ✅ Consistent |
+
+</details>
 
 <details>
 <summary><strong>data_set/data_set_v0.1.tsv</strong> -- 5 confirmed, 2 missing target</summary>
@@ -244,7 +261,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>sample_site/sample_site_v1.6.tsv</strong> -- 10 confirmed, 1 missing target</summary>
+<summary><strong>sample_site/sample_site_v1.6.tsv</strong> -- 11 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
@@ -252,7 +269,7 @@ Each model's linked entities are listed with their declared target models and co
 | `E22/S13: Heritage Sample` | `E22/S13` | `sample` → `E22: Physical Sample` | ✅ Consistent |
 | `S2: Sample Taking` | `S2` | `sample_taking` → `S2: Sample Taking` | ✅ Consistent |
 | `E31: Report or Document` | `E31` | `crm:E31` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
-| `EX_Digital_Image: Annotation Image` | `EX_Digital_Image` | `annotation_image` | ❓ Missing target -- folder not found in repo |
+| `EX_Digital_Image: Annotation Image` | `EX_Digital_Image` | `annotation_image` → `EX_Digital_Image: Annotation Image` | ✅ Consistent |
 | `EX_Digital_Image: Sample Site reference image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `EX_Digital_Image: Other Site Image` | `EX_Digital_Image` | `rs:EX_Digital_Image` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
 | `E22: Heritage Object Part` | `E22` | `heritage_object_part` → `E22/S20: Heritage Object Part` | ✅ Consistent |

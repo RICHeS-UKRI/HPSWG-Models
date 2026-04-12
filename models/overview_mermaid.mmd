@@ -41,6 +41,7 @@ classDef timespan stroke:blue,fill:#ddfffe,color:black,rx:20px,ry:20px;
 classDef place2 stroke:#3a7a3a,fill:#aff090,color:black,rx:20px,ry:20px;
 classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
 
+  annotation_image["EX_Digital_Image: Annotation Image\nannotation_image"]:::crm
   data_set["D1: Digital Dataset\ndata_set"]:::digital2
   document_creation["E65: Document Creation\ndocument_creation"]:::event
   document_update["E13: Document Update\ndocument_update"]:::crm
@@ -71,10 +72,18 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   crmsci_S15["crmsci:S15"]:::crm_bn
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
-  annotation_image["annotation_image"]:::missing
   digital_file["digital_file"]:::missing
   sample_observation["sample_observation"]:::missing
 
+  annotation_image ---->|"E22: Heritage Object"|heritage_object
+  annotation_image ---->|"E22: Heritage Object Part"|heritage_object_part
+  annotation_image ---->|"E39: Captured By"|person
+  annotation_image ---->|"E39: Captured By"|organisation
+  annotation_image ---->|"E39: Designated By"|person
+  annotation_image ---->|"E39: Designated By"|organisation
+  annotation_image ---->|"E29: Imaging Protocol"|crm_E29
+  annotation_image ---->|"E31: Related Document"|simple_document
+  annotation_image ---->|"D1: Digital Dataset"|data_set
   data_set ---->|"S27: Observation Event"|sample_observation
   data_set ---->|"E39: Rights Holder"|person
   data_set ---->|"E39: Rights Holder"|organisation
