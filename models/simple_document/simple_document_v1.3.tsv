@@ -1,0 +1,75 @@
+//flowchart LR
+E31: Simple Document	tooltip	A document that records information about one or more entities. Can contain free text, incorporate images, and be composed of ordered parts. Parts are themselves simple_document instances, allowing figures, sections, and composite reports to be modelled within the same structure. Three orthogonal axes classify each record: document type distinguishes the kind of document (e.g. report, catalogue entry, working note, or component); section type, applicable when the record is a component of a parent document, distinguishes its role within that parent (e.g. figure, abstract, appendix); work domain distinguishes the subject matter or area of work addressed (e.g. x_radiography, provenance, pigment analysis).	document-fs32|
+E31: Simple Document	has note	Document Note: Simple Document Model Overview
+Document Note: Simple Document Model Overview	tooltip	This model defines a reusable document entity that can represent anything from a single figure caption to a multi-section technical report. A document can incorporate images directly and can be composed of ordered part-documents. Creation provenance is captured via the document_creation model and subsequent updates via the document_update model. The model is intentionally generic; source-specific typing and content are applied through three separate controlled lists (document_type, document_section_type, work_domain). Title handling uses the CIDOC CRM PC102 property-class reification to support typed title assignments, matching ResearchSpace conventions.
+
+//subgraph Linked Entities
+E1: Documented Entity	tooltip	The entity or entities this document is about. Can be a heritage object, sample, examination event, or any other CRM entity. One document may document multiple entities.	object-fs24|
+//links E1: Documented Entity --> crm:E1
+
+E65: Document Creation	tooltip	The creation event for this document.	event-fs24|
+//links E65: Document Creation --> document_creation
+
+E13: Document Update	tooltip	An update event recording a change to the textual content of this document. Each update captures the editor responsible, the scale of their involvement, and the timespan of their activity. The current text is held via P190 on this document; the full history of updates is recoverable via the sequence of associated E13 update events.	event-fs24|
+//links E13: Document Update --> document_update
+
+EX_Digital_Image: Incorporated Image	tooltip	An image directly incorporated into this document. For figure-type documents this is the primary content. For other document types images may be incorporated alongside text.	digital2-fs24|
+//links EX_Digital_Image: Incorporated Image --> rs:EX_Digital_Image
+
+E31: Simple Document (Part)	tooltip	An ordered part of this document. Parts are themselves simple_document instances, typically typed as 'component' with a Section Type indicating their role (figure, appendix, methods, etc.). A part typed as a figure section incorporates an image and carries its caption as document text. Parts may have their own creation provenance and further component parts of their own.	document-fs24|
+//links E31: Simple Document (Part) --> simple_document
+
+E31: Alternative Version	tooltip	An optional link to another version of this document. Related versions are expected to share the same document title but carry different version numbers and unique system identifiers. Uses P130_shows_features_of as a pragmatic approximation for version succession; a more precise versioning property may be adopted in future. Version links are undirected in the sense that both older and newer versions can be linked from the same document.	document-fs24|
+//links E31: Alternative Version --> simple_document
+
+//end sg1
+
+E31: Simple Document	P1_is_identified_by (1 to 1)	E41: Unique System Label or ID	|name
+E41: Unique System Label or ID	tooltip	Required within some documentation or database systems, such as ResearchSpace required label. The system-level unique identifier for this record; distinct from the human-readable title (which is handled via the PC102 Title Assignment pattern below).
+
+//subgraph Title Assignment
+PC102: Title Assignment	tooltip	A reified title assignment node linking the document to its title. Uses the CIDOC CRM PC102_has_title property class, the reification of P102_has_title, so that the title assignment can carry its own type (e.g. primary, display, working) via P102.1_has_type. This pattern is used by ResearchSpace for all title handling and replaces the direct P1_is_identified_by link to an E41 title appellation used in earlier versions of this model.	thing_bn|
+
+E35: Document Title	tooltip	The human-readable title of the document. Non-unique; may be shared across versions. The title string is carried via P190_has_symbolic_content on this node. In the ResearchSpace serialisation the node is written under /resource/title/<uuid> and may not carry an explicit rdf:type triple; the E35 typing is implied by the PC102 range in CRM terms and is shown here for model clarity.	thing|
+
+E55: Title Type	tooltip	The type of this title assignment (e.g. primary_title, display_title, working_title, short_title, subtitle). Selected from the existing title_type controlled vocabulary. Attached via P102.1_has_type on the PC102 node rather than via P2_has_type on the title itself.	type|
+//end sg2
+
+E31: Simple Document	P01i_is_domain_of (1 to 1)	PC102: Title Assignment
+PC102: Title Assignment	P02_has_range (1 to 1)	E35: Document Title
+PC102: Title Assignment	P102.1_has_type (0 to 1)	E55: Title Type
+E35: Document Title	P190_has_symbolic_content (1 to 1)	Title Text	|literal
+Title Text	tooltip	The literal string value of the document title.
+
+E73: Document Text	tooltip	The textual content of the document. For records typed as component with Section Type 'figure', this field carries the figure caption. May be absent for purely structural container documents.	literal|
+
+E55: Document Type	tooltip	The kind of document this record represents. Selected from the document_type controlled vocabulary. Top-level values include report (with narrower sub-types such as treatment_report, condition_assessment_report, imaging_report), research_notes, working_note, catalogue_entry, composite_report, presentation, correspondence, published_article, book_chapter, thesis, minutes, dossier, component, and other. The value 'component' marks the record as a constituent part of a parent document, with the specific role given via Section Type.	type|
+
+E55: Section Type	tooltip	The role this record plays as a component of a parent document. Selected from the document_section_type controlled vocabulary (figure, abstract, appendix, introduction, methods, results, discussion, conclusion, acknowledgements, references, table, footnote, preface, foreword, glossary, index, chapter, section, sub-section, summary, other). Meaningful when Document Type is 'component'; may be left unset for standalone documents.	type|
+
+E55: Work Domain	tooltip	The subject area or areas of work this document addresses. Selected from the work_domain controlled vocabulary (e.g. x_radiography, infrared_reflectography, ultraviolet_examination, pigment_analysis, binding_medium_analysis, provenance, attribution, iconography, conservation_treatment, condition_assessment, environmental_monitoring). A document may have multiple work_domain values where it addresses more than one area. The work_domain vocabulary is reusable across entity types beyond documents.	type|
+
+E54: Part Order	tooltip	A dimension node representing the ordinal position of a specific part within its parent document. The numeric value is not stored directly on this node; a separate literal structure would be required to record it.	dims|
+
+E28: Part Position	tooltip	A conceptual object acting as a positional node linking this document to one of its parts. Carries the ordinal position of the part within this specific parent document via an associated E54 dimension. Each parent-part relationship has its own E28 instance, allowing the same part to appear in multiple parent documents at different positions.	idea_bn|
+
+E42: Version Number	tooltip	An optional dimension node recording the version number of this document. Intended for documents where changes are significant enough to warrant explicit versioning rather than simple updates. The version number can be updated as needed, but ideally should be applied to a new copy of the document. When a new version is recorded, a link to the previous version should be made	name|
+
+E31: Simple Document	P190_has_symbolic_content (0 to 1)	E73: Document Text
+E31: Simple Document	P2_has_type (1 to 1)	E55: Document Type
+E31: Simple Document	P2_has_type (0 to 1)	E55: Section Type
+E31: Simple Document	P2_has_type (0 to n)	E55: Work Domain
+E31: Simple Document	P70_documents (1 to n)	E1: Documented Entity
+E31: Simple Document	P94i_was_created_by (0 to 1)	E65: Document Creation
+E31: Simple Document	P140i_was_attributed_by (0 to n)	E13: Document Update
+E31: Simple Document	P165_incorporates (0 to n)	EX_Digital_Image: Incorporated Image
+E31: Simple Document	P148_has_component (0 to n)	E31: Simple Document (Part)
+
+E28: Part Position	P67_refers_to (0 to 1)	E31: Simple Document
+E28: Part Position	P67_refers_to (0 to 1)	E31: Simple Document (Part)
+E28: Part Position	P43_has_dimension (1 to 1)	E54: Part Order
+E54: Part Order	P2_has_type (1 to 1)	E55: Ordinal Position Type	|type
+E55: Ordinal Position Type	tooltip	A type node indicating the kind of dimension recorded by this E54 node. Fixed value: "ordinal position". Distinguishes this dimension from physical or temporal measurements.
+
+E31: Simple Document	P130_shows_features_of (0 to n)	E31: Alternative Version
+E31: Simple Document	P1_is_identified_by (0 to 1)	E42: Version Number
