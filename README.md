@@ -19,7 +19,7 @@ institutions. Additional collaborators will be acknowledged as models continue t
 ## Visual Overview of All Models
 
 <!-- BEGIN AUTO: NG-MODEL-VISUAL -->
-[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.8.tsv)
+[Open in Dynamic Modeller](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/overview/overview_v1.9.tsv)
 
 ```mermaid
 %%{init: {'flowchart': {'wrappingWidth': 600}}}%%
@@ -97,7 +97,6 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   digital_file["digital_file"]:::missing
-  sample_observation["sample_observation"]:::missing
 
   annotation_image ---->|"E22: Heritage Object"|heritage_object
   annotation_image ---->|"E22: Heritage Object Part"|heritage_object_part
@@ -108,7 +107,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   annotation_image ---->|"E29: Imaging Protocol"|crm_E29
   annotation_image ---->|"E31: Related Document"|simple_document
   annotation_image ---->|"D1: Digital Dataset"|data_set
-  data_set ---->|"S27: Observation Event"|sample_observation
+  data_set ---->|"S27: Observation Event"|observation
   data_set ---->|"E39: Rights Holder"|person
   data_set ---->|"E39: Rights Holder"|organisation
   data_set ---->|"E29: Method / Protocol"|crm_E29
@@ -297,7 +296,7 @@ Individual CIDOC CRM domain models, each covering a specific aspect of heritage 
 | Sample storage unit | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_storage_unit`](models/sample_storage_unit/) | [v1.1](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_storage_unit/sample_storage_unit_v1.1.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_storage_unit/sample_storage_unit_v1.1.tsv) |
 | Sample taking | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sample_taking`](models/sample_taking/) | [v1.7](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_taking/sample_taking_v1.7.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sample_taking/sample_taking_v1.7.tsv) |
 | Sampling activity | ![Status: Formed](https://img.shields.io/badge/status-formed-brightgreen) | [`models/sampling_activity`](models/sampling_activity/) | [v1.2](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sampling_activity/sampling_activity_v1.2.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/sampling_activity/sampling_activity_v1.2.tsv) |
-| Simple document | ![Status: Mixed](https://img.shields.io/badge/status-mixed-yellow) | [`models/simple_document`](models/simple_document/) | [v1.2](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.2.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.2.tsv) |
+| Simple document | ![Status: Mixed](https://img.shields.io/badge/status-mixed-yellow) | [`models/simple_document`](models/simple_document/) | [v1.3](https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.3.tsv) | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/simple_document/simple_document_v1.3.tsv) |
 | Timespan | ![Status: Precursor](https://img.shields.io/badge/status-precursor-orange) | [`models/timespan`](models/timespan/) | _Precursor files only_ | -- |
 <!-- END AUTO: MODEL-LIST -->
 

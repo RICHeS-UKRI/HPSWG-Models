@@ -1,6 +1,6 @@
 # Model Consistency Report
 
-_Generated: 2026-04-12 12:08 UTC_
+_Generated: 2026-04-20 21:43 UTC_
 
 **Individual model files analysed:** 21  
 **Workflow/overview files analysed:** 1  
@@ -75,11 +75,11 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>data_set/data_set_v0.1.tsv</strong> -- 5 confirmed, 2 missing target</summary>
+<summary><strong>data_set/data_set_v0.1.tsv</strong> -- 6 confirmed, 1 missing target</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |
-| `S27: Observation Event` | `S27` | `sample_observation` | ❓ Missing target -- folder not found in repo |
+| `S27: Observation Event` | `S27` | `observation` → `S27: Observation` | ✅ Consistent |
 | `E39: Rights Holder` | `E39` | `person` → `E21: Person` | ✅ Consistent (confirmed hierarchy match) |
 |  |  | `organisation` → `E74: Organisation` | ✅ Consistent (confirmed hierarchy match) |
 | `E29: Method / Protocol` | `E29` | `crm:E29` (ontology) | 📖 Ontology reference -- follows standard CRM structure |
@@ -340,7 +340,7 @@ Each model's linked entities are listed with their declared target models and co
 </details>
 
 <details>
-<summary><strong>simple_document/simple_document_v1.2.tsv</strong> -- 6 confirmed</summary>
+<summary><strong>simple_document/simple_document_v1.3.tsv</strong> -- 6 confirmed</summary>
 
 | Linked entity | Class code | Declared target(s) | Status |
 | --- | --- | --- | --- |

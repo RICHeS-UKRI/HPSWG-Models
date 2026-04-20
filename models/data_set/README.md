@@ -22,7 +22,7 @@ See [`ONTOLOGIES.md`](../ONTOLOGIES.md) for full version details, source links, 
 
 | | Version | Created | Last modified | Open in Modeller |
 | :---: | :---: | :---: | :---: | --- |
-| :heavy_check_mark: | v0.1 | 2026-04-11 | 2026-04-11 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/data_set/data_set_v0.1.tsv) |
+| :heavy_check_mark: | v0.1 | 2026-04-11 | 2026-04-12 | [Open](https://research.nationalgallery.org.uk/lab/modelling/?url=https://raw.githubusercontent.com/RICHeS-UKRI/HPSWG-Models/refs/heads/main/models/data_set/data_set_v0.1.tsv) |
 
 </details>
 

@@ -7,7 +7,7 @@ This folder contains automatically generated reports produced by the GitHub Acti
 <!-- BEGIN AUTO: REPORT-LIST -->
 | Report | Description | Last modified |
 |--------|-------------|---------------|
-| [consistency_report.md](consistency_report.md) | **Individual model files analysed:** 20 | 2026-04-11 |
+| [consistency_report.md](consistency_report.md) | **Individual model files analysed:** 21 | 2026-04-12 |
 <!-- END AUTO: REPORT-LIST -->
 
 ## Adding new reports

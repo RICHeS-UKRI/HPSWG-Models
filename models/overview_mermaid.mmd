@@ -73,7 +73,6 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   rs_EX_Digital_Image["rs:EX_Digital_Image"]:::digital2_bn
   rs_EX_Digital_Image_Region["rs:EX_Digital_Image_Region"]:::digital2_bn
   digital_file["digital_file"]:::missing
-  sample_observation["sample_observation"]:::missing
 
   annotation_image ---->|"E22: Heritage Object"|heritage_object
   annotation_image ---->|"E22: Heritage Object Part"|heritage_object_part
@@ -84,7 +83,7 @@ classDef classstyle stroke:black,fill:white,color:black,rx:5px,ry:5px;
   annotation_image ---->|"E29: Imaging Protocol"|crm_E29
   annotation_image ---->|"E31: Related Document"|simple_document
   annotation_image ---->|"D1: Digital Dataset"|data_set
-  data_set ---->|"S27: Observation Event"|sample_observation
+  data_set ---->|"S27: Observation Event"|observation
   data_set ---->|"E39: Rights Holder"|person
   data_set ---->|"E39: Rights Holder"|organisation
   data_set ---->|"E29: Method / Protocol"|crm_E29
