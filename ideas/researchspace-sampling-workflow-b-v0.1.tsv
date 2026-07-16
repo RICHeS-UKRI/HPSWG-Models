@@ -1,0 +1,57 @@
+//Flowchart LR
+
+// Painting
+1: Painting	P1 is identified by	<INVNO>: <TITLE>, <ARTISTNAME>	object-fs32|name
+1: Painting	rs: has IRI in the form of	<NAMESPACE>/resource/painting/<UUID>	|name2
+1: Painting	tooltip	Please note that it is possible that the sample site may be connected directly to a part of an object as well as the full object. object|
+1: Painting	wf: document sampling activity	2: Sampling Activity	|event-fs32
+
+//Sampling Activity
+2: Sampling Activity	P1 is identified by	Sampling of <INVNO> <DATE>	|name
+2: Sampling Activity	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_activity/<UUID>	|name2
+2: Sampling Activity	P9 consists of	5a: Sample Taking	|event-fs28
+2: Sampling Activity	P33 used specific technique	Sampling Procedure	|document
+Sampling Procedure	tooltip	This has not been tested yet but it is expected that we would use the current "Examination Technique" linked to and actual uploaded document.
+2: Sampling Activity	P16 used specific object	1: Painting	|object
+2: Sampling Activity	wf: sampling site (no annotation)	5b: Sampling Site	|digital2-fs28
+2: Sampling Activity	P4 has time-span	Timespan	|period
+
+5b: Sampling Site	wf: auto creates	5a: Sample Taking
+5b: Sampling Site	wf: auto creates	5c: Sampling Place	|place-fs28
+
+5a: Sample Taking	wf: auto creates	5d: Sample	|object-fs28
+
+//timespan
+Timespan	P1 is identified by	Timespan of <SAMPLING ACTIVITY NAME>	period|name
+Timespan	rs: has IRI in the form of	<NAMESPACE>/resource/timespan/<UUID>	|name2
+
+// Sampling Site (no annotation)
+5b: Sampling Site	P1 is identified by	<INVNO> <SAMPLENO> Sampling Site	event|name
+5b: Sampling Site	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_site/<UUID>	|name2
+5b: Sampling Site	P3 has note	<FREE TEXT SITE DESCRIPTION>	|name
+5b: Sampling Site	P56i is found on	1: Painting	digital2|object
+5b: Sampling Site	P156 occupies	5c: Sampling Place
+
+// Sampling Place
+5c: Sampling Place	P1 is identified by	<INVNO> <SAMPLENO> Sampling Place	event|name
+5c: Sampling Place	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_site/<UUID>/place/<UUID-4>	|name2
+
+// Sample Taking
+5a: Sample Taking	P1 is identified by	<INVNO> <SAMPLENO> Sample Taking	event|name
+5a: Sample Taking	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_site/<UUID>/sample_taking/<UUID-3>	|name2
+5a: Sample Taking	O5 removed	5d: Sample	event|object
+5a: Sample Taking	O3 sampled from	1: Painting	|object
+5a: Sample Taking	O3 sampled from	5b: Sampling Site	|digital2
+5a: Sample Taking	O4 sampled at	5c: Sampling Place	|place
+
+// By default these are expected to be blank as the reason and description will be covered in the Activity, but it might not always be the case.
+5a: Sample Taking	P33 used specific technique	Sampling Procedure#-2	|document
+Sampling Procedure#-2	tooltip	This has not been tested yet but if a specific procedure is required to supersede the Sampling Activity procedure we would use the current "Examination Technique" linked to and actual uploaded document.
+
+// Default is the taking shares the same timespan as the activity but this might not be the case
+5a: Sample Taking	P4 has time-span	Timespan	|period
+
+// Sample
+5d: Sample	P1 is identified by	<INVNO> <SAMPLENO> Sample	|name
+5d: Sample	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_site/<UUID>/sample_taking/<UUID-3>/sample/<UUID-5>	|name2
+
