@@ -68,5 +68,5 @@ Sampling Procedure#-2	tooltip	This has not been tested yet but if a specific pro
 
 //Sample
 5d: Sample	P1 is identified by	<ANNOTATION NAME> Sample	|name
-5d: Sample	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/sample_taking<UUID-3>/sample/<UUID-5>	|name2
+5d: Sample	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/sample_taking/<UUID-3>/sample/<UUID-5>	|name2
 
