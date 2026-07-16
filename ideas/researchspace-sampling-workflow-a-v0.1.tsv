@@ -12,9 +12,10 @@
 2: Sampling Activity	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_activity/<UUID>	|name2
 2: Sampling Activity	P9 consists of	5a: Sample Taking	|event-fs28
 2: Sampling Activity	P33 used specific technique	Sampling Procedure	|document
-Sampling Procedure	tooltip	This has not been tested yet but it is expected that we would use the current "Examination Technique" for linked to and actual uploaded document.
+Sampling Procedure	tooltip	This has not been tested yet but it is expected that we would use the current "Examination Technique" linked to and actual uploaded document.
 2: Sampling Activity	P16 used specific object	1: Painting	|object
 2: Sampling Activity	wf: digital sampling image annotations	3: Painting - Annotation Image
+2: Sampling Activity	P4 has time-span	Time-Span	|period
 
 3: Painting - Annotation Image	wf: is annotated to create	4: Image Annotation - SP	|digital2-fs32
 3: Painting - Annotation Image	tooltip	Please note this is a special annotation view for sample points as indicated with the Sample Site drop-down value in the Mirador tool box. All of the images currently linked directly to a painting can be annotated, we will need to have our own procedure for indicating which one should be used. It would be possible to limit the images displayed here based on image type based filters but this will take more configuration.
@@ -27,14 +28,24 @@ Sampling Procedure	tooltip	This has not been tested yet but it is expected that 
 4: Image Annotation - SP	tooltip	We have an uppercase value here in the IRI - should this be imageregion instead of ImageRegion
 4: Image Annotation - SP	dig:L49 is primary area of	3: Painting - Annotation Image
 
-4: Image Annotation - SP	wf: creates	5a: Sample Taking
 4: Image Annotation - SP	wf: creates	5b: Sampling Site	|digital2-fs28
-4: Image Annotation - SP	wf: creates	5c: Sampling Place	|place-fs28
-4: Image Annotation - SP	wf: creates	5d: Sample	|object-fs28
+
+5b: Sampling Site	wf: auto creates	5a: Sample Taking
+5b: Sampling Site	wf: auto creates	5c: Sampling Place	|place-fs28
+
+5a: Sample Taking	wf: auto creates	5d: Sample	|object-fs28
 
 //timespan
 Time-Span	P1 is identified by	Timespan of <SAMPLING ACTIVITY NAME>	period|name
 Time-Span	rs: has IRI in the form of	<NAMESPACE>/resource/timespan/<UUID>	|name2
+
+//Sampling Site
+5b: Sampling Site	P1 is identified by	<ANNOTATION NAME> Sample Site	event|name
+5b: Sampling Site	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>	|name2
+5b: Sampling Site	tooltip	The form has now field showing the connection to the Sample Place, but the connection is present in the triples.
+5b: Sampling Site	P56i is found on	1: Painting	digital2|object
+5b: Sampling Site	rso:PX_has_main_representation	4: Image Annotation - SP	|digital2
+5b: Sampling Site	P156 occupies	5c: Sampling Place
 
 //Sample Taking
 5a: Sample Taking	P1 is identified by	<ANNOTATION NAME> Sample Taking	event|name
@@ -46,22 +57,16 @@ Time-Span	rs: has IRI in the form of	<NAMESPACE>/resource/timespan/<UUID>	|name2
 
 // By default these are expected to be blank as the reason and description will be covered in the Activity, but it might not always be the case.
 5a: Sample Taking	P33 used specific technique	Sampling Procedure#-2	|document
+Sampling Procedure#-2	tooltip	This has not been tested yet but if a specific procedure is required to supersede the Sampling Activity procedure we would use the current "Examination Technique" linked to and actual uploaded document.
 
 // Default is the taking shares the same timespan as the activity but this might not be the case
 5a: Sample Taking	P4 has time-span	Time-Span	|period
 
-//Sampling Site
-5b: Sampling Site	P1 is identified by	<ANNOTATION NAME> Sample Site	event|name
-5b: Sampling Site	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>	|name2
-5b: Sampling Site	tooltip	The form has now field showing the connection to the Sample Place, but the connection is present in the triples.
-5b: Sampling Site	P56i is found on	1: Painting	digital2|object
-5b: Sampling Site	rso:PX_has_main_representation	4: Image Annotation - SP	|digital2
-5b: Sampling Site	P156 occupies	5c: Sampling Place
-
+//Sampling Place
 5c: Sampling Place	P1 is identified by	<ANNOTATION NAME> Sampling Place	event|name
 5c: Sampling Place	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/place/<UUID-4>	|name2
 
 //Sample
 5d: Sample	P1 is identified by	<ANNOTATION NAME> Sample	|name
-5d: Sample	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/sample_taking<UUID-3>/sample/<UUID-5>
+5d: Sample	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/sample_taking<UUID-3>/sample/<UUID-5>	|name2
 
