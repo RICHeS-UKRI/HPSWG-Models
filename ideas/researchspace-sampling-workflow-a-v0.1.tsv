@@ -1,24 +1,30 @@
 //Flowchart LR
 
 // Painting
-1: Painting	P1 is identified by	ResearchSpace Name - Painting	object-fs32|name
+1: Painting	P1 is identified by	<INVNO>: <TITLE>, <ARTISTNAME>	object-fs32|name
+1: Painting	rs: has IRI in the form of	<NAMESPACE>/resource/painting/<UUID>	|name2
 1: Painting	tooltip	Please note that it is possible that the sample site may be connected directly to a part of an object as well as the full object. object|
 1: Painting	rso:PX_has_main_representation	3: Painting - Annotation Image	|digital2-fs32
 1: Painting	wf: document sampling activity	2: Sampling Activity	|event-fs32
 
 //Sampling Activity
-2: Sampling Activity	P1 is identified by	ResearchSpace Name - Sample Activity	event|name
-ResearchSpace Name - Sample Activity	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+2: Sampling Activity	P1 is identified by	Sampling of <INVNO> <DATE>	|name
+2: Sampling Activity	rs: has IRI in the form of	<NAMESPACE>/resource/sampling_activity/<UUID>	|name2
 2: Sampling Activity	P9 consists of	5a: Sample Taking	|event-fs28
 2: Sampling Activity	P33 used specific technique	Sampling Procedure	|document
+Sampling Procedure	tooltip	This has not been tested yet but it is expected that we would use the current "Examination Technique" for linked to and actual uploaded document.
 2: Sampling Activity	P16 used specific object	1: Painting	|object
 2: Sampling Activity	wf: digital sampling image annotations	3: Painting - Annotation Image
 
 3: Painting - Annotation Image	wf: is annotated to create	4: Image Annotation - SP	|digital2-fs32
+3: Painting - Annotation Image	tooltip	Please note this is a special annotation view for sample points as indicated with the Sample Site drop-down value in the Mirador tool box. All of the images currently linked directly to a painting can be annotated, we will need to have our own procedure for indicating which one should be used. It would be possible to limit the images displayed here based on image type based filters but this will take more configuration.
+3: Painting - Annotation Image	P1 is identified by	<IMAGE FILENAME WITHOUT EXT>	|name
+3: Painting - Annotation Image	rs: has IRI in the form of	<NAMESPACE>/resource/image/<UUID>	|name2
 
 //Image Annotation
-4: Image Annotation - SP	P1 is identified by	ResearchSpace Name - Image Annotation	|name
-ResearchSpace Name - Image Annotation	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+4: Image Annotation - SP	P1 is identified by	<FREE TEXT FROM ANNOTATION CONTENT>	|name
+4: Image Annotation - SP	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>	|name2
+4: Image Annotation - SP	tooltip	We have an uppercase value here in the IRI - should this be imageregion instead of ImageRegion
 4: Image Annotation - SP	dig:L49 is primary area of	3: Painting - Annotation Image
 
 4: Image Annotation - SP	wf: creates	5a: Sample Taking
@@ -27,13 +33,13 @@ ResearchSpace Name - Image Annotation	tooltip	required pattern for all things - 
 4: Image Annotation - SP	wf: creates	5d: Sample	|object-fs28
 
 //timespan
-Time-Span	P1 is identified by	ResearchSpace Name - Time-Span	event|name
-ResearchSpace Name - Time-Span	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+Time-Span	P1 is identified by	Timespan of <SAMPLING ACTIVITY NAME>	period|name
+Time-Span	rs: has IRI in the form of	<NAMESPACE>/resource/timespan/<UUID>	|name2
 
 //Sample Taking
-5a: Sample Taking	P1 is identified by	ResearchSpace Name - Sample Taking	event|name
-ResearchSpace Name - Sample Taking	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
-5a: Sample Taking	O5 removed	Sample	event|object
+5a: Sample Taking	P1 is identified by	<SAMPLE NANE> Sample Taking	event|name
+5a: Sample Taking	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>/sample_taking<UUID-3>	|name2
+5a: Sample Taking	O5 removed	5d: Sample	event|object
 5a: Sample Taking	O3 sampled from	1: Painting	|object
 5a: Sample Taking	O3 sampled from	5b: Sampling Site	|digital2
 5a: Sample Taking	O4 sampled at	5c: Sampling Place	|place
@@ -45,8 +51,8 @@ ResearchSpace Name - Sample Taking	tooltip	required pattern for all things - P1 
 5a: Sample Taking	P4 has time-span	Time-Span	|period
 
 //Sampling Site
-5b: Sampling Site	P1 is identified by	ResearchSpace Name - Sampling Site	event|name
-ResearchSpace Name - Sampling Site	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+5b: Sampling Site	P1 is identified by	<SAMPLE NANE> Sample Site	event|name
+5b: Sampling Site	rs: has IRI in the form of	<NAMESPACE>/resource/ImageRegion/<UUID>/sampling_site/<UUID-2>	|name2
 5b: Sampling Site	P56i is found on	1: Painting	digital2|object
 5b: Sampling Site	rso:PX_has_main_representation	4: Image Annotation - SP	|digital2
 5b: Sampling Site	P156 occupies	5c: Sampling Place
