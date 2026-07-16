@@ -1,0 +1,57 @@
+//Flowchart LR
+
+// Painting
+1: Painting	P1 is identified by	ResearchSpace Name - Painting	object-fs32|name
+1: Painting	tooltip	Please note that it is possible that the sample site may be connected directly to a part of an object as well as the full object. object|
+1: Painting	rso:PX_has_main_representation	3: Painting - Annotation Image	|digital2-fs32
+1: Painting	wf: document sampling activity	2: Sampling Activity	|event-fs32
+
+//Sampling Activity
+2: Sampling Activity	P1 is identified by	ResearchSpace Name - Sample Activity	event|name
+ResearchSpace Name - Sample Activity	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+2: Sampling Activity	P9 consists of	5a: Sample Taking	|event-fs28
+2: Sampling Activity	P33 used specific technique	Sampling Procedure	|document
+2: Sampling Activity	P16 used specific object	1: Painting	|object
+2: Sampling Activity	wf: digital sampling image annotations	3: Painting - Annotation Image
+
+3: Painting - Annotation Image	wf: is annotated to create	4: Image Annotation - SP	|digital2-fs32
+
+//Image Annotation
+4: Image Annotation - SP	P1 is identified by	ResearchSpace Name - Image Annotation	|name
+ResearchSpace Name - Image Annotation	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+4: Image Annotation - SP	dig:L49 is primary area of	3: Painting - Annotation Image
+
+4: Image Annotation - SP	wf: creates	5a: Sample Taking
+4: Image Annotation - SP	wf: creates	5b: Sampling Site	|digital2-fs28
+4: Image Annotation - SP	wf: creates	5c: Sampling Place	|place-fs28
+4: Image Annotation - SP	wf: creates	5d: Sample	|object-fs28
+
+//timespan
+Time-Span	P1 is identified by	ResearchSpace Name - Time-Span	event|name
+ResearchSpace Name - Time-Span	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+
+//Sample Taking
+5a: Sample Taking	P1 is identified by	ResearchSpace Name - Sample Taking	event|name
+ResearchSpace Name - Sample Taking	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+5a: Sample Taking	O5 removed	Sample	event|object
+5a: Sample Taking	O3 sampled from	1: Painting	|object
+5a: Sample Taking	O3 sampled from	5b: Sampling Site	|digital2
+5a: Sample Taking	O4 sampled at	5c: Sampling Place	|place
+
+// By default these are expected to be blank as the reason and description will be covered in the Activity, but it might not always be the case.
+5a: Sample Taking	P33 used specific technique	Sampling Procedure#-2	|document
+
+// Default is the taking shares the same timespan as the activity but this might not be the case
+5a: Sample Taking	P4 has time-span	Time-Span	|period
+
+//Sampling Site
+5b: Sampling Site	P1 is identified by	ResearchSpace Name - Sampling Site	event|name
+ResearchSpace Name - Sampling Site	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+5b: Sampling Site	P56i is found on	1: Painting	digital2|object
+5b: Sampling Site	rso:PX_has_main_representation	4: Image Annotation - SP	|digital2
+5b: Sampling Site	P156 occupies	5c: Sampling Place
+
+//Sample
+5d: Sample	P1 is identified by	ResearchSpace Name - Sample	|name
+ResearchSpace Name - Sample	tooltip	required pattern for all things - P1 - E41, E1 - P2 primary appellation, E41 - P190 - value
+
